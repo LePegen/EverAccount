@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package controller;
 
 import wrapped_model.WrappedAccountModel;
@@ -19,14 +14,23 @@ public abstract class Controller {
     WrappedAccountModel currentModel;
     
     //handlers
+    private ILoginView loginViewAction;
+    private IAccountOverviewView overviewViewAction;
+    private IAccountView accountViewAction;
     
-    //wrapped models
+    //views
+    View loginView;
+    View accView;
+    View accOverviewView;
     
+    /**
+     * LoginView cannot be a View. Problems in implementation
+     */
     public void initViews(){
         
-    }
-    
-    public void initWrappedModels(){
+//        loginView = new LoginView();
+//        accView = new AccountView();
+//        accOverviewView = new AccountOverviewView();
         
     }
     
