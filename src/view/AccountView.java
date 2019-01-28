@@ -15,7 +15,6 @@ public class AccountView extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        lblBanner = new javax.swing.JLabel();
         pnlFooter = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         pnlButtons = new javax.swing.JPanel();
@@ -29,12 +28,10 @@ public class AccountView extends javax.swing.JFrame {
         lblPassword = new javax.swing.JLabel();
         lblAdditionalInformation = new javax.swing.JLabel();
         lblProvider = new javax.swing.JLabel();
+        lblBanner = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        lblBanner.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/Banner draft 3.png"))); // NOI18N
-        getContentPane().add(lblBanner, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 30, 820, -1));
 
         pnlFooter.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         pnlFooter.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -95,6 +92,9 @@ public class AccountView extends javax.swing.JFrame {
         lblProvider.setFont(new java.awt.Font("Yu Gothic", 1, 36)); // NOI18N
         lblProvider.setText(" P R O V I  D E R ");
         getContentPane().add(lblProvider, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 190, -1, -1));
+
+        lblBanner.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/Banner draft 3.png"))); // NOI18N
+        getContentPane().add(lblBanner, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 30, 810, 100));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

@@ -17,7 +17,6 @@ public class AccountOverviewView extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        lblBanner = new javax.swing.JLabel();
         pnlFooter = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         pnlSearchBox1 = new javax.swing.JPanel();
@@ -32,12 +31,10 @@ public class AccountOverviewView extends javax.swing.JFrame {
         txtSearch = new javax.swing.JTextField();
         btnSearch = new javax.swing.JButton();
         lblMessage = new javax.swing.JLabel();
+        lblBanner = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        lblBanner.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/Banner draft 3.png"))); // NOI18N
-        getContentPane().add(lblBanner, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 30, -1, -1));
 
         pnlFooter.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         pnlFooter.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -97,6 +94,9 @@ public class AccountOverviewView extends javax.swing.JFrame {
         pnlSearchBox.add(lblMessage, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, 250, 190));
 
         getContentPane().add(pnlSearchBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 220, 290, 300));
+
+        lblBanner.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/Banner draft 3.png"))); // NOI18N
+        getContentPane().add(lblBanner, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 30, 810, 100));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

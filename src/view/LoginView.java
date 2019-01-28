@@ -14,14 +14,17 @@ public class LoginView  extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        lblLogo = new javax.swing.JLabel();
         lblAccountUsername = new javax.swing.JLabel();
         btnEye = new javax.swing.JLabel();
         pwfAccountPassword = new javax.swing.JPasswordField();
         btnLogin = new javax.swing.JButton();
-        lblLogo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        lblLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/Logo small.png"))); // NOI18N
+        getContentPane().add(lblLogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 30, -1, 120));
 
         lblAccountUsername.setFont(new java.awt.Font("Yu Gothic UI", 1, 18)); // NOI18N
         lblAccountUsername.setText("Account Username");
@@ -39,10 +42,6 @@ public class LoginView  extends javax.swing.JFrame {
         btnLogin.setText("Login");
         btnLogin.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         getContentPane().add(btnLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 270, 240, -1));
-
-        lblLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/Logo small.png"))); // NOI18N
-        lblLogo.setText("jLabel1");
-        getContentPane().add(lblLogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 30, 120, 120));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
