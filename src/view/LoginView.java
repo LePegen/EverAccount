@@ -1,0 +1,70 @@
+package view;
+
+/**
+ *
+ * @author Gene Garcia
+ */
+public class LoginView  extends javax.swing.JFrame {
+
+    public LoginView() {
+        initComponents();
+    }
+
+    @SuppressWarnings("unchecked")
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    private void initComponents() {
+
+        lblAccountUsername = new javax.swing.JLabel();
+        btnEye = new javax.swing.JLabel();
+        pwfAccountPassword = new javax.swing.JPasswordField();
+        btnLogin = new javax.swing.JButton();
+        lblLogo = new javax.swing.JLabel();
+
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        lblAccountUsername.setFont(new java.awt.Font("Yu Gothic UI", 1, 18)); // NOI18N
+        lblAccountUsername.setText("Account Username");
+        getContentPane().add(lblAccountUsername, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 150, -1, -1));
+
+        btnEye.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        btnEye.setText("O");
+        getContentPane().add(btnEye, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 230, 30, 30));
+
+        pwfAccountPassword.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        pwfAccountPassword.setText("jPasswordField1");
+        getContentPane().add(pwfAccountPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 230, 260, 30));
+
+        btnLogin.setFont(new java.awt.Font("Yu Gothic", 0, 18)); // NOI18N
+        btnLogin.setText("Login");
+        btnLogin.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        getContentPane().add(btnLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 270, 240, -1));
+
+        lblLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/Logo small.png"))); // NOI18N
+        lblLogo.setText("jLabel1");
+        getContentPane().add(lblLogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 30, 120, 120));
+
+        pack();
+    }// </editor-fold>//GEN-END:initComponents
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String args[]) {
+
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new LoginView().setVisible(true);
+            }
+        });
+    }
+
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel btnEye;
+    private javax.swing.JButton btnLogin;
+    private javax.swing.JLabel lblAccountUsername;
+    private javax.swing.JLabel lblLogo;
+    private javax.swing.JPasswordField pwfAccountPassword;
+    // End of variables declaration//GEN-END:variables
+
+}
