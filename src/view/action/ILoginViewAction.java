@@ -1,6 +1,7 @@
 package view.action;
 
-public interface ILoginViewAction {
+
+public  interface ILoginViewAction {
     void loginAction();
     void exitAction();
 }
