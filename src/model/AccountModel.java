@@ -37,4 +37,5 @@ public class AccountModel {
     public void setAdditionalInformation(String additionalInformation) {
         this.additionalInformation = additionalInformation;
     }
+    
 }
