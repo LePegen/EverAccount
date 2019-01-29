@@ -11,6 +11,8 @@ public class AccountOverviewView extends View {
     /**
      * Creates new form AccountOverviewView
      */
+    
+    private ActionHandler handler;
     public AccountOverviewView() {
         initComponents();
     }
