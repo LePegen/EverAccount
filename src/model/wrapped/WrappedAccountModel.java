@@ -14,7 +14,6 @@ import view.AccountView;
  * @author Gene Garcia
  */
 public class WrappedAccountModel extends WrappedModel {
-    
     private AccountDataObject dataObj;
     private AccountModel accountModel;
     //has-a rel with encrpyion
@@ -74,7 +73,7 @@ public class WrappedAccountModel extends WrappedModel {
     }
 
     @Override
-    public void updateModelDB(String uniqueName) {
+    public void updateModelDB() {
         try {
             accountModel = dataObj.getAccount(uniqueName);
         } catch (SQLException ex) {

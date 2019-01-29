@@ -5,6 +5,9 @@
  */
 package model.wrapped;
 
+import database.AccountOverviewDataObject;
+import java.util.ArrayList;
+import model.AccountModel;
 import view.View;
 
 /**
@@ -12,7 +15,11 @@ import view.View;
  * @author lipat
  */
 public class WrappedOverviewModel extends WrappedModel{
-
+    private int accountID;
+    private ArrayList<AccountModel> models;
+    private AccountOverviewDataObject accountOverviewDataObject;
+    
+    
     @Override
     public void updateModelView(View currentView) {
     }
@@ -30,7 +37,7 @@ public class WrappedOverviewModel extends WrappedModel{
     }
 
     @Override
-    public void updateModelDB(String uniqueName) {
+    public void updateModelDB() {
     }
     
 }

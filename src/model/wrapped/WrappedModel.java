@@ -19,5 +19,5 @@ public abstract class WrappedModel {
 
     public abstract void addDBModel();
     
-    public abstract void updateModelDB(String uniqueName);
+    public abstract void updateModelDB();
 }

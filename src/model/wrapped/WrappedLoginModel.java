@@ -51,7 +51,7 @@ public class WrappedLoginModel extends WrappedModel{
     }
 
     @Override
-    public void updateModelDB(String uniqueName) {
+    public void updateModelDB() {
     }
     
 }
