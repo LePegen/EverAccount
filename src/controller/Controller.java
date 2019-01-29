@@ -24,7 +24,7 @@ public class Controller {
     private View accountOverviewView;
 
     //wrapped models
-    WrappedAccModel accountModel;
+    WrappedAccountModel accountModel;
 
     /**
      * LoginView cannot be a View. Problems in implementation
@@ -44,9 +44,6 @@ public class Controller {
         
     }
 
-    /**
-     * includes setters for views handler
-     */
     public void initHandlers() {
 
     }
@@ -68,7 +65,7 @@ public class Controller {
     }
 
     public void updateView() {
-        currentModel.updateView(currentView);
+        currentModel.updateViewModel(currentView);
     }
 
 }
