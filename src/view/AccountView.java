@@ -3,6 +3,7 @@ package view;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import view.action.ActionHandler;
 
 /**
  *
@@ -10,10 +11,11 @@ import javax.swing.JPanel;
  */
 public class AccountView extends javax.swing.JFrame implements View {
 
+    private ActionHandler handler;
+    
     public AccountView() {
         initComponents();
     }
-
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -23,7 +25,7 @@ public class AccountView extends javax.swing.JFrame implements View {
         jLabel1 = new javax.swing.JLabel();
         pnlButtons = new javax.swing.JPanel();
         btnSave = new javax.swing.JButton();
-        btnReturn = new javax.swing.JButton();
+        btnLogout = new javax.swing.JButton();
         btnAdd = new javax.swing.JButton();
         btnModify = new javax.swing.JButton();
         pnlData = new javax.swing.JPanel();
@@ -32,9 +34,13 @@ public class AccountView extends javax.swing.JFrame implements View {
         lblPassword = new javax.swing.JLabel();
         lblAdditionalInformation = new javax.swing.JLabel();
         lblProvider = new javax.swing.JLabel();
+        lblUniqeName = new javax.swing.JLabel();
         lblBanner = new javax.swing.JLabel();
+        lblBackground = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(255, 255, 255));
+        setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         pnlFooter.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -51,11 +57,17 @@ public class AccountView extends javax.swing.JFrame implements View {
 
         btnSave.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         btnSave.setText("Save");
-        pnlButtons.add(btnSave, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 15, -1, -1));
+        btnSave.setEnabled(false);
+        btnSave.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSaveActionPerformed(evt);
+            }
+        });
+        pnlButtons.add(btnSave, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 15, -1, -1));
 
-        btnReturn.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        btnReturn.setText("Return");
-        pnlButtons.add(btnReturn, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 15, -1, -1));
+        btnLogout.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        btnLogout.setText("Logout");
+        pnlButtons.add(btnLogout, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 15, -1, -1));
 
         btnAdd.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         btnAdd.setText("Add");
@@ -63,7 +75,7 @@ public class AccountView extends javax.swing.JFrame implements View {
 
         btnModify.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         btnModify.setText("Modify");
-        pnlButtons.add(btnModify, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 15, -1, -1));
+        pnlButtons.add(btnModify, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 15, -1, -1));
 
         getContentPane().add(pnlButtons, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 480, 800, 60));
 
@@ -97,21 +109,31 @@ public class AccountView extends javax.swing.JFrame implements View {
         lblProvider.setText(" P R O V I  D E R ");
         getContentPane().add(lblProvider, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 190, -1, -1));
 
+        lblUniqeName.setFont(new java.awt.Font("Yu Gothic", 1, 24)); // NOI18N
+        lblUniqeName.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblUniqeName.setText("U N I Q U E N A M E");
+        getContentPane().add(lblUniqeName, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 200, 360, -1));
+
         lblBanner.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/Banner draft 3.png"))); // NOI18N
         getContentPane().add(lblBanner, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 30, 810, 100));
+
+        lblBackground.setBackground(new java.awt.Color(245, 245, 245));
+        lblBackground.setOpaque(true);
+        getContentPane().add(lblBackground, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 900, 700));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new AccountView().setVisible(true);
-            }
-        });
+    private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnSaveActionPerformed
+
+    public JLabel getLblUniqueName() {
+        return lblUniqeName;
+    }
+
+    public void setLblUniqueName(String name) {
+        this.lblUniqeName.setText(name);
     }
 
     public JLabel getLblEmail() {
@@ -153,24 +175,29 @@ public class AccountView extends javax.swing.JFrame implements View {
     public void setLblAdditionalInformation(String addiInfo) {
         this.lblAdditionalInformation.setText(addiInfo);
     }
-    
-    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdd;
+    private javax.swing.JButton btnLogout;
     private javax.swing.JButton btnModify;
-    private javax.swing.JButton btnReturn;
     private javax.swing.JButton btnSave;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel lblAdditionalInformation;
+    private javax.swing.JLabel lblBackground;
     private javax.swing.JLabel lblBanner;
     private javax.swing.JLabel lblEmail;
     private javax.swing.JLabel lblPassword;
     private javax.swing.JLabel lblProvider;
+    private javax.swing.JLabel lblUniqeName;
     private javax.swing.JLabel lblUsername;
     private javax.swing.JPanel pnlButtons;
     private javax.swing.JPanel pnlData;
     private javax.swing.JPanel pnlFooter;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void setHandler(ActionHandler action) {
+        this.handler = action;
+    }
 
 }

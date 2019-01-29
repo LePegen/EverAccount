@@ -6,5 +6,10 @@ package view.action;
  */
 public class AccountViewAction implements ActionHandler {
 
-    
+    //to do: (modules)
+    //modify
+    //save
+    //add
+    //logout
+    //update to model and database
 }

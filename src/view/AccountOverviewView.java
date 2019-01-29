@@ -1,14 +1,15 @@
 package view;
 
+import view.action.ActionHandler;
+
 /**
  *
  * @author Gene Garcia
  */
 public class AccountOverviewView extends javax.swing.JFrame implements View {
-
-    /**
-     * Creates new form AccountOverviewView
-     */
+    
+    private ActionHandler handler;
+    
     public AccountOverviewView() {
         initComponents();
     }
@@ -32,9 +33,12 @@ public class AccountOverviewView extends javax.swing.JFrame implements View {
         txtSearch = new javax.swing.JTextField();
         btnSearch = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList<>();
+        jListChoiceDisplay = new javax.swing.JList<>();
+        lblBackground = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(255, 255, 255));
+        setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lblBanner.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/Banner draft 3.png"))); // NOI18N
@@ -57,12 +61,12 @@ public class AccountOverviewView extends javax.swing.JFrame implements View {
 
         lblHighlight.setFont(new java.awt.Font("Yu Gothic", 1, 18)); // NOI18N
         lblHighlight.setText("Highlight account");
-        pnlHighlight.add(lblHighlight, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 5, 220, 30));
+        pnlHighlight.add(lblHighlight, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 220, 30));
 
-        btnRefresh.setText("R");
-        pnlHighlight.add(btnRefresh, new org.netbeans.lib.awtextra.AbsoluteConstraints(365, 5, -1, 30));
+        btnRefresh.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/refresh.png"))); // NOI18N
+        pnlHighlight.add(btnRefresh, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 6, 40, 40));
 
-        pnlSearchBox1.add(pnlHighlight, new org.netbeans.lib.awtextra.AbsoluteConstraints(13, 6, 420, 40));
+        pnlSearchBox1.add(pnlHighlight, new org.netbeans.lib.awtextra.AbsoluteConstraints(13, 6, 420, 50));
 
         btnHighlight3.setFont(new java.awt.Font("Yu Gothic", 1, 24)); // NOI18N
         btnHighlight3.setText("Facebook");
@@ -92,21 +96,26 @@ public class AccountOverviewView extends javax.swing.JFrame implements View {
                 txtSearchActionPerformed(evt);
             }
         });
-        pnlSearchBox.add(txtSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(15, 15, 230, 30));
+        pnlSearchBox.add(txtSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(15, 10, 230, 40));
 
-        btnSearch.setText("s");
-        pnlSearchBox.add(btnSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(245, 15, 30, 30));
+        btnSearch.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/search.png"))); // NOI18N
+        pnlSearchBox.add(btnSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(245, 10, 40, 39));
 
-        jList1.setModel(new javax.swing.AbstractListModel<String>() {
+        jListChoiceDisplay.setFont(new java.awt.Font("SimSun", 0, 18)); // NOI18N
+        jListChoiceDisplay.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
-        jScrollPane1.setViewportView(jList1);
+        jScrollPane1.setViewportView(jListChoiceDisplay);
 
-        pnlSearchBox.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, 250, 190));
+        pnlSearchBox.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, 260, 190));
 
-        getContentPane().add(pnlSearchBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 220, 290, 300));
+        getContentPane().add(pnlSearchBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 220, 300, 300));
+
+        lblBackground.setBackground(new java.awt.Color(245, 245, 245));
+        lblBackground.setOpaque(true);
+        getContentPane().add(lblBackground, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 900, 700));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -114,17 +123,6 @@ public class AccountOverviewView extends javax.swing.JFrame implements View {
     private void txtSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSearchActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtSearchActionPerformed
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new AccountOverviewView().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnHighlight1;
@@ -134,8 +132,9 @@ public class AccountOverviewView extends javax.swing.JFrame implements View {
     private javax.swing.JButton btnRefresh;
     private javax.swing.JButton btnSearch;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JList<String> jList1;
+    private javax.swing.JList<String> jListChoiceDisplay;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lblBackground;
     private javax.swing.JLabel lblBanner;
     private javax.swing.JLabel lblHighlight;
     private javax.swing.JPanel pnlFooter;
@@ -144,5 +143,10 @@ public class AccountOverviewView extends javax.swing.JFrame implements View {
     private javax.swing.JPanel pnlSearchBox1;
     private javax.swing.JTextField txtSearch;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void setHandler(ActionHandler action) {
+        this.handler = action;
+    }
 
 }
