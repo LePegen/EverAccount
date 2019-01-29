@@ -4,7 +4,8 @@ package view;
  *
  * @author prg08p-a67-08
  */
-public abstract class View {
+public interface View {
 
+    //this should be an interface class so that the Form classes can implement this class
     
 }

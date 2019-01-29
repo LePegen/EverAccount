@@ -4,7 +4,7 @@ package view;
  *
  * @author Gene Garcia
  */
-public class AccountOverviewView extends javax.swing.JFrame {
+public class AccountOverviewView extends javax.swing.JFrame implements View {
 
     /**
      * Creates new form AccountOverviewView
@@ -31,7 +31,8 @@ public class AccountOverviewView extends javax.swing.JFrame {
         pnlSearchBox = new javax.swing.JPanel();
         txtSearch = new javax.swing.JTextField();
         btnSearch = new javax.swing.JButton();
-        lblMessage = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jList1 = new javax.swing.JList<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -72,7 +73,7 @@ public class AccountOverviewView extends javax.swing.JFrame {
         pnlSearchBox1.add(btnHighlight4, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 195, 180, 75));
 
         btnHighlight1.setFont(new java.awt.Font("Yu Gothic", 1, 24)); // NOI18N
-        btnHighlight1.setText("Yahoo");
+        btnHighlight1.setText("Yahoo unique name");
         pnlSearchBox1.add(btnHighlight1, new org.netbeans.lib.awtextra.AbsoluteConstraints(13, 80, 180, 75));
 
         btnHighlight2.setFont(new java.awt.Font("Yu Gothic", 1, 24)); // NOI18N
@@ -85,21 +86,34 @@ public class AccountOverviewView extends javax.swing.JFrame {
         pnlSearchBox.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         txtSearch.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 14)); // NOI18N
-        txtSearch.setText("Enter username, email or host.");
+        txtSearch.setText("Enter the unique name of your account");
+        txtSearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtSearchActionPerformed(evt);
+            }
+        });
         pnlSearchBox.add(txtSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(15, 15, 230, 30));
 
         btnSearch.setText("s");
         pnlSearchBox.add(btnSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(245, 15, 30, 30));
 
-        lblMessage.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
-        lblMessage.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblMessage.setText("Simple Message");
-        pnlSearchBox.add(lblMessage, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, 250, 190));
+        jList1.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
+        jScrollPane1.setViewportView(jList1);
+
+        pnlSearchBox.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, 250, 190));
 
         getContentPane().add(pnlSearchBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 220, 290, 300));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void txtSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSearchActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtSearchActionPerformed
 
     /**
      * @param args the command line arguments
@@ -120,9 +134,10 @@ public class AccountOverviewView extends javax.swing.JFrame {
     private javax.swing.JButton btnRefresh;
     private javax.swing.JButton btnSearch;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JList<String> jList1;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblBanner;
     private javax.swing.JLabel lblHighlight;
-    private javax.swing.JLabel lblMessage;
     private javax.swing.JPanel pnlFooter;
     private javax.swing.JPanel pnlHighlight;
     private javax.swing.JPanel pnlSearchBox;

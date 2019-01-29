@@ -4,7 +4,7 @@ package view;
  *
  * @author Gene Garcia
  */
-public class LoginView  extends javax.swing.JFrame {
+public class LoginView  extends javax.swing.JFrame implements View{
 
     public LoginView() {
         initComponents();
@@ -41,10 +41,19 @@ public class LoginView  extends javax.swing.JFrame {
         btnLogin.setFont(new java.awt.Font("Yu Gothic", 0, 18)); // NOI18N
         btnLogin.setText("Login");
         btnLogin.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnLogin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLoginActionPerformed(evt);
+            }
+        });
         getContentPane().add(btnLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 270, 240, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnLoginActionPerformed
 
     /**
      * @param args the command line arguments

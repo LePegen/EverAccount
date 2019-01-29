@@ -1,10 +1,14 @@
 package view;
 
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+
 /**
  *
  * @author Gene Garcia
  */
-public class AccountView extends javax.swing.JFrame {
+public class AccountView extends javax.swing.JFrame implements View {
 
     public AccountView() {
         initComponents();
@@ -110,6 +114,48 @@ public class AccountView extends javax.swing.JFrame {
         });
     }
 
+    public JLabel getLblEmail() {
+        return lblEmail;
+    }
+
+    public void setLblEmail(String email) {
+        this.lblEmail.setText(email);
+    }
+
+    public JLabel getLblPassword() {
+        return lblPassword;
+    }
+
+    public void setLblPassword(String password) {
+        this.lblPassword.setText(password);
+    }
+
+    public JLabel getLblProvider() {
+        return lblProvider;
+    }
+
+    public void setLblProvider(String provider) {
+        this.lblProvider.setText(provider);
+    }
+
+    public JLabel getLblUsername() {
+        return lblUsername;
+    }
+
+    public void setLblUsername(String username) {
+        this.lblUsername.setText(username);
+    }
+
+    public JLabel getLblAdditionalInformation() {
+        return lblAdditionalInformation;
+    }
+
+    public void setLblAdditionalInformation(String addiInfo) {
+        this.lblAdditionalInformation.setText(addiInfo);
+    }
+    
+    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdd;
     private javax.swing.JButton btnModify;
@@ -126,4 +172,5 @@ public class AccountView extends javax.swing.JFrame {
     private javax.swing.JPanel pnlData;
     private javax.swing.JPanel pnlFooter;
     // End of variables declaration//GEN-END:variables
+
 }

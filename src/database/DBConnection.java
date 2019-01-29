@@ -18,9 +18,9 @@ public class DBConnection {
     
     private String commandSQL;
     
-    private final String HOST = "";
-    private final String USERNAME = "";
-    private final String PASSWORD = "";
+    private String HOST = "";
+    private String USERNAME = "";
+    private String PASSWORD = "";
     
     DBConnection(){
         
@@ -46,7 +46,7 @@ public class DBConnection {
         this.commandSQL = sqlCom;
     }
     
-    public ResultSet getDatas(){
+    public ResultSet getData(){
         return this.dataStore;
     }
     
@@ -57,5 +57,31 @@ public class DBConnection {
     public void closeConnection(){
         
     }
+
+    public String getHOST() {
+        return HOST;
+    }
+
+    public void setHOST(String HOST) {
+        this.HOST = HOST;
+    }
+
+    public String getUSERNAME() {
+        return USERNAME;
+    }
+
+    public void setUSERNAME(String USERNAME) {
+        this.USERNAME = USERNAME;
+    }
+
+    public String getPASSWORD() {
+        return PASSWORD;
+    }
+
+    public void setPASSWORD(String PASSWORD) {
+        this.PASSWORD = PASSWORD;
+    }
+    
+    
     
 }

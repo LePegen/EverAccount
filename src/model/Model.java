@@ -13,7 +13,7 @@ import view.*;
  */
 public class Model {
     
-    Model (){
+    public Model (){
         
     }
     
