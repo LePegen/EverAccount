@@ -6,10 +6,11 @@ import view.action.ActionHandler;
  *
  * @author Gene Garcia
  */
-public class AccountOverviewView extends javax.swing.JFrame implements View {
-    
-    private ActionHandler handler;
-    
+public class AccountOverviewView extends View {
+
+    /**
+     * Creates new form AccountOverviewView
+     */
     public AccountOverviewView() {
         initComponents();
     }

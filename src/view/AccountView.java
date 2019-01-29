@@ -9,7 +9,7 @@ import view.action.ActionHandler;
  *
  * @author Gene Garcia
  */
-public class AccountView extends javax.swing.JFrame implements View {
+public class AccountView extends View {
 
     private ActionHandler handler;
     

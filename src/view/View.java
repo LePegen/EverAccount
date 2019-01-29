@@ -2,12 +2,13 @@ package view;
 
 import view.action.ActionHandler;
 
+import javax.swing.JFrame;
 
 /**
  *
  * @author prg08p-a67-08
  */
-public interface View {
+public abstract class View extends JFrame{
 
     //error cannot declare ActionHandler Variable
     

@@ -7,7 +7,7 @@ import view.action.ActionHandler;
  *
  * @author Gene Garcia
  */
-public class LoginView  extends javax.swing.JFrame implements View{
+public class LoginView  extends View{
 
     private ActionHandler handler;
     
@@ -59,8 +59,20 @@ public class LoginView  extends javax.swing.JFrame implements View{
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    public JPasswordField getPwfPassword(){
-        return pwfAccountPassword;
+    private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
+        
+    }//GEN-LAST:event_btnLoginActionPerformed
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String args[]) {
+
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new LoginView().setVisible(true);
+            }
+        });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
