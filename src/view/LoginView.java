@@ -13,7 +13,7 @@ import view.action.LoginViewAction;
 public class LoginView  extends View{
 
     private ActionHandler handler;
-    private JTextField tfUsername;
+    //private JTextField tfUsername;
 
     public LoginView() {
         initComponents();
@@ -24,7 +24,7 @@ public class LoginView  extends View{
     private void initComponents() {
 
         lblLogo = new javax.swing.JLabel();
-        lblAccountUsername = new javax.swing.JLabel();
+        tfUsername = new javax.swing.JTextField();
         btnEye = new javax.swing.JLabel();
         pwfAccountPassword = new javax.swing.JPasswordField();
         btnLogin = new javax.swing.JButton();
@@ -38,9 +38,9 @@ public class LoginView  extends View{
         lblLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/Logo small.png"))); // NOI18N
         getContentPane().add(lblLogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 30, -1, 120));
 
-        lblAccountUsername.setFont(new java.awt.Font("Yu Gothic UI", 1, 18)); // NOI18N
-        lblAccountUsername.setText("Account Username");
-        getContentPane().add(lblAccountUsername, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 150, -1, -1));
+        tfUsername.setFont(new java.awt.Font("DialogInput", 0, 18)); // NOI18N
+        tfUsername.setText("Username");
+        getContentPane().add(tfUsername, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 150, 260, -1));
 
         btnEye.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         btnEye.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/open eye.png"))); // NOI18N
@@ -88,10 +88,10 @@ public class LoginView  extends View{
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel btnEye;
     private javax.swing.JButton btnLogin;
-    private javax.swing.JLabel lblAccountUsername;
     private javax.swing.JLabel lblBackground;
     private javax.swing.JLabel lblLogo;
     private javax.swing.JPasswordField pwfAccountPassword;
+    private javax.swing.JTextField tfUsername;
     // End of variables declaration//GEN-END:variables
 
     @Override
