@@ -52,9 +52,13 @@ public class AccountOverviewView extends View {
     
     public void setAccountList(ArrayList<Integer> accountID, ArrayList<String> itemText){
         DefaultListModel listModel = new DefaultListModel();
+        
+        //will add the itemText to the JList in this view
         for (int i = 0; i < itemText.size(); i++) {
             listModel.add(i, itemText);
         }
+        
+        //treats per line as an object. Gets it and adds it to components with the account id
         for (int i = 0; i < listModel.size(); i++) {
             components.putIfAbsent(listModel.getElementAt(i), accountID.get(i));
         }
@@ -67,7 +71,7 @@ public class AccountOverviewView extends View {
 
         lblBanner = new javax.swing.JLabel();
         pnlFooter = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        lblFooter = new javax.swing.JLabel();
         pnlSearchBox1 = new javax.swing.JPanel();
         pnlHighlight = new javax.swing.JPanel();
         lblHighlight = new javax.swing.JLabel();
@@ -94,9 +98,9 @@ public class AccountOverviewView extends View {
         pnlFooter.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         pnlFooter.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setFont(new java.awt.Font("MS Reference Sans Serif", 0, 24)); // NOI18N
-        jLabel1.setText("F O O T E R | C R E D I T S");
-        pnlFooter.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 30, -1, -1));
+        lblFooter.setFont(new java.awt.Font("MS Reference Sans Serif", 0, 24)); // NOI18N
+        lblFooter.setText("F O O T E R | C R E D I T S");
+        pnlFooter.add(lblFooter, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 30, -1, -1));
 
         getContentPane().add(pnlFooter, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 590, 800, 80));
 
@@ -236,11 +240,11 @@ public class AccountOverviewView extends View {
     private javax.swing.JButton btnHighlight4;
     private javax.swing.JButton btnRefresh;
     private javax.swing.JButton btnSearch;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JList<String> jlAccountItems;
     private javax.swing.JLabel lblBackground;
     private javax.swing.JLabel lblBanner;
+    private javax.swing.JLabel lblFooter;
     private javax.swing.JLabel lblHighlight;
     private javax.swing.JPanel pnlFooter;
     private javax.swing.JPanel pnlHighlight;
