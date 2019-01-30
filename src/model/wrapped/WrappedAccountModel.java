@@ -31,12 +31,14 @@ public class WrappedAccountModel extends WrappedModel {
     @Override
     public void updateModelView(View currentView) {
         AccountView view = (AccountView) currentView;
-        accountModel.setProvider(view.getLblProvider().getText());
-        //create text field for unique name accountModel.setUniqueName( view.getLblUniqueName().getText ); 
-        accountModel.setEmail(view.getLblEmail().getText());
-        accountModel.setUsername(view.getLblUsername().getText());
-        accountModel.setPassword(view.getLblPassword().getText());
-        accountModel.setAdditionalInformation(view.getLblAdditionalInformation().getText());
+        
+        accountModel.setProvider( view.getTxtProvider().getText() );
+        accountModel.setUniqueName( view.getTxtUniqueName().getText() ); 
+        
+        accountModel.setEmail( view.getTxtEmail().getText() );
+        accountModel.setUsername( view.getTxtUsername().getText() );
+        accountModel.setPassword( view.getPwfPassword().getText() );
+        accountModel.setAdditionalInformation( view.getTxtAdditionalInformation().getText() );
 
     }
 
@@ -50,12 +52,12 @@ public class WrappedAccountModel extends WrappedModel {
     public void updateViewModel(View currentView) {
         AccountView view = (AccountView) currentView;
 
-        view.setLblProvider(accountModel.getProvider());
-        //create text field for unique name view.setLblUniqueName( accountModel.getUniqueName() );
-        view.setLblEmail(accountModel.getEmail());
-        view.setLblUsername(accountModel.getUsername());
-        view.setLblPassword(accountModel.getPassword());
-        view.setLblAdditionalInformation(accountModel.getAdditionalInformation());
+        view.setTxtProvider( accountModel.getProvider() );
+        view.setTxtUniqueName( accountModel.getUniqueName() );
+        view.setTxtEmail( accountModel.getEmail() );
+        view.setTxtUsername( accountModel.getUsername() );
+        view.setPwfPassword( accountModel.getPassword() );
+        view.setTxtAdditionalInformation( accountModel.getAdditionalInformation() );
 
     }
 
@@ -72,7 +74,11 @@ public class WrappedAccountModel extends WrappedModel {
 
     @Override
     public void addDBModel() {
-        dataObj.addAccount(accountModel);
+        try {
+            dataObj.addAccount(accountModel);
+        } catch (SQLException ex) {
+            Logger.getLogger(WrappedAccountModel.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @Override
