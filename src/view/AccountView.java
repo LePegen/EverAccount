@@ -3,6 +3,8 @@ package view;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
+import javax.swing.JTextField;
 import view.action.ActionHandler;
 
 /**
@@ -11,6 +13,8 @@ import view.action.ActionHandler;
  */
 public class AccountView extends View {
 
+    //to do: change all labels to text field
+    
     private ActionHandler handler;
     
     public AccountView() {
@@ -21,21 +25,21 @@ public class AccountView extends View {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        lblBanner = new javax.swing.JLabel();
         pnlFooter = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        lblFooter = new javax.swing.JLabel();
         pnlButtons = new javax.swing.JPanel();
         btnSave = new javax.swing.JButton();
         btnLogout = new javax.swing.JButton();
         btnAdd = new javax.swing.JButton();
         btnModify = new javax.swing.JButton();
         pnlData = new javax.swing.JPanel();
-        lblUsername = new javax.swing.JLabel();
-        lblEmail = new javax.swing.JLabel();
-        lblPassword = new javax.swing.JLabel();
-        lblAdditionalInformation = new javax.swing.JLabel();
-        lblProvider = new javax.swing.JLabel();
-        lblUniqeName = new javax.swing.JLabel();
-        lblBanner = new javax.swing.JLabel();
+        txtEmail = new javax.swing.JTextField();
+        txtUsername = new javax.swing.JTextField();
+        txtAdditionalInformation = new javax.swing.JTextField();
+        pwfPassword = new javax.swing.JPasswordField();
+        txtProvider = new javax.swing.JTextField();
+        txtUniqueName = new javax.swing.JTextField();
         lblBackground = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -43,12 +47,15 @@ public class AccountView extends View {
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        lblBanner.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/Banner draft 3.png"))); // NOI18N
+        getContentPane().add(lblBanner, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 30, 810, 100));
+
         pnlFooter.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         pnlFooter.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setFont(new java.awt.Font("MS Reference Sans Serif", 0, 24)); // NOI18N
-        jLabel1.setText("F O O T E R | C R E D I T S");
-        pnlFooter.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 30, -1, -1));
+        lblFooter.setFont(new java.awt.Font("MS Reference Sans Serif", 0, 24)); // NOI18N
+        lblFooter.setText("F O O T E R | C R E D I T S");
+        pnlFooter.add(lblFooter, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 30, -1, -1));
 
         getContentPane().add(pnlFooter, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 590, 800, 80));
 
@@ -82,40 +89,38 @@ public class AccountView extends View {
         pnlData.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
         pnlData.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        lblUsername.setFont(new java.awt.Font("Meiryo", 0, 18)); // NOI18N
-        lblUsername.setText("U S E R N A M E");
-        lblUsername.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
-        pnlData.add(lblUsername, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, 350, 60));
+        txtEmail.setEditable(false);
+        txtEmail.setFont(new java.awt.Font("DialogInput", 1, 18)); // NOI18N
+        txtEmail.setText("E M A I L");
+        pnlData.add(txtEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 350, 60));
 
-        lblEmail.setFont(new java.awt.Font("Meiryo", 1, 18)); // NOI18N
-        lblEmail.setText("E M A I L");
-        lblEmail.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
-        pnlData.add(lblEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 15, 350, 60));
+        txtUsername.setEditable(false);
+        txtUsername.setFont(new java.awt.Font("DialogInput", 1, 18)); // NOI18N
+        txtUsername.setText("U S E R N A M E");
+        pnlData.add(txtUsername, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 105, 350, 60));
 
-        lblPassword.setFont(new java.awt.Font("Meiryo", 0, 18)); // NOI18N
-        lblPassword.setText("• • • • • • • •");
-        lblPassword.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
-        pnlData.add(lblPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 20, 350, 60));
+        txtAdditionalInformation.setEditable(false);
+        txtAdditionalInformation.setFont(new java.awt.Font("DialogInput", 1, 18)); // NOI18N
+        txtAdditionalInformation.setText("A D D I T I O N A L I N F O");
+        pnlData.add(txtAdditionalInformation, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 105, 350, 60));
 
-        lblAdditionalInformation.setFont(new java.awt.Font("Meiryo", 0, 14)); // NOI18N
-        lblAdditionalInformation.setText("additional information");
-        lblAdditionalInformation.setVerticalAlignment(javax.swing.SwingConstants.TOP);
-        lblAdditionalInformation.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
-        pnlData.add(lblAdditionalInformation, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 100, 350, 60));
+        pwfPassword.setFont(new java.awt.Font("DialogInput", 1, 18)); // NOI18N
+        pwfPassword.setText("password");
+        pwfPassword.setEchoChar('\u2022');
+        pnlData.add(pwfPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 20, 350, 60));
 
         getContentPane().add(pnlData, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 270, 800, 180));
 
-        lblProvider.setFont(new java.awt.Font("Yu Gothic", 1, 36)); // NOI18N
-        lblProvider.setText(" P R O V I  D E R ");
-        getContentPane().add(lblProvider, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 190, -1, -1));
+        txtProvider.setEditable(false);
+        txtProvider.setFont(new java.awt.Font("Yu Gothic", 1, 36)); // NOI18N
+        txtProvider.setText("P R O V I D E R");
+        getContentPane().add(txtProvider, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 200, 300, 50));
 
-        lblUniqeName.setFont(new java.awt.Font("Yu Gothic", 1, 24)); // NOI18N
-        lblUniqeName.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblUniqeName.setText("U N I Q U E N A M E");
-        getContentPane().add(lblUniqeName, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 200, 360, -1));
-
-        lblBanner.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/Banner draft 3.png"))); // NOI18N
-        getContentPane().add(lblBanner, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 30, 810, 100));
+        txtUniqueName.setEditable(false);
+        txtUniqueName.setFont(new java.awt.Font("Yu Gothic", 1, 24)); // NOI18N
+        txtUniqueName.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        txtUniqueName.setText("U N I Q U E N A M E");
+        getContentPane().add(txtUniqueName, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 200, 390, 50));
 
         lblBackground.setBackground(new java.awt.Color(245, 245, 245));
         lblBackground.setOpaque(true);
@@ -128,71 +133,73 @@ public class AccountView extends View {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnSaveActionPerformed
 
-    public JLabel getLblUniqueName() {
-        return lblUniqeName;
+    public JPasswordField getPwfPassword() {
+        return pwfPassword;
     }
 
-    public void setLblUniqueName(String name) {
-        this.lblUniqeName.setText(name);
+    public void setPwfPassword(String password) {
+        this.pwfPassword.setText(password);
     }
 
-    public JLabel getLblEmail() {
-        return lblEmail;
+    public JTextField getTxtAdditionalInformation() {
+        return txtAdditionalInformation;
     }
 
-    public void setLblEmail(String email) {
-        this.lblEmail.setText(email);
+    public void setTxtAdditionalInformation(String additionalInfo) {
+        this.txtAdditionalInformation.setText(additionalInfo);
     }
 
-    public JLabel getLblPassword() {
-        return lblPassword;
+    public JTextField getTxtEmail() {
+        return txtEmail;
     }
 
-    public void setLblPassword(String password) {
-        this.lblPassword.setText(password);
+    public void setTxtEmail(String email) {
+        this.txtEmail.setText(email);
     }
 
-    public JLabel getLblProvider() {
-        return lblProvider;
+    public JTextField getTxtProvider() {
+        return txtProvider;
     }
 
-    public void setLblProvider(String provider) {
-        this.lblProvider.setText(provider);
+    public void setTxtProvider(String provider) {
+        this.txtProvider.setText(provider);
     }
 
-    public JLabel getLblUsername() {
-        return lblUsername;
+    public JTextField getTxtUniqueName() {
+        return txtUniqueName;
     }
 
-    public void setLblUsername(String username) {
-        this.lblUsername.setText(username);
+    public void setTxtUniqueName(String uniqueName) {
+        this.txtUniqueName.setText(uniqueName);
     }
 
-    public JLabel getLblAdditionalInformation() {
-        return lblAdditionalInformation;
+    public JTextField getTxtUsername() {
+        return txtUsername;
     }
 
-    public void setLblAdditionalInformation(String addiInfo) {
-        this.lblAdditionalInformation.setText(addiInfo);
+    public void setTxtUsername(String username) {
+        this.txtUsername.setText(username);
     }
+
+  
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdd;
     private javax.swing.JButton btnLogout;
     private javax.swing.JButton btnModify;
     private javax.swing.JButton btnSave;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel lblAdditionalInformation;
     private javax.swing.JLabel lblBackground;
     private javax.swing.JLabel lblBanner;
-    private javax.swing.JLabel lblEmail;
-    private javax.swing.JLabel lblPassword;
-    private javax.swing.JLabel lblProvider;
-    private javax.swing.JLabel lblUniqeName;
-    private javax.swing.JLabel lblUsername;
+    private javax.swing.JLabel lblFooter;
     private javax.swing.JPanel pnlButtons;
     private javax.swing.JPanel pnlData;
     private javax.swing.JPanel pnlFooter;
+    private javax.swing.JPasswordField pwfPassword;
+    private javax.swing.JTextField txtAdditionalInformation;
+    private javax.swing.JTextField txtEmail;
+    private javax.swing.JTextField txtProvider;
+    private javax.swing.JTextField txtUniqueName;
+    private javax.swing.JTextField txtUsername;
     // End of variables declaration//GEN-END:variables
 
     @Override
