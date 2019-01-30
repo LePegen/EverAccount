@@ -10,7 +10,7 @@ import javax.swing.JComponent;
  */
 public class AccountOverviewAction extends ActionHandler {
 
-    //refresh account highlights
+    //refresh account highlights and from Jlist
     public int selectedAccount(Object item, HashMap<Object, Integer> itemValues) {
         return itemValues.get(item);
     }

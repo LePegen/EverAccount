@@ -24,7 +24,7 @@ public class LoginViewAction extends ActionHandler{
     public boolean checkAccount(){
         
         try {
-            ((WrappedLoginModel)controller.getCurrentModel()).updateModelView(controller.getCurrentView());
+            ((WrappedLoginModel)controller.getCurrentModel()).updateModelView(controller.getCurrentView()); //will get the username and password from view and set it to the model
             if(((WrappedLoginModel) controller.getCurrentModel()).checkPassword()){
                 return true;
             }
