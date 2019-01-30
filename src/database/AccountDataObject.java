@@ -41,7 +41,7 @@ public class AccountDataObject extends DataObject {
 
     }
     
-    public void addAccount(AccountModel model){
+    public void addAccount(AccountModel model) throws SQLException{
         
         String query = String.format(
                 "INSERT INTO ACCOUNTS ("
@@ -63,6 +63,8 @@ public class AccountDataObject extends DataObject {
                 model.getPassword(), 
                 model.getAdditionalInformation());
         
+        //needs new method, because inserting row in sql needs new methods 'moveToInsertRow'
+         this.connection.executeCommand(query);       
     }
     
     public AccountModel getAccount(String name) throws SQLException {
