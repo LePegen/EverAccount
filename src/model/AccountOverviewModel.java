@@ -13,19 +13,13 @@ import java.util.ArrayList;
  */
 public class AccountOverviewModel {
     
-    private int userID;
     private ArrayList<AccountModel> models;
 
     public AccountOverviewModel() {
-    }
-
-    public int getUserID() {
-        return userID;
-    }
-
-    public void setUserID(int userID) {
-        this.userID = userID;
-    }
+        
+        models = new ArrayList<>();
+        
+    }    
     
     
     
