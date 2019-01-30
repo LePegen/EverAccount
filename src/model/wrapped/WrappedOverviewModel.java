@@ -7,7 +7,10 @@ package model.wrapped;
 
 import database.AccountOverviewDataObject;
 import database.DBConnection;
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import model.AccountModel;
 import view.View;
 
@@ -18,11 +21,14 @@ import view.View;
 public class WrappedOverviewModel extends WrappedModel{
     private int accountID;
     private ArrayList<AccountModel> models;
-    private AccountOverviewDataObject accountOverviewDataObject;
+    private AccountOverviewDataObject accOverviewDataOjb;
 
     public WrappedOverviewModel(DBConnection connection) {
         super(connection);
-        accountOverviewDataObject = new AccountOverviewDataObject(this.connection);
+        accOverviewDataOjb = new AccountOverviewDataObject(this.connection);
+        
+        models = new ArrayList<>();
+       
     }
     
     
@@ -44,6 +50,11 @@ public class WrappedOverviewModel extends WrappedModel{
 
     @Override
     public void updateModelDB() {
+        try {
+            models=accOverviewDataOjb.getAccount(accountID);
+        } catch (SQLException ex) {
+            Logger.getLogger(WrappedOverviewModel.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
 }
