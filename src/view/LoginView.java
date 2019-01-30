@@ -1,7 +1,10 @@
 package view;
 
+import javax.swing.JButton;
 import javax.swing.JPasswordField;
+import javax.swing.JTextField;
 import view.action.ActionHandler;
+import view.action.LoginViewAction;
 
 /**
  *
@@ -10,7 +13,8 @@ import view.action.ActionHandler;
 public class LoginView  extends View{
 
     private ActionHandler handler;
-    
+    private JTextField tfUsername;
+
     public LoginView() {
         initComponents();
     }
@@ -50,6 +54,11 @@ public class LoginView  extends View{
         btnLogin.setFont(new java.awt.Font("Yu Gothic", 0, 18)); // NOI18N
         btnLogin.setText("Login");
         btnLogin.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnLogin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLoginActionPerformed(evt);
+            }
+        });
         getContentPane().add(btnLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 270, 240, -1));
 
         lblBackground.setBackground(new java.awt.Color(245, 245, 245));
@@ -60,7 +69,8 @@ public class LoginView  extends View{
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
-        
+        LoginViewAction loginHandler=(LoginViewAction) handler;
+        loginHandler.loginPressAction();
     }//GEN-LAST:event_btnLoginActionPerformed
 
     /**
@@ -88,5 +98,16 @@ public class LoginView  extends View{
     public void setHandler(ActionHandler action) {
         this.handler = action;
     }
+
+    public JTextField getTfUsername() {
+        return tfUsername;
+    }
+
+    public JPasswordField getPwfAccountPassword() {
+        return pwfAccountPassword;
+    }
+
+    
+    
     
 }

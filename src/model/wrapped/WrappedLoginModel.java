@@ -4,6 +4,7 @@ import database.DBConnection;
 import database.LoginDataObject;
 import java.sql.SQLException;
 import model.LoginModel;
+import view.LoginView;
 import view.View;
 
 /**
@@ -46,6 +47,9 @@ public class WrappedLoginModel extends WrappedModel{
 
     @Override
     public void updateModelView(View currentView) {
+        LoginView tempView=(LoginView) currentView;
+        model.setUsername(tempView.getTfUsername().getText());
+        model.setPassword(new String(tempView.getPwfAccountPassword().getPassword()));
     }
 
     @Override //*

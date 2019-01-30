@@ -83,4 +83,18 @@ public class Controller {
         currentModel.updateViewModel(currentView);
     }
 
+    public WrappedModel getCurrentModel() {
+        return currentModel;
+    }
+
+    public View getCurrentView() {
+        return currentView;
+    }
+
+
+    
+    
+    
+    
+
 }

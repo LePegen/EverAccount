@@ -1,6 +1,14 @@
 package view.action;
 
-public interface ActionHandler {
+import controller.Controller;
+
+public abstract class ActionHandler {
+    protected Controller controller;
+    
     
     //Masterclass
+
+    public Controller getController() {
+        return controller;
+    }
 }
