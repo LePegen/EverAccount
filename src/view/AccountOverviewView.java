@@ -1,5 +1,9 @@
 package view;
 
+import java.awt.List;
+import java.util.ArrayList;
+import java.util.HashMap;
+import javax.swing.JButton;
 import view.action.ActionHandler;
 
 /**
@@ -13,8 +17,36 @@ public class AccountOverviewView extends View {
      */
     
     private ActionHandler handler;
+    private HashMap<JButton,Integer> buttonValues;
+    private ArrayList<JButton> buttons;
     public AccountOverviewView() {
         initComponents();
+        buttons.add(btnHighlight1);
+        buttons.add(btnHighlight2);
+        buttons.add(btnHighlight3);
+        buttons.add(btnHighlight4);
+
+    }
+    /**
+     * This method is used to set the values of the buttons. 
+     * From an account the user passes in the id of the account and the unique name of the account
+     * The id is mapped to the button and button's test is set to the unique name 
+     * 
+     * @see model.AccountModel
+     * @param accountID ID of the account from the model
+     * @param buttonText Text of the button. Unique name
+     */
+    public void setButton(ArrayList<Integer> accountID,ArrayList<String> buttonText){
+        buttonValues.clear();
+        for (int i = 0; i < accountID.size(); i++) {
+            buttonValues.put(buttons.get(i), accountID.get(i));
+            buttons.get(i).setText(buttonText.get(i));
+        }
+    }
+    
+    
+    public int action(JButton button){
+        return buttonValues.get(button);
     }
 
     @SuppressWarnings("unchecked")
@@ -81,6 +113,11 @@ public class AccountOverviewView extends View {
 
         btnHighlight1.setFont(new java.awt.Font("Yu Gothic", 1, 24)); // NOI18N
         btnHighlight1.setText("Yahoo unique name");
+        btnHighlight1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnHighlight1ActionPerformed(evt);
+            }
+        });
         pnlSearchBox1.add(btnHighlight1, new org.netbeans.lib.awtextra.AbsoluteConstraints(13, 80, 180, 75));
 
         btnHighlight2.setFont(new java.awt.Font("Yu Gothic", 1, 24)); // NOI18N
@@ -126,6 +163,10 @@ public class AccountOverviewView extends View {
     private void txtSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSearchActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtSearchActionPerformed
+
+    private void btnHighlight1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHighlight1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnHighlight1ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnHighlight1;

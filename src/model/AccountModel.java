@@ -4,9 +4,7 @@ package model;
 public class AccountModel extends Model{
     
     private byte[] encryptionKey;
-    
     private int  accountID;
-    
     private String uniqueName;
     private String provider;
     private String email;
