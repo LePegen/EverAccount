@@ -49,7 +49,7 @@ public class WrappedLoginModel extends WrappedModel{
     public void updateModelView(View currentView) {
         LoginView tempView=(LoginView) currentView;
         model.setUsername(tempView.getTfUsername().getText());
-        model.setPassword(new String(tempView.getPwfAccountPassword().getPassword()));
+        model.setHash(new String(tempView.getPwfAccountPassword().getPassword()));
     }
 
     @Override //*
