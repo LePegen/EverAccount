@@ -21,10 +21,15 @@ public class WrappedLoginModel extends WrappedModel{
         model=new LoginModel();
     }
     
+    /**
+     * 
+     * @return
+     * @throws SQLException 
+     */
     public boolean checkPassword() throws SQLException{
         String userInput=model.getPassword(); //user input
-        dataObject.getHash(model); //hashed password
-        String server=model.getPassword();
+        dataObject.getHash(model); //hashed password from database, this will modify the 'model' object to get the stored hashed password
+        String server=model.getPassword(); //model now has new password
         if(userInput.equals(server)){
             return true;
         }
