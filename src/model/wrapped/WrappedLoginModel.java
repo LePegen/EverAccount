@@ -1,10 +1,6 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package model.wrapped;
 
+import database.DBConnection;
 import database.LoginDataObject;
 import java.sql.SQLException;
 import model.LoginModel;
@@ -19,13 +15,15 @@ public class WrappedLoginModel extends WrappedModel{
     LoginModel model;
     LoginDataObject dataObject;
     
-    public WrappedLoginModel() {
+    public WrappedLoginModel(DBConnection connection) {
+        super(connection);
         model=new LoginModel();
     }
     
     public boolean checkPassword() throws SQLException{
-        String userInput=model.getPassword();
-        String server=dataObject.getPassword(model);
+        String userInput=model.getPassword(); //user input
+        dataObject.getHash(model); //hashed password
+        String server=model.getPassword();
         if(userInput.equals(server)){
             return true;
         }
@@ -50,8 +48,9 @@ public class WrappedLoginModel extends WrappedModel{
     public void updateModelView(View currentView) {
     }
 
-    @Override
+    @Override //*
     public void updateModelDB() {
+        
     }
     
 }

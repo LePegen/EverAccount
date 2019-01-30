@@ -4,6 +4,7 @@ import database.AccountDataObject;
 import model.*;
 import view.View;
 import controller.*;
+import database.DBConnection;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -20,9 +21,11 @@ public class WrappedAccountModel extends WrappedModel {
 
     private String uniqueName;
 
-    public WrappedAccountModel(String name) {
+    public WrappedAccountModel(DBConnection connection) {
+        super(connection);
         accountModel = new AccountModel();
-        this.uniqueName = name;
+        
+        dataObj = new AccountDataObject(this.connection);
     }
 
     @Override

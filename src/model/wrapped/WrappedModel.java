@@ -1,5 +1,7 @@
 package model.wrapped;
 
+import database.DBConnection;
+import java.sql.Connection;
 import view.View;
 
 /**
@@ -10,6 +12,12 @@ import view.View;
  */
 public abstract class WrappedModel {
 
+    protected DBConnection connection;
+    
+    public WrappedModel(DBConnection con){
+        this.connection = con;
+    }
+    
     //naming convention: verb,target,source
     public abstract void updateModelView(View currentView);
    

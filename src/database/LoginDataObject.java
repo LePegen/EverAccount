@@ -13,25 +13,23 @@ import model.LoginModel;
  *
  * @author lipat
  */
-public class LoginDataObject extends DataObject{
-    
+public class LoginDataObject extends DataObject {
+
     public LoginDataObject(DBConnection connection) {
         super(connection);
     }
-    
-    public String getPassword(LoginModel model) throws SQLException{
-        String command=String.format("SELECT Hash,UserID FORM LOGIN WHERE USERNAME='%s'", model.getUsername());
+
+    public void getHash(LoginModel model) throws SQLException {
+        String command = String.format("SELECT Hash, UserID FORM LOGIN WHERE USERNAME='%s'", model.getUsername());
         connection.openConnection();
         connection.executeCommand(command);
-        ResultSet set=connection.getData();
+        ResultSet set = connection.getData();
         set.next();
-        String hash=set.getString("Hash");
-        int hashid = set.getInt("UserID");
+        String hash = set.getString("Hash");
+        int uID = set.getInt("UserID");
         connection.closeConnection();
-        model.setUserID(hashid);
-        return hash;
+        model.setUserID(uID);
+        model.setHash(hash);
     }
-    
-    
-    
+
 }

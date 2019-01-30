@@ -11,4 +11,10 @@ package database;
  */
 public class AccountOverviewDataObject {
     
+    private DBConnection connection;
+    
+    public AccountOverviewDataObject(DBConnection connection){
+        this.connection = connection;
+    }
+    
 }

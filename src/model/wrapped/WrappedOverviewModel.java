@@ -6,6 +6,7 @@
 package model.wrapped;
 
 import database.AccountOverviewDataObject;
+import database.DBConnection;
 import java.util.ArrayList;
 import model.AccountModel;
 import view.View;
@@ -18,6 +19,11 @@ public class WrappedOverviewModel extends WrappedModel{
     private int accountID;
     private ArrayList<AccountModel> models;
     private AccountOverviewDataObject accountOverviewDataObject;
+
+    public WrappedOverviewModel(DBConnection connection) {
+        super(connection);
+        accountOverviewDataObject = new AccountOverviewDataObject(this.connection);
+    }
     
     
     @Override
