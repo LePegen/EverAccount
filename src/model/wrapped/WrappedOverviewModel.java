@@ -12,7 +12,6 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import model.AccountModel;
-import view.AccountOverviewView;
 import view.View;
 
 /**
@@ -27,27 +26,18 @@ public class WrappedOverviewModel extends WrappedModel{
     public WrappedOverviewModel(DBConnection connection) {
         super(connection);
         accOverviewDataOjb = new AccountOverviewDataObject(this.connection);
+        
         models = new ArrayList<>();
+       
     }
     
     
     @Override
     public void updateModelView(View currentView) {
-        
     }
-    
-    
 
     @Override
     public void updateViewModel(View currentView) {
-        AccountOverviewView view=(AccountOverviewView) currentView;
-        ArrayList<Integer> accountID=new ArrayList<>();
-        ArrayList<String> accountNames=new ArrayList<>();
-        for (int i = 0; i <models.size(); i++) {
-            accountID.add(models.get(i).getAccountID());
-            accountNames.add(models.get(i).getUniqueName());
-        }
-        view.setAccountList(accountID, accountNames);
     }
 
     @Override
@@ -61,21 +51,10 @@ public class WrappedOverviewModel extends WrappedModel{
     @Override
     public void updateModelDB() {
         try {
-            System.out.println(accountID+"Hello world");
             models=accOverviewDataOjb.getAccount(accountID);
         } catch (SQLException ex) {
             Logger.getLogger(WrappedOverviewModel.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
-    public int getAccountID() {
-        return accountID;
-    }
-
-    public void setAccountID(int accountID) {
-        this.accountID = accountID;
-    }
-    
-    
     
 }

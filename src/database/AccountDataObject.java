@@ -69,18 +69,12 @@ public class AccountDataObject extends DataObject {
     
     public AccountModel getAccount(String name) throws SQLException {
 
-        String query = String.format("SELECT * FROM ACCOUNTS() WHERE UNIQUENAME  = '%s'", name);
+        String query = String.format("SELECT * FROM ACCOUNTS() WHERE ACCOUNT_NAME  = '%s'", name);
         this.connection.executeCommand(query);
         ResultSet set=this.connection.getData();
         AccountModel model=new AccountModel();
         set.next();
-        //Todo: implement this feature
         model.setAccountID(set.getInt(""));
-        model.setAccountID(set.getInt(""));
-        model.setAccountID(set.getInt(""));
-        model.setAccountID(set.getInt(""));
-        model.setAccountID(set.getInt(""));
-
                 
         return model;
 

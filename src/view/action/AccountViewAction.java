@@ -1,17 +1,14 @@
 package view.action;
 
-import controller.Controller;
-
 /**
  *
  * @author Gene Garcia
  */
 public class AccountViewAction extends ActionHandler {
-
-    public AccountViewAction(Controller cont) {
-        super(cont);
-    }
     
+    
+    
+    //to do: (modules)
     //save
     public void saveAction(){
         controller.getCurrentModel().updateDBModel();
@@ -20,12 +17,10 @@ public class AccountViewAction extends ActionHandler {
     public void addAction(){
         controller.getCurrentModel().addDBModel();
     }
-    
     //logout
+    
     public void logoutAction(){
         controller.selectOverview();
     }
-    
     //update to model and database
-    
 }
