@@ -64,6 +64,7 @@ public class AccountView extends View {
 
         btnSave.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         btnSave.setText("Save");
+        btnSave.setEnabled(false);
         btnSave.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSaveActionPerformed(evt);

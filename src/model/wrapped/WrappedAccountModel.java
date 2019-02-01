@@ -24,6 +24,7 @@ public class WrappedAccountModel extends WrappedModel {
     public WrappedAccountModel(DBConnection connection) {
         super(connection);
         accountModel = new AccountModel();
+        
         dataObj = new AccountDataObject(this.connection);
     }
 

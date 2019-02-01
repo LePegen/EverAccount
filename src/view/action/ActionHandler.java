@@ -7,8 +7,8 @@ public abstract class ActionHandler {
     protected Controller controller;
 
     //to do: Controller must be initialized
-    public ActionHandler(Controller cont){
-        this.controller = cont;
+    public ActionHandler(){
+        
     }
     
     public Controller getController() {

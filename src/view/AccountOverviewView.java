@@ -26,18 +26,11 @@ public class AccountOverviewView extends View {
 
     public AccountOverviewView() {
         initComponents();
-        initArrayLists();
-                components=new HashMap<>();
-
         buttons.add(btnHighlight1);
         buttons.add(btnHighlight2);
         buttons.add(btnHighlight3);
         buttons.add(btnHighlight4);
-    }
-    
-    public void initArrayLists(){
-        buttons = new ArrayList<>();
-        items = new ArrayList<>();
+
     }
 
     /**
@@ -51,7 +44,7 @@ public class AccountOverviewView extends View {
      * @param itemText Text of the button. Unique name
      */
     public void setFeaturedButtons(ArrayList<Integer> accountID, ArrayList<String> itemText) {
-        for (int i = 0; i < accountID.size(); i++) {
+        for (int i = 0; i < buttons.size(); i++) {
             components.putIfAbsent(buttons.get(i), accountID.get(i));
             buttons.get(i).setText(itemText.get(i));
         }
@@ -62,8 +55,7 @@ public class AccountOverviewView extends View {
         
         //will add the itemText to the JList in this view
         for (int i = 0; i < itemText.size(); i++) {
-            listModel.add(i, itemText.get(i));
-            System.out.println(itemText.get(i));
+            listModel.add(i, itemText);
         }
         
         //treats per line as an object. Gets it and adds it to components with the account id
@@ -72,7 +64,6 @@ public class AccountOverviewView extends View {
         }
         jlAccountItems.setModel(listModel);
     }
-    
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents

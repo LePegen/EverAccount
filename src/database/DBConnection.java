@@ -20,13 +20,46 @@ public class DBConnection {
     
     private String commandSQL;
     
-    private String HOST = "jdbc:derby://localhost:1527/LeznedEveraccount";
-    private String USERNAME = "Lezned";
-    private String PASSWORD = "denzel";
+    private String HOST = "";
+    private String USERNAME = "";
+    private String PASSWORD = "";
     
-    public DBConnection() throws SQLException{
-        connection=DriverManager.getConnection(HOST,USERNAME,PASSWORD);
-        statement=connection.createStatement();
+    private final String DRIVER="org.apache.derby.jdbc.EmbeddedDriver";
+    private final String JDBCURL="jdbc:derby:derbyDB;create=true";
+    
+    public DBConnection(){
+        try {
+            initConnection();
+            initDatabase();
+        } catch (SQLException ex) {
+            Logger.getLogger(DBConnection.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(DBConnection.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            Logger.getLogger(DBConnection.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            Logger.getLogger(DBConnection.class.getName()).log(Level.SEVERE, null, ex);
+        }
+       
+    }
+    
+    public void initConnection() throws SQLException, ClassNotFoundException, InstantiationException, IllegalAccessException{
+        this.connection = DriverManager.getConnection(JDBCURL);
+        Class.forName(DRIVER).newInstance();
+    }
+    
+    public void initDatabase() throws SQLException{
+        String command=
+                  "CREATE TABLE ACCOUNTS("
+                + "AccountID VARCHAR(100),"
+                + "UniqueName VARCHAR(100),"
+                + "Provider VARCHAR(100),"
+                + "Email VARCHAR(100),"
+                + "Username VARCHAR(100),"
+                + "Password VARCHAR(100),"
+                + "AdditionalInfomation VARCHAR(100)"
+                + ")";
+        //this.connection.createStatement().execute(command);
     }
     
     /**

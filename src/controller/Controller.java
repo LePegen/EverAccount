@@ -1,11 +1,7 @@
 package controller;
 
 import database.DBConnection;
-import java.sql.SQLException;
-import java.util.logging.Level;
 import java.util.logging.Logger;
-import model.AccountOverviewModel;
-import view.action.*;
 import model.wrapped.*;
 import view.AccountOverviewView;
 import view.AccountView;
@@ -24,7 +20,7 @@ public class Controller {
     //views
     private View loginView;
     private View accountView;
-    private View overviewView;
+    private View accountOverviewView;
 
     //wrapped models
     WrappedAccountModel accountModel;
@@ -35,47 +31,30 @@ public class Controller {
     //Connection
     DBConnection connection;
 
-    //action handlers
-    AccountOverviewAction overviewAction;
-    AccountViewAction accountViewAction;
-    LoginViewAction loginAction;
-    
     /**
      * LoginView cannot be a View. Problems in implementation
      */
     public Controller() {
         initConnection();
         initViews();
-        initAndSetHandlers();
+        initHandlers();
         initWrapped();
-        selectLogin(); //starts the controller
+        selectLogin();
     }
 
-    public void initConnection()  {
-        try {
-            connection = new DBConnection();
-        } catch (SQLException ex) {
-            Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
-        }
+    public void initConnection() {
+        connection = new DBConnection();
     }
 
     public void initViews() {
         loginView = new LoginView();
         accountView = new AccountView();
-        overviewView = new AccountOverviewView();
+        accountOverviewView = new AccountOverviewView();
 
     }
 
-    public void initAndSetHandlers() {
-        
-        overviewAction = new AccountOverviewAction(this);
-        accountViewAction = new AccountViewAction(this);
-        loginAction = new LoginViewAction(this);
-        
-        loginView.setHandler(loginAction);
-        accountView.setHandler(accountViewAction);
-        overviewView.setHandler(overviewAction);
-        
+    public void initHandlers() {
+
     }
 
     public void initWrapped() {
@@ -86,26 +65,18 @@ public class Controller {
 
     public void selectLogin() {
         currentView = loginView;
-        currentModel=loginModel;
         currentView.setVisible(true);
     }
 
     public void selectOverview() {
-        currentView = overviewView;
-        currentModel=overviewModel;
-        this.update();
-        //overviewView.setVisible(true);
+        currentView = accountOverviewView;
+        accountOverviewView.setVisible(true);
     }
 
     public void selectAccount() {
         currentView = accountView;
         currentModel = accountModel;
         updateView();
-    }
-    
-    public void update(){
-                this.getCurrentModel().updateModelDB();
-                this.getCurrentModel().updateViewModel(this.getCurrentView());
     }
 
     public void updateView() {

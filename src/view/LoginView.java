@@ -39,8 +39,7 @@ public class LoginView  extends View{
         getContentPane().add(lblLogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 30, -1, 120));
 
         tfUsername.setFont(new java.awt.Font("DialogInput", 0, 18)); // NOI18N
-        tfUsername.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        tfUsername.setText("Mukuro");
+        tfUsername.setText("Username");
         getContentPane().add(tfUsername, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 150, 260, -1));
 
         btnEye.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -48,7 +47,7 @@ public class LoginView  extends View{
         getContentPane().add(btnEye, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 230, 40, 30));
 
         pwfAccountPassword.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        pwfAccountPassword.setText("abc");
+        pwfAccountPassword.setText("jPasswordField1");
         pwfAccountPassword.setEchoChar('\u2022');
         getContentPane().add(pwfAccountPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 230, 260, 30));
 

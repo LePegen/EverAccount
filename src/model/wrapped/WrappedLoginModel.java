@@ -13,20 +13,14 @@ import view.View;
  */
 
 public class WrappedLoginModel extends WrappedModel{
-    private LoginModel model;
-    private LoginDataObject dataObject;
+    LoginModel model;
+    LoginDataObject dataObject;
     
     public WrappedLoginModel(DBConnection connection) {
         super(connection);
-        dataObject=new LoginDataObject(connection);
         model=new LoginModel();
     }
-
-    public LoginModel getModel() {
-        return model;
-    }
     
-
     /**
      * 
      * @return
@@ -36,7 +30,6 @@ public class WrappedLoginModel extends WrappedModel{
         String userInput=model.getPassword(); //user input
         dataObject.getHash(model); //hashed password from database, this will modify the 'model' object to get the stored hashed password
         String server=model.getPassword(); //model now has new password
-        System.out.println(model.getUserID());
         if(userInput.equals(server)){
             return true;
         }
