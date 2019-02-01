@@ -1,0 +1,15 @@
+CREATE TABLE LOGIN(
+    UserID INT PRIMARY KEY NOT NULL,
+    UserName VARCHAR(20) UNIQUE NOT NULL,
+    Hash VARCHAR(25) NOT NULL
+);
+
+CREATE TABLE ACCOUNT(
+    AccountID INT PRIMARY KEY NOT NULL,
+    UserID INT REFERENCES LOGIN(UserID) NOT NULL,
+    Provider VARCHAR(50),
+    Email VARCHAR(50),
+    Username VARCHAR(50),
+    AccountPassword VARCHAR(50),
+    AdditionalInformation VARCHAR(100)
+);
