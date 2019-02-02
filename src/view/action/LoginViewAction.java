@@ -43,9 +43,9 @@ public class LoginViewAction extends ActionHandler {
             int id = ((WrappedLoginModel) controller.getCurrentModel()).getModel().getUserID();
             System.out.println(id + "dfasdfasdfaf");
             controller.selectOverview();
-             ((WrappedOverviewModel) controller.getCurrentModel()).setAccountID(id);
-             controller.update();
-             controller.getCurrentView().setVisible(true);
+            ((WrappedOverviewModel) controller.getCurrentModel()).setAccountID(id);
+            controller.update(); //updates model and view
+            controller.getCurrentView().setVisible(true);
         } else {
             JOptionPane.showMessageDialog(null, "Incorrect Credentials");
         }

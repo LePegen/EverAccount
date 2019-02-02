@@ -20,6 +20,7 @@ public class WrappedAccountModel extends WrappedModel {
     //has-a rel with encrpyion
 
     private String uniqueName;
+    private int accountID;
 
     public WrappedAccountModel(DBConnection connection) {
         super(connection);
@@ -27,6 +28,24 @@ public class WrappedAccountModel extends WrappedModel {
         dataObj = new AccountDataObject(this.connection);
     }
 
+    public AccountModel getAccountModel() {
+        return accountModel;
+    }
+
+    public void setAccountModel(AccountModel accountModel) {
+        this.accountModel = accountModel;
+    }
+
+    public int getAccountID() {
+        return accountID;
+    }
+
+    public void setAccountID(int accountID) {
+        this.accountID = accountID;
+    }
+
+    
+    
     @Override
     public void updateModelView(View currentView) {
         AccountView view = (AccountView) currentView;
@@ -83,7 +102,7 @@ public class WrappedAccountModel extends WrappedModel {
     @Override
     public void updateModelDB() {
         try {
-            accountModel = dataObj.getAccount(uniqueName);
+            accountModel = dataObj.getAccount(accountID);
         } catch (SQLException ex) {
             Logger.getLogger(WrappedAccountModel.class.getName()).log(Level.SEVERE, null, ex);
         }

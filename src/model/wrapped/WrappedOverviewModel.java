@@ -36,8 +36,6 @@ public class WrappedOverviewModel extends WrappedModel{
         
     }
     
-    
-
     @Override
     public void updateViewModel(View currentView) {
         AccountOverviewView view=(AccountOverviewView) currentView;

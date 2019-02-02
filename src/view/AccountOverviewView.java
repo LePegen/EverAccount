@@ -82,19 +82,15 @@ public class AccountOverviewView extends View {
         pnlFooter = new javax.swing.JPanel();
         lblFooter = new javax.swing.JLabel();
         pnlSearchBox1 = new javax.swing.JPanel();
-        pnlHighlight = new javax.swing.JPanel();
-        lblHighlight = new javax.swing.JLabel();
-        btnRefresh = new javax.swing.JButton();
         btnHighlight3 = new javax.swing.JButton();
         btnHighlight4 = new javax.swing.JButton();
         btnHighlight1 = new javax.swing.JButton();
         btnHighlight2 = new javax.swing.JButton();
+        btnRefresh = new javax.swing.JButton();
         pnlSearchBox = new javax.swing.JPanel();
-        txtSearch = new javax.swing.JTextField();
         btnSearch = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jlAccountItems = new javax.swing.JList<>();
-        lblBackground = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
@@ -109,77 +105,64 @@ public class AccountOverviewView extends View {
 
         lblFooter.setFont(new java.awt.Font("MS Reference Sans Serif", 0, 24)); // NOI18N
         lblFooter.setText("F O O T E R | C R E D I T S");
-        pnlFooter.add(lblFooter, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 30, -1, -1));
+        pnlFooter.add(lblFooter, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 20, -1, -1));
 
-        getContentPane().add(pnlFooter, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 590, 800, 80));
+        getContentPane().add(pnlFooter, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 770, 800, 80));
 
         pnlSearchBox1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
         pnlSearchBox1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        pnlHighlight.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        pnlHighlight.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        lblHighlight.setFont(new java.awt.Font("Yu Gothic", 1, 18)); // NOI18N
-        lblHighlight.setText("Highlight account");
-        pnlHighlight.add(lblHighlight, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 220, 30));
-
-        btnRefresh.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/refresh.png"))); // NOI18N
-        pnlHighlight.add(btnRefresh, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 6, 40, 40));
-
-        pnlSearchBox1.add(pnlHighlight, new org.netbeans.lib.awtextra.AbsoluteConstraints(13, 6, 420, 50));
-
-        btnHighlight3.setFont(new java.awt.Font("Yu Gothic", 1, 24)); // NOI18N
+        btnHighlight3.setFont(new java.awt.Font("Yu Gothic", 1, 18)); // NOI18N
         btnHighlight3.setText("Facebook");
         btnHighlight3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnHighlight3ActionPerformed(evt);
             }
         });
-        pnlSearchBox1.add(btnHighlight3, new org.netbeans.lib.awtextra.AbsoluteConstraints(13, 195, 180, 75));
+        pnlSearchBox1.add(btnHighlight3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 390, 190, 40));
 
-        btnHighlight4.setFont(new java.awt.Font("Yu Gothic", 1, 24)); // NOI18N
+        btnHighlight4.setFont(new java.awt.Font("Yu Gothic", 1, 18)); // NOI18N
         btnHighlight4.setText("Steam");
         btnHighlight4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnHighlight4ActionPerformed(evt);
             }
         });
-        pnlSearchBox1.add(btnHighlight4, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 195, 180, 75));
+        pnlSearchBox1.add(btnHighlight4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 330, 190, 40));
 
-        btnHighlight1.setFont(new java.awt.Font("Yu Gothic", 1, 24)); // NOI18N
+        btnHighlight1.setFont(new java.awt.Font("Yu Gothic", 1, 18)); // NOI18N
         btnHighlight1.setText("Yahoo unique name");
         btnHighlight1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnHighlight1ActionPerformed(evt);
             }
         });
-        pnlSearchBox1.add(btnHighlight1, new org.netbeans.lib.awtextra.AbsoluteConstraints(13, 80, 180, 75));
+        pnlSearchBox1.add(btnHighlight1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 210, 190, 40));
 
-        btnHighlight2.setFont(new java.awt.Font("Yu Gothic", 1, 24)); // NOI18N
+        btnHighlight2.setFont(new java.awt.Font("Yu Gothic", 1, 18)); // NOI18N
         btnHighlight2.setText("Gmail");
         btnHighlight2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnHighlight2ActionPerformed(evt);
             }
         });
-        pnlSearchBox1.add(btnHighlight2, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 80, 180, 75));
+        pnlSearchBox1.add(btnHighlight2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 270, 190, 40));
 
-        getContentPane().add(pnlSearchBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 220, 440, 300));
+        btnRefresh.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/refresh.png"))); // NOI18N
+        btnRefresh.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRefreshActionPerformed(evt);
+            }
+        });
+        pnlSearchBox1.add(btnRefresh, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 20, 40, -1));
+
+        getContentPane().add(pnlSearchBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 240, 230, 450));
 
         pnlSearchBox.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
         pnlSearchBox.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        txtSearch.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 14)); // NOI18N
-        txtSearch.setText("Enter the unique name of your account");
-        txtSearch.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtSearchActionPerformed(evt);
-            }
-        });
-        pnlSearchBox.add(txtSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(15, 10, 230, 40));
-
         btnSearch.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/search.png"))); // NOI18N
-        pnlSearchBox.add(btnSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(245, 10, 40, 39));
+        pnlSearchBox.add(btnSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 20, 60, 410));
 
         jlAccountItems.setFont(new java.awt.Font("SimSun", 0, 18)); // NOI18N
         jlAccountItems.setModel(new javax.swing.AbstractListModel<String>() {
@@ -195,20 +178,12 @@ public class AccountOverviewView extends View {
         });
         jScrollPane1.setViewportView(jlAccountItems);
 
-        pnlSearchBox.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, 260, 190));
+        pnlSearchBox.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 560, 410));
 
-        getContentPane().add(pnlSearchBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 220, 300, 300));
-
-        lblBackground.setBackground(new java.awt.Color(245, 245, 245));
-        lblBackground.setOpaque(true);
-        getContentPane().add(lblBackground, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 900, 700));
+        getContentPane().add(pnlSearchBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 240, 670, 450));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void txtSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSearchActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtSearchActionPerformed
 
     private void btnHighlight1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHighlight1ActionPerformed
         // TODO add your handling code here:
@@ -242,6 +217,10 @@ public class AccountOverviewView extends View {
         ((AccountOverviewAction) handler).selectedAccount(item, components);    
     }//GEN-LAST:event_jlAccountItemsValueChanged
 
+    private void btnRefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRefreshActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnRefreshActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnHighlight1;
     private javax.swing.JButton btnHighlight2;
@@ -251,15 +230,11 @@ public class AccountOverviewView extends View {
     private javax.swing.JButton btnSearch;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JList<String> jlAccountItems;
-    private javax.swing.JLabel lblBackground;
     private javax.swing.JLabel lblBanner;
     private javax.swing.JLabel lblFooter;
-    private javax.swing.JLabel lblHighlight;
     private javax.swing.JPanel pnlFooter;
-    private javax.swing.JPanel pnlHighlight;
     private javax.swing.JPanel pnlSearchBox;
     private javax.swing.JPanel pnlSearchBox1;
-    private javax.swing.JTextField txtSearch;
     // End of variables declaration//GEN-END:variables
 
     @Override
