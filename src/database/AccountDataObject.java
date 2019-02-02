@@ -24,14 +24,14 @@ public class AccountDataObject extends DataObject {
     public void upateAccount(AccountModel model) throws SQLException {
 
         String query = String.format(
-                "UPDATE ACCOUNTS "
+                "UPDATE ACCOUNT "
                         + "SET PROVIDER = '%s' "
-                        + "SET UNIQUENAME = '%s'"
-                        + "SET EMAIL = '%s"
-                        + "SET USERNAME = '%s' "
-                        + "SET PASSWORD = '%s' "
-                        + "SET ADDITIONALINFORMATION = '%s'"
-                        + "WHERE ACCOUNTID ='%d' ", 
+                        + ",UNIQUENAME = '%s' "
+                        + ",EMAIL = '%s' "
+                        + ",USERNAME = '%s' "
+                        + ",PASSWORD = '%s' "
+                        + ",ADDITIONALINFORMATION = '%s' "
+                        + " WHERE ACCOUNTID = %d ", 
                 model.getProvider(), 
                 model.getUniqueName(),
                 model.getEmail(), 
@@ -39,7 +39,7 @@ public class AccountDataObject extends DataObject {
                 model.getPassword(), 
                 model.getAdditionalInformation(),
                 model.getAccountID());
-        this.connection.executeCommand(query);
+        this.connection.executeCommand(query,true);
 
     }
     

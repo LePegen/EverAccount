@@ -20,12 +20,12 @@ public class LoginDataObject extends DataObject {
     }
 
     public void getHash(LoginModel model) throws SQLException {
-        String command = String.format("SELECT PaswordHash, UserID FROM LOGIN WHERE USERNAME='%s'", model.getUsername());
+        String command = String.format("SELECT PasswordHash, UserID FROM LOGIN WHERE USERNAME='%s'", model.getUsername());
         connection.openConnection();
         connection.executeCommand(command);
         ResultSet set = connection.getData();
         set.next();
-        String hash = set.getString("PaswordHash");
+        String hash = set.getString("PasswordHash");
         int uID = set.getInt("UserID");
         System.out.println(uID);
         connection.closeConnection();
