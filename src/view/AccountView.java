@@ -5,6 +5,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
+import view.action.AccountViewAction;
 import view.action.ActionHandler;
 
 /**
@@ -14,9 +15,8 @@ import view.action.ActionHandler;
 public class AccountView extends View {
 
     //to do: change all labels to text field
-    
     private ActionHandler handler;
-    
+
     public AccountView() {
         initComponents();
     }
@@ -77,10 +77,20 @@ public class AccountView extends View {
 
         btnAdd.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         btnAdd.setText("Add");
+        btnAdd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddActionPerformed(evt);
+            }
+        });
         pnlButtons.add(btnAdd, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 15, -1, -1));
 
         btnModify.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         btnModify.setText("Modify");
+        btnModify.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnModifyActionPerformed(evt);
+            }
+        });
         pnlButtons.add(btnModify, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 15, -1, -1));
 
         getContentPane().add(pnlButtons, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 480, 800, 60));
@@ -129,8 +139,34 @@ public class AccountView extends View {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
-        // TODO add your handling code here:
+        AccountViewAction action = (AccountViewAction) handler;
+
+        action.saveAction();
+
     }//GEN-LAST:event_btnSaveActionPerformed
+
+    private void btnModifyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModifyActionPerformed
+        txtProvider.setEditable(true);
+        txtUniqueName.setEditable(true);
+        txtEmail.setEditable(true);
+        txtUsername.setEditable(true);
+        pwfPassword.setEditable(true);
+        txtAdditionalInformation.setEditable(true);
+
+        txtProvider.setText("");
+        txtUniqueName.setText("");
+        txtEmail.setText("");
+        txtUsername.setText("");
+        pwfPassword.setText("");
+        txtAdditionalInformation.setText("");
+    }//GEN-LAST:event_btnModifyActionPerformed
+
+    private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
+        AccountViewAction action = (AccountViewAction) handler;
+
+        action.addAction();
+
+    }//GEN-LAST:event_btnAddActionPerformed
 
     public JPasswordField getPwfPassword() {
         return pwfPassword;
@@ -180,7 +216,6 @@ public class AccountView extends View {
         this.txtUsername.setText(username);
     }
 
-  
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdd;

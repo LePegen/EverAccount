@@ -26,12 +26,14 @@ public class AccountDataObject extends DataObject {
         String query = String.format(
                 "UPDATE ACCOUNTS "
                         + "SET PROVIDER = '%s' "
+                        + "SET UNIQUENAME = '%s'"
                         + "SET EMAIL = '%s"
                         + "SET USERNAME = '%s' "
                         + "SET PASSWORD = '%s' "
-                        + "SET ADDITIONAL_INFORMATION = '%s'"
-                        + "WHERE id ='%d' ", 
+                        + "SET ADDITIONALINFORMATION = '%s'"
+                        + "WHERE ACCOUNTID ='%d' ", 
                 model.getProvider(), 
+                model.getUniqueName(),
                 model.getEmail(), 
                 model.getUsername(), 
                 model.getPassword(), 
@@ -43,24 +45,31 @@ public class AccountDataObject extends DataObject {
     
     public void addAccount(AccountModel model) throws SQLException{
         
+        connection.startNewConnection();
+        
         String query = String.format(
                 "INSERT INTO ACCOUNTS ("
+                    + "ACCOUNTID,"
                     + "PROVIDER,"
                     + "EMAIL,"
                     + "USERNAME,"
                     + "PASSWORD,"
+                     + "UNIQUENAME,"
                     + "ADDITIONAL_INFORMATION)"
                 + " VALUES("
                     + "'%s' ,"
                     + "'%s' ,"
                     + "'%s' ,"
                     + "'%s' ,"
+                    + "'%s' ,"
                     + "'%s' "
                 + ")", 
+                model.getAccountID(),
                 model.getProvider(), 
                 model.getEmail(), 
                 model.getUsername(), 
                 model.getPassword(), 
+                model.getUniqueName(),
                 model.getAdditionalInformation());
         
         //needs new method, because inserting row in sql needs new methods 'moveToInsertRow'
