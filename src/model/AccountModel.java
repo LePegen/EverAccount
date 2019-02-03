@@ -5,6 +5,7 @@ public class AccountModel extends Model{
     
     private byte[] encryptionKey;
     private int  accountID;
+    private int userID;
     private String uniqueName;
     private String provider;
     private String email;
@@ -12,6 +13,16 @@ public class AccountModel extends Model{
     private String password;
     private String additionalInformation;
 
+    public int getUserID() {
+        return userID;
+    }
+
+    public void setUserID(int userID) {
+        this.userID = userID;
+    }
+    
+    
+    
     public String getUniqueName() {
         return uniqueName;
     }

@@ -28,11 +28,11 @@ public class AccountOverviewView extends View {
         initComponents();
         initArrayLists();
                 components=new HashMap<>();
-
         buttons.add(btnHighlight1);
         buttons.add(btnHighlight2);
         buttons.add(btnHighlight3);
         buttons.add(btnHighlight4);
+        
     }
     
     public void initArrayLists(){
@@ -189,7 +189,6 @@ public class AccountOverviewView extends View {
         // TODO add your handling code here:
         Object source = evt.getSource();
         ((AccountOverviewAction) handler).selectedAccount((JButton) source, components);
-
     }//GEN-LAST:event_btnHighlight1ActionPerformed
 
     private void btnHighlight3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHighlight3ActionPerformed
@@ -215,6 +214,7 @@ public class AccountOverviewView extends View {
         int index=jlAccountItems.getSelectedIndex();
         Object item=listModel.get(index);
         ((AccountOverviewAction) handler).selectedAccount(item, components);    
+        jlAccountItems.clearSelection();
     }//GEN-LAST:event_jlAccountItemsValueChanged
 
     private void btnRefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRefreshActionPerformed

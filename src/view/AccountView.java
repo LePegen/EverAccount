@@ -1,5 +1,7 @@
 package view;
 
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -19,6 +21,15 @@ public class AccountView extends View {
 
     public AccountView() {
         initComponents();
+        this.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
+        this.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                e.getWindow().setVisible(false);
+            }
+
+        });
+        
     }
 
     @SuppressWarnings("unchecked")
@@ -137,12 +148,13 @@ public class AccountView extends View {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+    
+    
+
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
         AccountViewAction action = (AccountViewAction) handler;
-
         action.saveAction();
-
     }//GEN-LAST:event_btnSaveActionPerformed
 
     private void btnModifyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModifyActionPerformed
@@ -163,7 +175,6 @@ public class AccountView extends View {
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
         AccountViewAction action = (AccountViewAction) handler;
-
         action.addAction();
 
     }//GEN-LAST:event_btnAddActionPerformed

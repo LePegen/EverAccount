@@ -26,18 +26,15 @@ public class AccountViewAction extends ActionHandler {
     //save
     public void saveAction() {
         //controller.selectAccount();?????????????????????
-        controller.selectAccount();
-        
         controller.getCurrentModel().updateModelView(controller.getCurrentView()); //updates model from the information from view
         
         //does AccountModel in wrapped model needs to be updated?
         
-        controller.getCurrentModel().updateDBModel();
+        controller.getCurrentModel().addDBModel();
     }
 
     //add
     public void addAction() {
-        controller.selectAccount();
         controller.getCurrentModel().updateModelView(controller.getCurrentView()); //updates model from the information from view 
         controller.getCurrentModel().addDBModel();
     }

@@ -39,24 +39,25 @@ public class AccountDataObject extends DataObject {
                 model.getPassword(), 
                 model.getAdditionalInformation(),
                 model.getAccountID());
+        System.out.println(query);
         this.connection.executeCommand(query,true);
 
     }
     
     public void addAccount(AccountModel model) throws SQLException{
         
-        connection.startNewConnection();
         
         String query = String.format(
-                "INSERT INTO ACCOUNTS ("
-                    + "ACCOUNTID,"
+                "INSERT INTO ACCOUNT("
+                    + "USERID,"
                     + "PROVIDER,"
                     + "EMAIL,"
                     + "USERNAME,"
-                    + "PASSWORD,"
-                     + "UNIQUENAME,"
-                    + "ADDITIONAL_INFORMATION)"
+                    + "ACCOUNTPASSWORD,"
+                    + "UNIQUENAME,"
+                    + "ADDITIONALINFORMATION)"
                 + " VALUES("
+                    + "%s ,"
                     + "'%s' ,"
                     + "'%s' ,"
                     + "'%s' ,"
@@ -64,7 +65,7 @@ public class AccountDataObject extends DataObject {
                     + "'%s' ,"
                     + "'%s' "
                 + ")", 
-                model.getAccountID(),
+                model.getUserID(),
                 model.getProvider(), 
                 model.getEmail(), 
                 model.getUsername(), 
@@ -73,7 +74,8 @@ public class AccountDataObject extends DataObject {
                 model.getAdditionalInformation());
         
         //needs new method, because inserting row in sql needs new methods 'moveToInsertRow'
-         this.connection.executeCommand(query);       
+        System.out.println(query);
+         this.connection.executeCommand(query,false);       
     }
     
     //shouldn't this be accountId? not unique name
@@ -105,6 +107,7 @@ public class AccountDataObject extends DataObject {
         set.next();
         //Todo: implement this feature
         model.setAccountID(set.getInt("ACCOUNTID"));
+        model.setUserID(set.getInt("USERID"));
         model.setUniqueName(set.getString("UNIQUENAME"));
         model.setProvider(set.getString("PROVIDER"));
         model.setEmail(set.getString("EMAIL"));
