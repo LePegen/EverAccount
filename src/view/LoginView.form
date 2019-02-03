@@ -47,7 +47,7 @@
           <Font name="DialogInput" size="18" style="0"/>
         </Property>
         <Property name="horizontalAlignment" type="int" value="0"/>
-        <Property name="text" type="java.lang.String" value="Mukuro"/>
+        <Property name="text" type="java.lang.String" value="DManEdward"/>
       </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -73,7 +73,7 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Dialog" size="18" style="0"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="abc"/>
+        <Property name="text" type="java.lang.String" value="12345"/>
         <Property name="echoChar" type="char" value="&#x2022;"/>
       </Properties>
       <Constraints>
