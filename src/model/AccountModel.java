@@ -12,6 +12,8 @@ public class AccountModel extends Model{
     private String password;
     private String additionalInformation;
 
+    
+    
     public String getUniqueName() {
         return uniqueName;
     }

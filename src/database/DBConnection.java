@@ -30,18 +30,19 @@ public class DBConnection {
     }
 
     /**
-     * to handle java.sql.SQLException: executeQuery method can not be used for update.
-     * @throws SQLException 
+     * to handle java.sql.SQLException: executeQuery method can not be used for
+     * update.
+     *
+     * @throws SQLException
      */
-    public void startNewConnection() throws SQLException {
-        
+    public void startNewStatement() throws SQLException {
+
         //implement this better
         dataStore.moveToInsertRow();
         dataStore.insertRow();
         statement.close();
-        connection.close();
-        
-        connection = DriverManager.getConnection(HOST, USERNAME, PASSWORD);
+        dataStore.close();
+
         statement = connection.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
     }
 
@@ -54,7 +55,12 @@ public class DBConnection {
     }
 
     public void executeCommand(String sql) throws SQLException {
-        this.dataStore = statement.executeQuery(sql);
+        this.dataStore = this.statement.executeQuery(sql);
+    }
+
+    public void executeUpdate(String sql) throws SQLException {
+        this.statement.executeUpdate(sql);
+
     }
 
     public void setSQLCommand(String sqlCom) {
@@ -71,30 +77,6 @@ public class DBConnection {
 
     public void closeConnection() {
 
-    }
-
-    public String getHOST() {
-        return HOST;
-    }
-
-    public void setHOST(String HOST) {
-        this.HOST = HOST;
-    }
-
-    public String getUSERNAME() {
-        return USERNAME;
-    }
-
-    public void setUSERNAME(String USERNAME) {
-        this.USERNAME = USERNAME;
-    }
-
-    public String getPASSWORD() {
-        return PASSWORD;
-    }
-
-    public void setPASSWORD(String PASSWORD) {
-        this.PASSWORD = PASSWORD;
     }
 
 }

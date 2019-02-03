@@ -27,11 +27,13 @@ public class AccountOverviewDataObject extends DataObject {
         this.connection.executeCommand(query);
         ResultSet set = this.connection.getData();
         ArrayList<AccountModel> model = new ArrayList<>();
+        
         while (set.next()) {
             AccountModel tempModel = new AccountModel();
+            
             tempModel.setAccountID(set.getInt("ACCOUNTID"));
+            tempModel.setProvider(set.getString("PROVIDER"));
             tempModel.setUniqueName(set.getString("UNIQUENAME"));
-            System.out.println(set.getString("UNIQUENAME") + "XXX");
             tempModel.setEmail(set.getString("EMAIL"));
             tempModel.setUsername(set.getString("USERNAME"));
             tempModel.setPassword(set.getString("ACCOUNTPASSWORD"));

@@ -28,9 +28,11 @@ public class LoginViewAction extends ActionHandler {
 
         try {
             ((WrappedLoginModel) controller.getCurrentModel()).updateModelView(controller.getCurrentView()); //will get the username and password from view and set it to the model
+
             if (((WrappedLoginModel) controller.getCurrentModel()).checkPassword()) {
                 return true;
             }
+
         } catch (SQLException ex) {
             Logger.getLogger(LoginViewAction.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -41,11 +43,16 @@ public class LoginViewAction extends ActionHandler {
     public void loginPressAction() {
         if (checkAccount()) {
             int id = ((WrappedLoginModel) controller.getCurrentModel()).getModel().getUserID();
-            System.out.println(id + "dfasdfasdfaf");
+
+            System.out.println(id + " in loginPressAction()");
+
             controller.selectOverview();
+
             ((WrappedOverviewModel) controller.getCurrentModel()).setAccountID(id);
+
             controller.update(); //updates model and view
             controller.getCurrentView().setVisible(true);
+
         } else {
             JOptionPane.showMessageDialog(null, "Incorrect Credentials");
         }

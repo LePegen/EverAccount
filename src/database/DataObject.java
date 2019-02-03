@@ -7,12 +7,12 @@ import database.DBConnection;
  * @author Gene Garcia
  */
 public class DataObject {
-      protected  DBConnection connection;
-    
+
+    protected DBConnection connection;
+
     public DataObject(DBConnection connection) {
         this.connection = connection;
-       
+
     }
-    
-    
+
 }
