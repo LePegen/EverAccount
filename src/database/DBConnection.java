@@ -27,15 +27,6 @@ public class DBConnection {
         statement = connection.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
     }
 
-    public void executeCommand(String sql) throws SQLException {
-        this.dataStore = this.statement.executeQuery(sql);
-    }
-
-    public void executeUpdate(String sql) throws SQLException {
-        this.statement.executeUpdate(sql);
-
-    }
-
     public void executeCommand(String sql, boolean isUpdate) throws SQLException {
         if (isUpdate) {
             statement.executeUpdate(sql);

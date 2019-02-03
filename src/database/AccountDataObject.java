@@ -85,7 +85,7 @@ public class AccountDataObject extends DataObject {
 
         String query = String.format("SELECT * FROM ACCOUNT WHERE ACCOUNTID  = %d", accID);
 
-        this.connection.executeCommand(query);
+        this.connection.executeCommand(query, false);
 
         ResultSet set = this.connection.getData();
         AccountModel model = new AccountModel();

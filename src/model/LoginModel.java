@@ -37,7 +37,7 @@ public class LoginModel {
         return password;
     }
 
-    public void setHash(String password) {
+    public void setPassword(String password) {
         this.password = password;
     }
     

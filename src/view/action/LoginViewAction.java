@@ -7,12 +7,16 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import model.wrapped.WrappedLoginModel;
 import model.wrapped.WrappedOverviewModel;
+import view.LoginAccountView;
 
 /**
  *
  * @author Gene Garcia
  */
 public class LoginViewAction extends ActionHandler {
+
+    public final int ADD_ACCOUNT = 0;
+    public final int CHANGE_PASSWORD = 1;
 
     public LoginViewAction(Controller cont) {
         super(cont);
@@ -55,6 +59,36 @@ public class LoginViewAction extends ActionHandler {
 
         } else {
             JOptionPane.showMessageDialog(null, "Incorrect Credentials");
+        }
+    }
+    
+    public void changeView(int view) {
+        controller.getCurrentView().setVisible(false);
+        
+        controller.selectLoginAccount();
+        
+        switch (view) {
+            case ADD_ACCOUNT:
+                ((LoginAccountView) controller.getCurrentView()).getBtnCreateAccount().setEnabled(true);
+                controller.getCurrentView().setVisible(true);
+                break;
+            case CHANGE_PASSWORD:
+                ((LoginAccountView) controller.getCurrentView()).getBtnChangePass().setEnabled(true);
+                controller.getCurrentView().setVisible(true);
+                break;
+        }
+    }
+    
+    public void btnAction(int view){
+        controller.getCurrentModel().updateModelView(controller.getCurrentView());
+
+        switch (view) {
+            case ADD_ACCOUNT:
+                controller.getCurrentModel().addDBModel();
+                break;
+            case CHANGE_PASSWORD:
+                controller.getCurrentModel().updateDBModel();
+                break;
         }
     }
 

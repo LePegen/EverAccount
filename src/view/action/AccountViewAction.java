@@ -41,7 +41,9 @@ public class AccountViewAction extends ActionHandler {
 
     //logout
     public void logoutAction() {
+        controller.getCurrentView().setVisible(false);
         controller.selectOverview();
+        controller.getCurrentView().setVisible(true);
     }
 
     //update to model and database

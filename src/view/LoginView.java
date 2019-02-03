@@ -1,7 +1,7 @@
 package view;
 
 import java.awt.Color;
-import javax.swing.JButton;
+import java.awt.Toolkit;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import view.action.ActionHandler;
@@ -14,10 +14,12 @@ import view.action.LoginViewAction;
 public class LoginView extends View {
 
     private ActionHandler handler;
-    //private JTextField tfUsername;
 
     public LoginView() {
         initComponents();
+
+        this.setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/image/Logo icon.png")));
+        
     }
 
     @SuppressWarnings("unchecked")
@@ -41,6 +43,7 @@ public class LoginView extends View {
         setFocusTraversalPolicyProvider(true);
         setMinimumSize(new java.awt.Dimension(500, 400));
         setModalExclusionType(null);
+        setResizable(false);
         setSize(new java.awt.Dimension(500, 400));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -48,10 +51,16 @@ public class LoginView extends View {
         getContentPane().add(lblLogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 20, -1, 120));
 
         tfUsername.setFont(new java.awt.Font("DialogInput", 0, 18)); // NOI18N
+        tfUsername.setForeground(new java.awt.Color(153, 153, 153));
         tfUsername.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        tfUsername.setText("Gene");
+        tfUsername.setText("Enter username");
         tfUsername.setBorder(null);
         tfUsername.setOpaque(false);
+        tfUsername.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                tfUsernameKeyTyped(evt);
+            }
+        });
         getContentPane().add(tfUsername, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 150, 260, -1));
 
         btnEye.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -67,7 +76,8 @@ public class LoginView extends View {
         getContentPane().add(btnEye, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 250, 40, 30));
 
         pwfAccountPassword.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        pwfAccountPassword.setText("12345");
+        pwfAccountPassword.setText("admin");
+        pwfAccountPassword.setToolTipText("");
         pwfAccountPassword.setBorder(null);
         pwfAccountPassword.setEchoChar('\u2022');
         pwfAccountPassword.setOpaque(false);
@@ -186,23 +196,23 @@ public class LoginView extends View {
 
     private void lblCreateAccountMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCreateAccountMouseClicked
         System.out.println("enter");
+        LoginViewAction action = (LoginViewAction) handler;
+        action.changeView(action.ADD_ACCOUNT);
     }//GEN-LAST:event_lblCreateAccountMouseClicked
 
     private void lblForgotAccountMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblForgotAccountMouseClicked
         System.out.println("enter");
+        LoginViewAction action = (LoginViewAction) handler;
+        action.changeView(action.CHANGE_PASSWORD);
     }//GEN-LAST:event_lblForgotAccountMouseClicked
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new LoginView().setVisible(true);
-            }
-        });
-    }
+    private void tfUsernameKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfUsernameKeyTyped
+        if(tfUsername.getText().equals("Enter username")){
+            tfUsername.setText("");
+        }
+        
+        tfUsername.setForeground(Color.BLACK);
+    }//GEN-LAST:event_tfUsernameKeyTyped
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel btnEye;

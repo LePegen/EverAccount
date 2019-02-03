@@ -23,8 +23,10 @@ public class AccountOverviewDataObject extends DataObject {
     //changed to WHERE USERID FROM ACCOUNTID
     public ArrayList<AccountModel> getAccount(int userID) throws SQLException {
         String query = String.format("SELECT * FROM ACCOUNT WHERE USERID  = %d", userID);
+        
         System.out.println(query);
-        this.connection.executeCommand(query);
+        
+        this.connection.executeCommand(query, false);
         ResultSet set = this.connection.getData();
         ArrayList<AccountModel> model = new ArrayList<>();
         

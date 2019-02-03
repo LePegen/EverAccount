@@ -3,6 +3,8 @@ package model.wrapped;
 import database.DBConnection;
 import database.LoginDataObject;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import model.LoginModel;
 import view.LoginView;
 import view.View;
@@ -14,11 +16,11 @@ import view.View;
 public class WrappedLoginModel extends WrappedModel {
 
     private LoginModel model;
-    private LoginDataObject dataObject;
+    private LoginDataObject dataObj;
 
     public WrappedLoginModel(DBConnection connection) {
         super(connection);
-        dataObject = new LoginDataObject(connection);
+        dataObj = new LoginDataObject(connection);
         model = new LoginModel();
     }
 
@@ -33,7 +35,7 @@ public class WrappedLoginModel extends WrappedModel {
     public boolean checkPassword() throws SQLException {
         String userInput = model.getPassword(); //user input
         
-        dataObject.getHash(model); //hashed password from database, this will modify the 'model' object to get the stored hashed password
+        dataObj.getHash(model); //hashed password from database, this will modify the 'model' object to get the stored hashed password
         
         String server = model.getPassword(); //model now has new password
         
@@ -60,11 +62,12 @@ public class WrappedLoginModel extends WrappedModel {
     @Override
     public void updateModelView(View currentView) {
         LoginView tempView = (LoginView) currentView;
+        
         model.setUsername(tempView.getTfUsername().getText());
-        model.setHash(new String(tempView.getPwfAccountPassword().getPassword()));
+        model.setPassword(new String(tempView.getPwfAccountPassword().getPassword()));
     }
 
-    @Override //*
+    @Override 
     public void updateModelDB() {
 
     }

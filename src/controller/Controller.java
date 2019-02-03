@@ -7,10 +7,12 @@ import java.util.logging.Logger;
 import model.wrapped.WrappedLoginModel;
 import model.wrapped.WrappedModel;
 import model.wrapped.WrappedAccountModel;
+import model.wrapped.WrappedLoginAccountModel;
 import model.wrapped.WrappedOverviewModel;
 import view.action.*;
 import view.AccountOverviewView;
 import view.AccountView;
+import view.LoginAccountView;
 import view.LoginView;
 import view.View;
 
@@ -27,12 +29,14 @@ public class Controller {
     private View loginView;
     private View accountView;
     private View overviewView;
+    private View loginAccountView;
 
     //wrapped models
     WrappedAccountModel accountModel;
     WrappedLoginModel loginModel;
     WrappedOverviewModel overviewModel;
-
+    WrappedLoginAccountModel loginAccountModel;
+            
     //Connection
     DBConnection connection;
 
@@ -49,7 +53,10 @@ public class Controller {
         initViews();
         initAndSetHandlers();
         initWrapped();
-        selectLogin(); //starts the controller
+        selectLogin(); 
+
+        //starts the controller
+        currentView.setVisible(true);
     }
 
     public void initConnection() {
@@ -64,6 +71,7 @@ public class Controller {
         loginView = new LoginView();
         accountView = new AccountView();
         overviewView = new AccountOverviewView();
+        loginAccountView = new LoginAccountView();
 
     }
 
@@ -76,6 +84,7 @@ public class Controller {
         loginView.setHandler(loginAction);
         accountView.setHandler(accountViewAction);
         overviewView.setHandler(overviewAction);
+        loginAccountView.setHandler(loginAction);
 
     }
 
@@ -83,12 +92,18 @@ public class Controller {
         accountModel = new WrappedAccountModel(connection);
         loginModel = new WrappedLoginModel(connection);
         overviewModel = new WrappedOverviewModel(connection);
+        loginAccountModel = new WrappedLoginAccountModel(connection);
     }
 
     public void selectLogin() {
         currentView = loginView;
         currentModel = loginModel;
-        currentView.setVisible(true);
+        //currentView.setVisible(true);
+    }
+    
+    public void selectLoginAccount(){
+        currentView = loginAccountView;
+        currentModel = loginAccountModel;
     }
 
     public void selectOverview() {
