@@ -16,8 +16,11 @@ public class AccountOverviewAction extends ActionHandler {
 
     //refresh account highlights and from Jlist
     public int selectedAccount(Object item, HashMap<Object, Integer> itemValues) {
+
         System.out.println(itemValues.get(item) + "YYY");
+
         passAccount(itemValues.get(item));
+
         return itemValues.get(item);
     }
 

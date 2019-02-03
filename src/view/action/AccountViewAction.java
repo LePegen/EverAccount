@@ -30,7 +30,7 @@ public class AccountViewAction extends ActionHandler {
         
         //does AccountModel in wrapped model needs to be updated?
         
-        controller.getCurrentModel().addDBModel();
+        controller.getCurrentModel().updateDBModel();
     }
 
     //add

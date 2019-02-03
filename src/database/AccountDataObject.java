@@ -31,7 +31,7 @@ public class AccountDataObject extends DataObject {
                 + ",UNIQUENAME = '%s' "
                 + ",EMAIL = '%s' "
                 + ",USERNAME = '%s' "
-                + ",PASSWORD = '%s' "
+                + ",ACCOUNTPASSWORD = '%s' "
                 + ",ADDITIONALINFORMATION = '%s' "
                 + " WHERE ACCOUNTID = %d ",
                 model.getProvider(),
@@ -41,55 +41,56 @@ public class AccountDataObject extends DataObject {
                 model.getPassword(),
                 model.getAdditionalInformation(),
                 model.getAccountID());
+        
         System.out.println(query);
-        this.connection.executeCommand(query,true);
+        
+        this.connection.executeCommand(query, true);
 
     }
-    
-    public void addAccount(AccountModel model) throws SQLException{
-        
-        
+
+    public void addAccount(AccountModel model) throws SQLException {
+
         String query = String.format(
                 "INSERT INTO ACCOUNT("
-                    + "USERID,"
-                    + "PROVIDER,"
-                    + "EMAIL,"
-                    + "USERNAME,"
-                    + "ACCOUNTPASSWORD,"
-                    + "UNIQUENAME,"
-                    + "ADDITIONALINFORMATION)"
+                + "USERID,"
+                + "PROVIDER,"
+                + "EMAIL,"
+                + "USERNAME,"
+                + "ACCOUNTPASSWORD,"
+                + "UNIQUENAME,"
+                + "ADDITIONALINFORMATION)"
                 + " VALUES("
-                    + "%s ,"
-                    + "'%s' ,"
-                    + "'%s' ,"
-                    + "'%s' ,"
-                    + "'%s' ,"
-                    + "'%s' ,"
-                    + "'%s' "
-                + ")", 
+                + "%d ,"
+                + "'%s' ,"
+                + "'%s' ,"
+                + "'%s' ,"
+                + "'%s' ,"
+                + "'%s' ,"
+                + "'%s' "
+                + ")",
                 model.getUserID(),
-                model.getProvider(), 
-                model.getEmail(), 
-                model.getUsername(), 
-                model.getPassword(), 
+                model.getProvider(),
+                model.getEmail(),
+                model.getUsername(),
+                model.getPassword(),
                 model.getUniqueName(),
                 model.getAdditionalInformation());
-        
-        //needs new method, because inserting row in sql needs new methods 'moveToInsertRow'
+
         System.out.println(query);
-         this.connection.executeCommand(query,false);       
+
+        this.connection.executeCommand(query, true);
     }
 
     public AccountModel getAccount(int accID) throws SQLException {
 
         String query = String.format("SELECT * FROM ACCOUNT WHERE ACCOUNTID  = %d", accID);
-        
+
         this.connection.executeCommand(query);
-        
+
         ResultSet set = this.connection.getData();
         AccountModel model = new AccountModel();
         set.next();
-        
+
         //Todo: implement this feature
         model.setAccountID(set.getInt("ACCOUNTID"));
         model.setUserID(set.getInt("USERID"));

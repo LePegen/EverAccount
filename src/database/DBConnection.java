@@ -18,36 +18,13 @@ public class DBConnection {
     private Statement statement;
     private ResultSet dataStore;
 
-    private String commandSQL;
-
-    private String HOST = "jdbc:derby://localhost:1527/EverAccount";
-    private String USERNAME = "root";
-    private String PASSWORD = "qwertypad";
+    private String HOST = "jdbc:derby://localhost:1527/LeznedEverAccount";
+    private String USERNAME = "Lezned";
+    private String PASSWORD = "denzel";
 
     public DBConnection() throws SQLException {
         connection = DriverManager.getConnection(HOST, USERNAME, PASSWORD);
         statement = connection.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
-    }
-
-    /**
-     * to handle java.sql.SQLException: executeQuery method can not be used for
-     * update.
-     *
-     * @throws SQLException
-     */
-    public void startNewConnection() throws SQLException {
-        
-        
-        connection = DriverManager.getConnection(HOST, USERNAME, PASSWORD);
-        statement = connection.createStatement();
-    }
-
-    /**
-     * figure out if the sql command will be a parameter or will be global
-     * variable. For the meantime, overloaded method
-     */
-    public void executeCommand() throws SQLException {
-        this.dataStore = statement.executeQuery(this.commandSQL);
     }
 
     public void executeCommand(String sql) throws SQLException {
@@ -58,18 +35,14 @@ public class DBConnection {
         this.statement.executeUpdate(sql);
 
     }
-    
-    public void executeCommand(String sql,boolean isUpdate)throws SQLException{
-        if(isUpdate){
-            statement.executeUpdate(sql);
-        }else{
-            statement.execute(sql);
-       }
-       
-    }
 
-    public void setSQLCommand(String sqlCom) {
-        this.commandSQL = sqlCom;
+    public void executeCommand(String sql, boolean isUpdate) throws SQLException {
+        if (isUpdate) {
+            statement.executeUpdate(sql);
+        } else {
+            statement.execute(sql);
+        }
+
     }
 
     public ResultSet getData() {
