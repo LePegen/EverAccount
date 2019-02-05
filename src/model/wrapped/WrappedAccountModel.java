@@ -3,7 +3,6 @@ package model.wrapped;
 import database.AccountDataObject;
 import model.*;
 import view.View;
-import controller.*;
 import database.DBConnection;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -16,24 +15,23 @@ import view.AccountView;
  */
 public class WrappedAccountModel extends WrappedModel {
     private AccountDataObject dataObj;
-    private AccountModel accountModel;
+    private AccountModel model;
     //has-a rel with encrpyion
 
-    private String uniqueName;
     private int accountID;
 
     public WrappedAccountModel(DBConnection connection) {
         super(connection);
-        accountModel = new AccountModel();
+        model = new AccountModel();
         dataObj = new AccountDataObject(this.connection);
     }
 
-    public AccountModel getAccountModel() {
-        return accountModel;
+    public AccountModel getModel() {
+        return model;
     }
 
-    public void setAccountModel(AccountModel accountModel) {
-        this.accountModel = accountModel;
+    public void setModel(AccountModel accountModel) {
+        this.model = accountModel;
     }
 
     public int getAccountID() {
@@ -44,19 +42,25 @@ public class WrappedAccountModel extends WrappedModel {
         this.accountID = accountID;
     }
 
-    
+    public void deleteCurrentAccount(){
+        try {
+            dataObj.deleteAccount(model);
+        } catch (SQLException ex) {
+            Logger.getLogger(WrappedAccountModel.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
     
     @Override
     public void updateModelView(View currentView) {
         AccountView view = (AccountView) currentView;
         
-        accountModel.setProvider( view.getTxtProvider().getText() );
-        accountModel.setUniqueName( view.getTxtUniqueName().getText() ); 
+        model.setProvider( view.getTxtProvider().getText() );
+        model.setUniqueName( view.getTxtUniqueName().getText() ); 
         
-        accountModel.setEmail( view.getTxtEmail().getText() );
-        accountModel.setUsername( view.getTxtUsername().getText() );
-        accountModel.setPassword( view.getPwfPassword().getText() );
-        accountModel.setAdditionalInformation( view.getTxtAdditionalInformation().getText() );
+        model.setEmail( view.getTxtEmail().getText() );
+        model.setUsername( view.getTxtUsername().getText() );
+        model.setPassword( view.getPwfPassword().getText() );
+        model.setAdditionalInformation( view.getTxtAdditionalInformation().getText() );
 
     }
 
@@ -70,12 +74,12 @@ public class WrappedAccountModel extends WrappedModel {
     public void updateViewModel(View currentView) {
         AccountView view = (AccountView) currentView;
 
-        view.setTxtProvider( accountModel.getProvider() );
-        view.setTxtUniqueName( accountModel.getUniqueName() );
-        view.setTxtEmail( accountModel.getEmail() );
-        view.setTxtUsername( accountModel.getUsername() );
-        view.setPwfPassword( accountModel.getPassword() );
-        view.setTxtAdditionalInformation( accountModel.getAdditionalInformation() );
+        view.setTxtProvider(model.getProvider() );
+        view.setTxtUniqueName(model.getUniqueName() );
+        view.setTxtEmail(model.getEmail() );
+        view.setTxtUsername(model.getUsername() );
+        view.setPwfPassword(model.getPassword() );
+        view.setTxtAdditionalInformation(model.getAdditionalInformation() );
 
     }
 
@@ -83,7 +87,7 @@ public class WrappedAccountModel extends WrappedModel {
     public void updateDBModel() {
 
         try {
-            dataObj.upateAccount(accountModel);
+            dataObj.upateAccount(model);
         } catch (Exception ex) {
             ex.printStackTrace();
         }
@@ -93,7 +97,7 @@ public class WrappedAccountModel extends WrappedModel {
     @Override
     public void addDBModel() {
         try {
-            dataObj.addAccount(accountModel);
+            dataObj.addAccount(model);
         } catch (SQLException ex) {
             Logger.getLogger(WrappedAccountModel.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -102,7 +106,7 @@ public class WrappedAccountModel extends WrappedModel {
     @Override
     public void updateModelDB() {
         try {
-            accountModel = dataObj.getAccount(accountID);
+            model = dataObj.getAccount(accountID);
         } catch (SQLException ex) {
             Logger.getLogger(WrappedAccountModel.class.getName()).log(Level.SEVERE, null, ex);
         }

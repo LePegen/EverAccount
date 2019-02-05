@@ -9,12 +9,15 @@ import model.wrapped.WrappedModel;
 import model.wrapped.WrappedAccountModel;
 import model.wrapped.WrappedLoginAccountModel;
 import model.wrapped.WrappedOverviewModel;
-import view.action.*;
 import view.AccountOverviewView;
 import view.AccountView;
 import view.LoginAccountView;
 import view.LoginView;
 import view.View;
+import view.action.AccountAction;
+import view.action.AccountOverviewAction;
+import view.action.LoginAccountViewAction;
+import view.action.LoginViewAction;
 
 /**
  *
@@ -36,14 +39,15 @@ public class Controller {
     WrappedLoginModel loginModel;
     WrappedOverviewModel overviewModel;
     WrappedLoginAccountModel loginAccountModel;
-            
+
     //Connection
     DBConnection connection;
 
     //action handlers
     AccountOverviewAction overviewAction;
-    AccountViewAction accountViewAction;
+    AccountAction accountViewAction;
     LoginViewAction loginAction;
+    LoginAccountViewAction loginAccountAction;
 
     /**
      * LoginView cannot be a View. Problems in implementation
@@ -53,10 +57,10 @@ public class Controller {
         initViews();
         initAndSetHandlers();
         initWrapped();
-        selectLogin(); 
-
+        
+        selectLogin();
         //starts the controller
-        currentView.setVisible(true);
+        getCurrentView().setVisible(true);
     }
 
     public void initConnection() {
@@ -78,13 +82,14 @@ public class Controller {
     public void initAndSetHandlers() {
 
         overviewAction = new AccountOverviewAction(this);
-        accountViewAction = new AccountViewAction(this);
+        accountViewAction = new AccountAction(this);
         loginAction = new LoginViewAction(this);
+        loginAccountAction = new LoginAccountViewAction(this);
 
         loginView.setHandler(loginAction);
         accountView.setHandler(accountViewAction);
         overviewView.setHandler(overviewAction);
-        loginAccountView.setHandler(loginAction);
+        loginAccountView.setHandler(loginAccountAction);
 
     }
 
@@ -100,8 +105,8 @@ public class Controller {
         currentModel = loginModel;
         //currentView.setVisible(true);
     }
-    
-    public void selectLoginAccount(){
+
+    public void selectLoginAccount() {
         currentView = loginAccountView;
         currentModel = loginAccountModel;
     }

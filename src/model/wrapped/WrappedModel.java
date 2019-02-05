@@ -1,7 +1,6 @@
 package model.wrapped;
 
 import database.DBConnection;
-import java.sql.Connection;
 import view.View;
 
 /**

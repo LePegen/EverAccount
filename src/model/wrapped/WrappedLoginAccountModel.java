@@ -33,18 +33,35 @@ public class WrappedLoginAccountModel extends WrappedModel {
         return model;
     }
 
+    public boolean checkPassword() {
+
+        try {
+            String viewPassword = model.getPassword(); //old password from view
+
+            dataObj.getHash(model); //password from the database is stored to the model
+
+            String storedPassword = model.getPassword(); //password from the model from the database
+
+            if (viewPassword.equals(storedPassword)) {
+                return true; //match input password and password from database
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(WrappedLoginAccountModel.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return false;
+    }
+
     @Override
     public void updateModelView(View currentView) {
         LoginAccountView view = (LoginAccountView) currentView;
-        
-        model.setUsername( view.getTfUsername().getText());
-        model.setPassword( view.getPwfAccountPassword().getText() );
-        
+
+        model.setUsername(view.getTfUsername().getText());
+        model.setPassword(view.getPwfNewPassword().getText());
     }
 
     @Override
     public void updateViewModel(View currentView) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
@@ -62,12 +79,11 @@ public class WrappedLoginAccountModel extends WrappedModel {
             dataObj.addAccount(model);
         } catch (SQLException ex) {
             Logger.getLogger(WrappedAccountModel.class.getName()).log(Level.SEVERE, null, ex);
-        }   
+        }
     }
 
     @Override
     public void updateModelDB() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }

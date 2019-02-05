@@ -19,29 +19,32 @@ import view.View;
  *
  * @author lipat
  */
-public class WrappedOverviewModel extends WrappedModel{
-    private int accountID;
+public class WrappedOverviewModel extends WrappedModel {
+
+    private int userID;
     private ArrayList<AccountModel> models;
-    private AccountOverviewDataObject accOverviewDataOjb;
+    private AccountOverviewDataObject dataObj;
 
     public WrappedOverviewModel(DBConnection connection) {
         super(connection);
-        accOverviewDataOjb = new AccountOverviewDataObject(this.connection);
+        dataObj = new AccountOverviewDataObject(this.connection);
         models = new ArrayList<>();
     }
-    
-    
+
     @Override
     public void updateModelView(View currentView) {
-        
+
     }
-    
+
     @Override
     public void updateViewModel(View currentView) {
-        AccountOverviewView view=(AccountOverviewView) currentView;
-        ArrayList<Integer> accountID=new ArrayList<>();
-        ArrayList<String> accountNames=new ArrayList<>();
-        for (int i = 0; i <models.size(); i++) {
+        AccountOverviewView view = (AccountOverviewView) currentView;
+        
+        ArrayList<Integer> accountID = new ArrayList<>();
+        
+        ArrayList<String> accountNames = new ArrayList<>();
+        
+        for (int i = 0; i < models.size(); i++) {
             accountID.add(models.get(i).getAccountID());
             accountNames.add(models.get(i).getUniqueName());
         }
@@ -59,21 +62,18 @@ public class WrappedOverviewModel extends WrappedModel{
     @Override
     public void updateModelDB() {
         try {
-            System.out.println(accountID+"Hello world");
-            models=accOverviewDataOjb.getAccount(accountID);
+            models = dataObj.getAccount(userID);
         } catch (SQLException ex) {
             Logger.getLogger(WrappedOverviewModel.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
-    public int getAccountID() {
-        return accountID;
+    public int getUserID() {
+        return userID;
     }
 
-    public void setAccountID(int accountID) {
-        this.accountID = accountID;
+    public void setUserID(int userID) {
+        this.userID = userID;
     }
-    
-    
-    
+
 }

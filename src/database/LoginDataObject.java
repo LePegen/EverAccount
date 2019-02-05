@@ -1,12 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package database;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import javax.swing.JOptionPane;
 import model.LoginModel;
 
 /**
@@ -22,18 +18,23 @@ public class LoginDataObject extends DataObject {
     public void getHash(LoginModel model) throws SQLException {
         String command = String.format("SELECT PASSWORDHASH, USERID FROM LOGIN WHERE USERNAME='%s'", model.getUsername());
 
-        connection.openConnection(); //NOT YET CONFIGURED
-        connection.executeCommand(command, false);
+        System.out.println(command);
 
-        ResultSet set = connection.getData();
+        this.connection.executeCommand(command, false);
+
+        ResultSet set = this.connection.getData();
+
         set.next();
 
-        String hash = set.getString("PASSWORDHASH");
-        int userID = set.getInt("USERID");
+        int userID = 0;
+        String hash = null;
 
-        System.out.println("user id " + userID);
+        try {
+            hash = set.getString("PASSWORDHASH");
+            userID = set.getInt("USERID");
+        } catch (Exception e) {
 
-        connection.closeConnection(); //NOT YET CONFIGURED
+        }
 
         model.setUserID(userID);
         model.setPassword(hash);
@@ -41,8 +42,13 @@ public class LoginDataObject extends DataObject {
 
     public void addAccount(LoginModel model) throws SQLException {
         String command = String.format("INSERT INTO LOGIN (USERNAME, PASSWORDHASH) VALUES ('%s', '%s')", model.getUsername(), model.getPassword());
-        
+
+        System.out.println(command);
+
         connection.executeCommand(command, true);
+
+        JOptionPane.showMessageDialog(null, "Account sucessfully created", "Everaccount", JOptionPane.INFORMATION_MESSAGE);
+
     }
 
     /**
@@ -55,8 +61,10 @@ public class LoginDataObject extends DataObject {
         String command = String.format("UPDATE LOGIN SET PASSWORDHASH = '%s' WHERE USERNAME = '%s'", model.getPassword(), model.getUsername());
 
         System.out.println(command);
-        
+
         connection.executeCommand(command, true);
+
+        JOptionPane.showMessageDialog(null, model.getUsername() + "'s password was succesfully updated!", "Everaccount", JOptionPane.INFORMATION_MESSAGE);
     }
 
 }

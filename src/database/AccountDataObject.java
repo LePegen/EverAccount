@@ -25,7 +25,7 @@ public class AccountDataObject extends DataObject {
      */
     public void upateAccount(AccountModel model) throws SQLException {
 
-        String query = String.format(
+        String command = String.format(
                 "UPDATE ACCOUNT "
                 + "SET PROVIDER = '%s' "
                 + ",UNIQUENAME = '%s' "
@@ -41,61 +41,62 @@ public class AccountDataObject extends DataObject {
                 model.getPassword(),
                 model.getAdditionalInformation(),
                 model.getAccountID());
-        
-        System.out.println(query);
-        
-        this.connection.executeCommand(query, true);
+
+        System.out.println(command);
+
+        this.connection.executeCommand(command, true);
 
     }
 
     public void addAccount(AccountModel model) throws SQLException {
 
-        String query = String.format(
+        String command = String.format(
                 "INSERT INTO ACCOUNT("
                 + "USERID,"
                 + "PROVIDER,"
+                + "UNIQUENAME,"
                 + "EMAIL,"
                 + "USERNAME,"
                 + "ACCOUNTPASSWORD,"
-                + "UNIQUENAME,"
                 + "ADDITIONALINFORMATION)"
-                + " VALUES("
-                + "%d ,"
-                + "'%s' ,"
-                + "'%s' ,"
-                + "'%s' ,"
-                + "'%s' ,"
-                + "'%s' ,"
-                + "'%s' "
-                + ")",
+                + " VALUES( %d, '%s', '%s', '%s', '%s', '%s', '%s' )",
                 model.getUserID(),
                 model.getProvider(),
-                model.getEmail(),
+                model.getUniqueName(),
                 model.getUsername(),
                 model.getPassword(),
-                model.getUniqueName(),
+                model.getEmail(),
                 model.getAdditionalInformation());
 
-        System.out.println(query);
+        System.out.println(command);
 
-        this.connection.executeCommand(query, true);
+        this.connection.executeCommand(command, true);
+    }
+
+    public void deleteAccount(AccountModel model) throws SQLException {
+        String command = String.format("DELETE FROM ACCOUNT WHERE UNIQUENAME = '%s'", model.getUniqueName());
+
+        System.out.println(command);
+
+        this.connection.executeCommand(command, true);
     }
 
     public AccountModel getAccount(int accID) throws SQLException {
 
-        String query = String.format("SELECT * FROM ACCOUNT WHERE ACCOUNTID  = %d", accID);
+        String command = String.format("SELECT * FROM ACCOUNT WHERE ACCOUNTID  = %d", accID);
 
-        this.connection.executeCommand(query, false);
+        System.out.println(command);
+
+        this.connection.executeCommand(command, false);
 
         ResultSet set = this.connection.getData();
         AccountModel model = new AccountModel();
         set.next();
 
-        //Todo: implement this feature
         model.setAccountID(set.getInt("ACCOUNTID"));
         model.setUserID(set.getInt("USERID"));
-        model.setUniqueName(set.getString("UNIQUENAME"));
         model.setProvider(set.getString("PROVIDER"));
+        model.setUniqueName(set.getString("UNIQUENAME"));
         model.setEmail(set.getString("EMAIL"));
         model.setUsername(set.getString("USERNAME"));
         model.setPassword(set.getString("ACCOUNTPASSWORD"));

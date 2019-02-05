@@ -2,16 +2,17 @@ package view.action;
 
 import controller.Controller;
 import model.wrapped.WrappedAccountModel;
+import view.AccountView;
 
 /**
  *
  * @author Gene Garcia
  */
-public class AccountViewAction extends ActionHandler {
+public class AccountAction extends ActionHandler {
 
     private int uniqueID;
 
-    public AccountViewAction(Controller cont) {
+    public AccountAction(Controller cont) {
         super(cont);
     }
 
@@ -25,26 +26,42 @@ public class AccountViewAction extends ActionHandler {
 
     //save
     public void saveAction() {
-        //controller.selectAccount();?????????????????????
         controller.getCurrentModel().updateModelView(controller.getCurrentView()); //updates model from the information from view
-        
-        //does AccountModel in wrapped model needs to be updated?
-        
+
         controller.getCurrentModel().updateDBModel();
+        
+        returnAction("overview");
     }
 
     //add
     public void addAction() {
         controller.getCurrentModel().updateModelView(controller.getCurrentView()); //updates model from the information from view 
+
         controller.getCurrentModel().addDBModel();
+        
+        returnAction("overview");
     }
 
-    //logout
-    public void logoutAction() {
+    //delete
+    public void deleteAction() {
+        ((WrappedAccountModel) controller.getCurrentModel()).deleteCurrentAccount(); //deletes current account
+
         controller.getCurrentView().setVisible(false);
+
         controller.selectOverview();
+
         controller.getCurrentView().setVisible(true);
+
+        returnAction("overview");
     }
 
-    //update to model and database
+    public boolean checkFields(){
+        String uniqueName = ((AccountView) controller.getCurrentView()).getTxtUniqueName().getText();
+        
+        if(uniqueName.equals("")){
+            return false;
+        }
+        
+        return true;
+    }
 }

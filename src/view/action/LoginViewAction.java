@@ -1,6 +1,7 @@
 package view.action;
 
 import controller.Controller;
+import java.awt.Color;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -8,16 +9,14 @@ import javax.swing.JOptionPane;
 import model.wrapped.WrappedLoginModel;
 import model.wrapped.WrappedOverviewModel;
 import view.LoginAccountView;
+import view.LoginView;
 
 /**
  *
  * @author Gene Garcia
  */
 public class LoginViewAction extends ActionHandler {
-
-    public final int ADD_ACCOUNT = 0;
-    public final int CHANGE_PASSWORD = 1;
-
+    
     public LoginViewAction(Controller cont) {
         super(cont);
     }
@@ -29,67 +28,77 @@ public class LoginViewAction extends ActionHandler {
      * @return true if account matched
      */
     public boolean checkAccount() {
-
+        
         try {
             ((WrappedLoginModel) controller.getCurrentModel()).updateModelView(controller.getCurrentView()); //will get the username and password from view and set it to the model
 
             if (((WrappedLoginModel) controller.getCurrentModel()).checkPassword()) {
                 return true;
             }
-
+            
         } catch (SQLException ex) {
             Logger.getLogger(LoginViewAction.class.getName()).log(Level.SEVERE, null, ex);
         }
-
+        
         return false;
     }
-
+    
     public void loginPressAction() {
         if (checkAccount()) {
-            int id = ((WrappedLoginModel) controller.getCurrentModel()).getModel().getUserID();
-
-            System.out.println(id + " in loginPressAction()");
-
+            int userID = ((WrappedLoginModel) controller.getCurrentModel()).getModel().getUserID();
+                        
+            controller.getCurrentView().setVisible(false);
+            
             controller.selectOverview();
-
-            ((WrappedOverviewModel) controller.getCurrentModel()).setAccountID(id);
-
+            
+            ((WrappedOverviewModel) controller.getCurrentModel()).setUserID(userID);
+            
             controller.update(); //updates model and view
             controller.getCurrentView().setVisible(true);
-
+            
         } else {
             JOptionPane.showMessageDialog(null, "Incorrect Credentials");
+            
         }
     }
     
     public void changeView(int view) {
-        controller.getCurrentView().setVisible(false);
-        
+        controller.getCurrentView().setVisible(false); //hides login view
+
         controller.selectLoginAccount();
         
         switch (view) {
             case ADD_ACCOUNT:
-                ((LoginAccountView) controller.getCurrentView()).getBtnCreateAccount().setEnabled(true);
+                ((LoginAccountView) controller.getCurrentView()).getBtnChangePass().setVisible(false);
+                ((LoginAccountView) controller.getCurrentView()).getBtnCreateAccount().setVisible(true);
+                ((LoginAccountView) controller.getCurrentView()).getPwfOldAccountPassword().setEnabled(false);
                 controller.getCurrentView().setVisible(true);
                 break;
             case CHANGE_PASSWORD:
-                ((LoginAccountView) controller.getCurrentView()).getBtnChangePass().setEnabled(true);
+                ((LoginAccountView) controller.getCurrentView()).getBtnCreateAccount().setVisible(false);
+                ((LoginAccountView) controller.getCurrentView()).getBtnChangePass().setVisible(true);
+                
                 controller.getCurrentView().setVisible(true);
                 break;
         }
     }
     
-    public void btnAction(int view){
-        controller.getCurrentModel().updateModelView(controller.getCurrentView());
-
-        switch (view) {
-            case ADD_ACCOUNT:
-                controller.getCurrentModel().addDBModel();
-                break;
-            case CHANGE_PASSWORD:
-                controller.getCurrentModel().updateDBModel();
-                break;
+    public boolean checkFieldText() {
+        
+        String tfUsername = ((LoginView) controller.getCurrentView()).getTfUsername().getText();
+        String pwfPassword = ((LoginView) controller.getCurrentView()).getPwfAccountPassword().getText();
+        
+        if ((tfUsername.equals("") || tfUsername.equals("Enter username")) && (pwfPassword.equals("") || pwfPassword.equals("admin"))) {
+            ((LoginView) controller.getCurrentView()).getLblError().setForeground(new java.awt.Color(255, 0, 0));
+            ((LoginView) controller.getCurrentView()).getLblError1().setForeground(new java.awt.Color(255, 0, 0));
+            return false;
         }
+        
+        return true;
     }
-
+    
+    public void defaultText() {
+        ((LoginView) controller.getCurrentView()).setTfUsername("Enter username");
+        ((LoginView) controller.getCurrentView()).getTfUsername().setForeground(Color.LIGHT_GRAY);
+    }
 }

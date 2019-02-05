@@ -5,8 +5,6 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -27,11 +25,11 @@ public class DBConnection {
         statement = connection.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
     }
 
-    public void executeCommand(String sql, boolean isUpdate) throws SQLException {
+public void executeCommand(String sql, boolean isUpdate) throws SQLException {
         if (isUpdate) {
             statement.executeUpdate(sql);
         } else {
-            statement.execute(sql);
+            dataStore = statement.executeQuery(sql);
         }
 
     }

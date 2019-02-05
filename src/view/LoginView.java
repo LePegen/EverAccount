@@ -2,9 +2,11 @@ package view;
 
 import java.awt.Color;
 import java.awt.Toolkit;
+import javax.swing.JLabel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import view.action.ActionHandler;
+import view.action.LoginAccountViewAction;
 import view.action.LoginViewAction;
 
 /**
@@ -18,8 +20,10 @@ public class LoginView extends View {
     public LoginView() {
         initComponents();
 
+        tfUsername.setForeground(Color.LIGHT_GRAY);
+
         this.setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/image/Logo icon.png")));
-        
+        setPositionOnScreen();
     }
 
     @SuppressWarnings("unchecked")
@@ -27,9 +31,11 @@ public class LoginView extends View {
     private void initComponents() {
 
         lblLogo = new javax.swing.JLabel();
+        lblError1 = new javax.swing.JLabel();
         tfUsername = new javax.swing.JTextField();
-        btnEye = new javax.swing.JLabel();
+        lblError = new javax.swing.JLabel();
         pwfAccountPassword = new javax.swing.JPasswordField();
+        btnEye = new javax.swing.JLabel();
         btnLogin = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
         jSeparator2 = new javax.swing.JSeparator();
@@ -50,6 +56,12 @@ public class LoginView extends View {
         lblLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/Logo small.png"))); // NOI18N
         getContentPane().add(lblLogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 20, -1, 120));
 
+        lblError1.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        lblError1.setForeground(new java.awt.Color(255, 255, 255));
+        lblError1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblError1.setText("!");
+        getContentPane().add(lblError1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 140, 20, 40));
+
         tfUsername.setFont(new java.awt.Font("DialogInput", 0, 18)); // NOI18N
         tfUsername.setForeground(new java.awt.Color(153, 153, 153));
         tfUsername.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -63,6 +75,18 @@ public class LoginView extends View {
         });
         getContentPane().add(tfUsername, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 150, 260, -1));
 
+        lblError.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        lblError.setForeground(new java.awt.Color(255, 255, 255));
+        lblError.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblError.setText("!");
+        getContentPane().add(lblError, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 240, 20, 40));
+
+        pwfAccountPassword.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        pwfAccountPassword.setToolTipText("");
+        pwfAccountPassword.setBorder(null);
+        pwfAccountPassword.setOpaque(false);
+        getContentPane().add(pwfAccountPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 250, 260, 30));
+
         btnEye.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         btnEye.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/open eye.png"))); // NOI18N
         btnEye.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -74,14 +98,6 @@ public class LoginView extends View {
             }
         });
         getContentPane().add(btnEye, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 250, 40, 30));
-
-        pwfAccountPassword.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        pwfAccountPassword.setText("admin");
-        pwfAccountPassword.setToolTipText("");
-        pwfAccountPassword.setBorder(null);
-        pwfAccountPassword.setEchoChar('\u2022');
-        pwfAccountPassword.setOpaque(false);
-        getContentPane().add(pwfAccountPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 250, 260, 30));
 
         btnLogin.setFont(new java.awt.Font("Yu Gothic", 0, 18)); // NOI18N
         btnLogin.setText("Login");
@@ -102,7 +118,7 @@ public class LoginView extends View {
         getContentPane().add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 180, 260, 20));
 
         lblForgotAccount.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
-        lblForgotAccount.setText("Forgot account?");
+        lblForgotAccount.setText("Forgot Password?");
         lblForgotAccount.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 lblForgotAccountMouseClicked(evt);
@@ -139,78 +155,59 @@ public class LoginView extends View {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
-        LoginViewAction loginHandler = (LoginViewAction) handler;
-        loginHandler.loginPressAction();
+        LoginViewAction action = (LoginViewAction) handler;
+
+        if (action.checkFieldText()) {
+            action.loginPressAction();
+        }
+
     }//GEN-LAST:event_btnLoginActionPerformed
 
     private void btnEyeMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEyeMousePressed
-        System.out.println("closed eye");
-        btnEye.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/hide eye.png"))); // NOI18N
+        btnEye.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/hide eye.png")));
 
-        char echo = pwfAccountPassword.getEchoChar();
-
-        switch (echo) {
-            case '•':
-                pwfAccountPassword.setEchoChar((char) 0);
-                break;
-            default:
-                pwfAccountPassword.setEchoChar('•');
-        }
-
+        pwfAccountPassword.setEchoChar((char) 0);
     }//GEN-LAST:event_btnEyeMousePressed
 
     private void btnEyeMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEyeMouseReleased
-        System.out.println("opened eye");
         btnEye.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/open eye.png"))); // NOI18N
 
-        char echo = pwfAccountPassword.getEchoChar();
-
-        switch (echo) {
-            case '•':
-                pwfAccountPassword.setEchoChar((char) 0);
-                break;
-            default:
-                pwfAccountPassword.setEchoChar('•');
-        }
+        pwfAccountPassword.setEchoChar('•');
     }//GEN-LAST:event_btnEyeMouseReleased
 
     private void lblCreateAccountMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCreateAccountMouseEntered
-        System.out.println("hovered");
         lblCreateAccount.setForeground(Color.MAGENTA);
     }//GEN-LAST:event_lblCreateAccountMouseEntered
 
     private void lblCreateAccountMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCreateAccountMouseExited
-        System.out.println("exit");
         lblCreateAccount.setForeground(Color.BLACK);
     }//GEN-LAST:event_lblCreateAccountMouseExited
 
     private void lblForgotAccountMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblForgotAccountMouseEntered
-        System.out.println("hovered");
         lblForgotAccount.setForeground(Color.MAGENTA);
     }//GEN-LAST:event_lblForgotAccountMouseEntered
 
     private void lblForgotAccountMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblForgotAccountMouseExited
-        System.out.println("exit");
         lblForgotAccount.setForeground(Color.BLACK);
     }//GEN-LAST:event_lblForgotAccountMouseExited
 
     private void lblCreateAccountMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCreateAccountMouseClicked
-        System.out.println("enter");
         LoginViewAction action = (LoginViewAction) handler;
+        action.defaultText();
         action.changeView(action.ADD_ACCOUNT);
     }//GEN-LAST:event_lblCreateAccountMouseClicked
 
     private void lblForgotAccountMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblForgotAccountMouseClicked
-        System.out.println("enter");
         LoginViewAction action = (LoginViewAction) handler;
+        action.defaultText();
         action.changeView(action.CHANGE_PASSWORD);
     }//GEN-LAST:event_lblForgotAccountMouseClicked
 
     private void tfUsernameKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfUsernameKeyTyped
-        if(tfUsername.getText().equals("Enter username")){
+        if (tfUsername.getText().equals("Enter username")) {
             tfUsername.setText("");
         }
-        
+
         tfUsername.setForeground(Color.BLACK);
     }//GEN-LAST:event_tfUsernameKeyTyped
 
@@ -221,6 +218,8 @@ public class LoginView extends View {
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JLabel lblBackground;
     private javax.swing.JLabel lblCreateAccount;
+    private javax.swing.JLabel lblError;
+    private javax.swing.JLabel lblError1;
     private javax.swing.JLabel lblForgotAccount;
     private javax.swing.JLabel lblLogo;
     private javax.swing.JPasswordField pwfAccountPassword;
@@ -238,6 +237,30 @@ public class LoginView extends View {
 
     public JPasswordField getPwfAccountPassword() {
         return pwfAccountPassword;
+    }
+
+    public void setPwfAccountPassword(String passwordText) {
+        this.pwfAccountPassword.setText(passwordText);
+    }
+
+    public void setTfUsername(String username) {
+        this.tfUsername.setText(username);
+    }
+
+    public JLabel getLblError() {
+        return lblError;
+    }
+
+    public void setLblError(JLabel lblError) {
+        this.lblError = lblError;
+    }
+
+    public JLabel getLblError1() {
+        return lblError1;
+    }
+
+    public void setLblError1(JLabel lblError1) {
+        this.lblError1 = lblError1;
     }
 
 }
