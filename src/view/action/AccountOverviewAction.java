@@ -2,13 +2,13 @@ package view.action;
 
 import controller.Controller;
 import java.util.HashMap;
-import model.wrapped.WrappedAccountModel;
+import model.wrapped.WrappedAccModel;
 import model.wrapped.WrappedLoginModel;
 import view.AccountView;
 
 /**
  *
- * @author Gene Garcia
+ * @author Lezned
  */
 public class AccountOverviewAction extends ActionHandler {
 
@@ -26,8 +26,8 @@ public class AccountOverviewAction extends ActionHandler {
 
         controller.selectAccount();
 
-        ((WrappedAccountModel) controller.getCurrentModel()).getModel().setAccountID(accountID);
-        ((WrappedAccountModel) controller.getCurrentModel()).setAccountID(accountID);
+        ((WrappedAccModel) controller.getCurrentModel()).getModel().setAccountID(accountID);
+        ((WrappedAccModel) controller.getCurrentModel()).setAccountID(accountID);
 
         ((AccountView) controller.getCurrentView()).getBtnAdd().setEnabled(false);
         ((AccountView) controller.getCurrentView()).getBtnSave().setEnabled(true);
@@ -44,7 +44,7 @@ public class AccountOverviewAction extends ActionHandler {
         int userID = ((WrappedLoginModel) controller.getCurrentModel()).getModel().getUserID();
 
         controller.selectAccount();
-        ((WrappedAccountModel) controller.getCurrentModel()).getModel().setUserID(userID);
+        ((WrappedAccModel) controller.getCurrentModel()).getModel().setUserID(userID);
 
         ((AccountView) controller.getCurrentView()).getBtnAdd().setEnabled(true);
         ((AccountView) controller.getCurrentView()).getBtnSave().setEnabled(false);

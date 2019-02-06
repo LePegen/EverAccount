@@ -1,4 +1,4 @@
-package view;
+ package view;
 
 import java.awt.Toolkit;
 import java.util.ArrayList;
@@ -10,14 +10,12 @@ import view.action.ActionHandler;
 
 /**
  *
- * @author Gene Garcia
+ * @author Lezned
  */
 public class AccountOverviewView extends View {
 
     private ActionHandler handler;
     private HashMap<Object, Integer> components;
-
-    DefaultListModel listModel;
 
     public AccountOverviewView() {
         initComponents();
@@ -60,7 +58,7 @@ public class AccountOverviewView extends View {
         jlAccountItems = new javax.swing.JList<>();
         pnlButton = new javax.swing.JPanel();
         btnCreate = new javax.swing.JButton();
-        Logout = new javax.swing.JButton();
+        btnLogout = new javax.swing.JButton();
         lblBackground = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -122,14 +120,14 @@ public class AccountOverviewView extends View {
         });
         pnlButton.add(btnCreate);
 
-        Logout.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        Logout.setText("Logout");
-        Logout.addActionListener(new java.awt.event.ActionListener() {
+        btnLogout.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        btnLogout.setText("Logout");
+        btnLogout.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                LogoutActionPerformed(evt);
+                btnLogoutActionPerformed(evt);
             }
         });
-        pnlButton.add(Logout);
+        pnlButton.add(btnLogout);
 
         getContentPane().add(pnlButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 685, 540, 50));
 
@@ -163,14 +161,14 @@ public class AccountOverviewView extends View {
 
     }//GEN-LAST:event_btnSearchActionPerformed
 
-    private void LogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LogoutActionPerformed
+    private void btnLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogoutActionPerformed
         AccountOverviewAction action = (AccountOverviewAction) handler;
         action.returnAction("login");
-    }//GEN-LAST:event_LogoutActionPerformed
+    }//GEN-LAST:event_btnLogoutActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton Logout;
     private javax.swing.JButton btnCreate;
+    private javax.swing.JButton btnLogout;
     private javax.swing.JButton btnSearch;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JList<String> jlAccountItems;

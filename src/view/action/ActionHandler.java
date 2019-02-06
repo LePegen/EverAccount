@@ -1,4 +1,4 @@
-package view.action;
+ package view.action;
 
 import controller.Controller;
 
@@ -9,7 +9,6 @@ public abstract class ActionHandler {
     public final int ADD_ACCOUNT = 0;
     public final int CHANGE_PASSWORD = 1;
 
-    //to do: Controller must be initialized
     public ActionHandler(Controller cont) {
         this.controller = cont;
     }

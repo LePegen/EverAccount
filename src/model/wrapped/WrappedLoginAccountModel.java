@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package model.wrapped;
 
 import database.DBConnection;
@@ -16,7 +11,7 @@ import view.View;
 
 /**
  *
- * @author Gene Garcia
+ * @author Lezned
  */
 public class WrappedLoginAccountModel extends WrappedModel {
 
@@ -69,7 +64,7 @@ public class WrappedLoginAccountModel extends WrappedModel {
         try {
             dataObj.changePassword(model);
         } catch (SQLException ex) {
-            Logger.getLogger(WrappedAccountModel.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(WrappedAccModel.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -78,7 +73,7 @@ public class WrappedLoginAccountModel extends WrappedModel {
         try {
             dataObj.addAccount(model);
         } catch (SQLException ex) {
-            Logger.getLogger(WrappedAccountModel.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(WrappedAccModel.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

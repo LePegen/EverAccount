@@ -13,7 +13,7 @@ import view.LoginView;
 
 /**
  *
- * @author Gene Garcia
+ * @author Lezned
  */
 public class LoginViewAction extends ActionHandler {
     

@@ -4,7 +4,7 @@ import database.DBConnection;
 
 /**
  *
- * @author Gene Garcia
+ * @author Lezned
  */
 public class DataObject {
 

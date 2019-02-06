@@ -7,7 +7,7 @@ import model.AccountModel;
 
 /**
  *
- * @author Gene Garcia
+ * @author Lezned
  */
 public class AccountDataObject extends DataObject {
 

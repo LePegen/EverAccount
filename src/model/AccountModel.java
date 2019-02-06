@@ -1,6 +1,9 @@
 package model;
 
- //extendend from model
+/**
+ *
+ * @author Lezned
+ */
 public class AccountModel extends Model{
     
     private byte[] encryptionKey;

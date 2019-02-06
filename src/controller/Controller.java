@@ -4,29 +4,17 @@ import database.DBConnection;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import model.wrapped.WrappedLoginModel;
-import model.wrapped.WrappedModel;
-import model.wrapped.WrappedAccountModel;
-import model.wrapped.WrappedLoginAccountModel;
-import model.wrapped.WrappedOverviewModel;
-import view.AccountOverviewView;
-import view.AccountView;
-import view.LoginAccountView;
-import view.LoginView;
-import view.View;
-import view.action.AccountAction;
-import view.action.AccountOverviewAction;
-import view.action.LoginAccountViewAction;
-import view.action.LoginViewAction;
-
+import view.*;
+import model.wrapped.*;
+import view.action.*;
 /**
  *
- * @author prg08p-a67-08
+ * @author Lezned
  */
 public class Controller {
 
-    View currentView;
-    WrappedModel currentModel;
+    private View currentView;
+    private WrappedModel currentModel;
 
     //views
     private View loginView;
@@ -35,23 +23,20 @@ public class Controller {
     private View loginAccountView;
 
     //wrapped models
-    WrappedAccountModel accountModel;
-    WrappedLoginModel loginModel;
-    WrappedOverviewModel overviewModel;
-    WrappedLoginAccountModel loginAccountModel;
+    private WrappedAccModel accountModel;
+    private WrappedLoginModel loginModel;
+    private WrappedOverviewModel overviewModel;
+    private WrappedLoginAccountModel loginAccountModel;
 
     //Connection
-    DBConnection connection;
+    private DBConnection connection;
 
     //action handlers
-    AccountOverviewAction overviewAction;
-    AccountAction accountViewAction;
-    LoginViewAction loginAction;
-    LoginAccountViewAction loginAccountAction;
-
-    /**
-     * LoginView cannot be a View. Problems in implementation
-     */
+    private AccountOverviewAction overviewAction;
+    private AccountAction accountViewAction;
+    private LoginViewAction loginAction;
+    private LoginAccountViewAction loginAccountAction;
+ 
     public Controller() {
         initConnection();
         initViews();
@@ -94,7 +79,7 @@ public class Controller {
     }
 
     public void initWrapped() {
-        accountModel = new WrappedAccountModel(connection);
+        accountModel = new WrappedAccModel(connection);
         loginModel = new WrappedLoginModel(connection);
         overviewModel = new WrappedOverviewModel(connection);
         loginAccountModel = new WrappedLoginAccountModel(connection);

@@ -6,12 +6,11 @@ import javax.swing.JLabel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import view.action.ActionHandler;
-import view.action.LoginAccountViewAction;
 import view.action.LoginViewAction;
 
 /**
  *
- * @author Gene Garcia
+ * @author Lezned
  */
 public class LoginView extends View {
 

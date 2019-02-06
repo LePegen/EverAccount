@@ -11,16 +11,16 @@ import view.AccountView;
 
 /**
  *
- * @author Gene Garcia
+ * @author Lezned
  */
-public class WrappedAccountModel extends WrappedModel {
+public class WrappedAccModel extends WrappedModel {
     private AccountDataObject dataObj;
     private AccountModel model;
     //has-a rel with encrpyion
 
     private int accountID;
 
-    public WrappedAccountModel(DBConnection connection) {
+    public WrappedAccModel(DBConnection connection) {
         super(connection);
         model = new AccountModel();
         dataObj = new AccountDataObject(this.connection);
@@ -46,7 +46,7 @@ public class WrappedAccountModel extends WrappedModel {
         try {
             dataObj.deleteAccount(model);
         } catch (SQLException ex) {
-            Logger.getLogger(WrappedAccountModel.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(WrappedAccModel.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     
@@ -99,7 +99,7 @@ public class WrappedAccountModel extends WrappedModel {
         try {
             dataObj.addAccount(model);
         } catch (SQLException ex) {
-            Logger.getLogger(WrappedAccountModel.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(WrappedAccModel.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -108,7 +108,7 @@ public class WrappedAccountModel extends WrappedModel {
         try {
             model = dataObj.getAccount(accountID);
         } catch (SQLException ex) {
-            Logger.getLogger(WrappedAccountModel.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(WrappedAccModel.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

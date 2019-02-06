@@ -1,9 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package model.wrapped;
+ package model.wrapped;
 
 import database.AccountOverviewDataObject;
 import database.DBConnection;
@@ -11,24 +6,24 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import model.AccountModel;
+import model.AccountOverviewModel;
 import view.AccountOverviewView;
 import view.View;
 
 /**
  *
- * @author lipat
+ * @author Lezned
  */
 public class WrappedOverviewModel extends WrappedModel {
 
     private int userID;
-    private ArrayList<AccountModel> models;
+    private AccountOverviewModel models;
     private AccountOverviewDataObject dataObj;
 
     public WrappedOverviewModel(DBConnection connection) {
         super(connection);
         dataObj = new AccountOverviewDataObject(this.connection);
-        models = new ArrayList<>();
+        models = new AccountOverviewModel();
     }
 
     @Override
@@ -39,14 +34,14 @@ public class WrappedOverviewModel extends WrappedModel {
     @Override
     public void updateViewModel(View currentView) {
         AccountOverviewView view = (AccountOverviewView) currentView;
-        
+
         ArrayList<Integer> accountID = new ArrayList<>();
-        
+
         ArrayList<String> accountNames = new ArrayList<>();
-        
-        for (int i = 0; i < models.size(); i++) {
-            accountID.add(models.get(i).getAccountID());
-            accountNames.add(models.get(i).getUniqueName());
+
+        for (int i = 0; i < models.getModels().size(); i++) {
+            accountID.add(models.getModels().get(i).getAccountID());
+            accountNames.add(models.getModels().get(i).getUniqueName());
         }
         view.setAccountList(accountID, accountNames);
     }
@@ -62,7 +57,8 @@ public class WrappedOverviewModel extends WrappedModel {
     @Override
     public void updateModelDB() {
         try {
-            models = dataObj.getAccount(userID);
+            //models = dataObj.getAccount(userID);
+            models.setModels( dataObj.getAccount(userID) );
         } catch (SQLException ex) {
             Logger.getLogger(WrappedOverviewModel.class.getName()).log(Level.SEVERE, null, ex);
         }

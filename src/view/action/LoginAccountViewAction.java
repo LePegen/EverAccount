@@ -5,11 +5,10 @@ import java.awt.Color;
 import javax.swing.JOptionPane;
 import model.wrapped.WrappedLoginAccountModel;
 import view.LoginAccountView;
-import view.LoginView;
 
 /**
  *
- * @author Gene Garcia
+ * @author Lezned
  */
 public class LoginAccountViewAction extends ActionHandler {
 

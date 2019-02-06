@@ -8,7 +8,7 @@ import java.sql.Statement;
 
 /**
  *
- * @author Gene Garcia
+ * @author Lezned
  */
 public class DBConnection {
 
@@ -25,25 +25,17 @@ public class DBConnection {
         statement = connection.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
     }
 
-public void executeCommand(String sql, boolean isUpdate) throws SQLException {
+    public void executeCommand(String sql, boolean isUpdate) throws SQLException {
         if (isUpdate) {
             statement.executeUpdate(sql);
         } else {
             dataStore = statement.executeQuery(sql);
         }
 
-    }
+    } 
 
     public ResultSet getData() {
         return this.dataStore;
-    }
-
-    public void openConnection() {
-
-    }
-
-    public void closeConnection() {
-
     }
 
 }

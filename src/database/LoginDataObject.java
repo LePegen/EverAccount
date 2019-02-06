@@ -7,7 +7,7 @@ import model.LoginModel;
 
 /**
  *
- * @author lipat
+ * @author Lezned
  */
 public class LoginDataObject extends DataObject {
 

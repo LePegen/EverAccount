@@ -11,11 +11,10 @@ import view.action.ActionHandler;
 
 /**
  *
- * @author Gene Garcia
+ * @author Lezned
  */
 public class AccountView extends View {
 
-    //to do: change all labels to text field
     private ActionHandler handler;
 
     public AccountView() {
@@ -270,7 +269,7 @@ public class AccountView extends View {
     }//GEN-LAST:event_btnSaveActionPerformed
 
     private void btnClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClearActionPerformed
-
+ 
         btnAdd.setEnabled(true);
         btnSave.setEnabled(false);
 

@@ -9,7 +9,7 @@ import view.View;
 
 /**
  *
- * @author lipat
+ * @author Lezned
  */
 public class WrappedLoginModel extends WrappedModel {
 

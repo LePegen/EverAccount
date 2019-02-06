@@ -7,7 +7,7 @@ import view.View;
  * The wrapped model's responsibilities: -mediate the database(the data objects)
  * and the model -mediate the model and the view -handle application logic
  *
- * @author lipat
+ * @author Lezned
  */
 public abstract class WrappedModel {
 

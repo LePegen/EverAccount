@@ -1,12 +1,12 @@
 package view.action;
 
 import controller.Controller;
-import model.wrapped.WrappedAccountModel;
+import model.wrapped.WrappedAccModel;
 import view.AccountView;
 
 /**
  *
- * @author Gene Garcia
+ * @author Lezned
  */
 public class AccountAction extends ActionHandler {
 
@@ -44,7 +44,7 @@ public class AccountAction extends ActionHandler {
 
     //delete
     public void deleteAction() {
-        ((WrappedAccountModel) controller.getCurrentModel()).deleteCurrentAccount(); //deletes current account
+        ((WrappedAccModel) controller.getCurrentModel()).deleteCurrentAccount(); //deletes current account
 
         controller.getCurrentView().setVisible(false);
 
