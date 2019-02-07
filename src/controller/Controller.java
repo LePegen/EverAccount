@@ -35,7 +35,7 @@ public class Controller {
     private AccountOverviewAction overviewAction;
     private AccountAction accountViewAction;
     private LoginViewAction loginAction;
-    private LoginAccountViewAction loginAccountAction;
+    private LoginAccountAction loginAccountAction;
  
     public Controller() {
         initConnection();
@@ -69,7 +69,7 @@ public class Controller {
         overviewAction = new AccountOverviewAction(this);
         accountViewAction = new AccountAction(this);
         loginAction = new LoginViewAction(this);
-        loginAccountAction = new LoginAccountViewAction(this);
+        loginAccountAction = new LoginAccountAction(this);
 
         loginView.setHandler(loginAction);
         accountView.setHandler(accountViewAction);

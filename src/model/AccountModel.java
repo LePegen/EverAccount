@@ -32,8 +32,6 @@ public class AccountModel extends Model{
     public void setUniqueName(String uniqueName) {
         this.uniqueName = uniqueName;
     }
-
-    
     
     public byte[] getEncryptionKey() {
         return encryptionKey;

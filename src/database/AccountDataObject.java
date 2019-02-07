@@ -32,7 +32,8 @@ public class AccountDataObject extends DataObject {
                 + ",EMAIL = '%s' "
                 + ",USERNAME = '%s' "
                 + ",ACCOUNTPASSWORD = '%s' "
-                + ",ADDITIONALINFORMATION = '%s' "
+                + ",ADDITIONALINFORMATION = '%s'"
+                + ", ENCRYPTIONKEY = %d "
                 + " WHERE ACCOUNTID = %d ",
                 model.getProvider(),
                 model.getUniqueName(),
@@ -40,6 +41,7 @@ public class AccountDataObject extends DataObject {
                 model.getUsername(),
                 model.getPassword(),
                 model.getAdditionalInformation(),
+                model.getEncryptionKey(),
                 model.getAccountID());
 
         System.out.println(command);
@@ -58,15 +60,17 @@ public class AccountDataObject extends DataObject {
                 + "EMAIL,"
                 + "USERNAME,"
                 + "ACCOUNTPASSWORD,"
-                + "ADDITIONALINFORMATION)"
-                + " VALUES( %d, '%s', '%s', '%s', '%s', '%s', '%s' )",
+                + "ADDITIONALINFORMATION,"
+                + "ENCRYPTIONKEY)"
+                + " VALUES( %d, '%s', '%s', '%s', '%s', '%s', '%s' , %d)",
                 model.getUserID(),
                 model.getProvider(),
                 model.getUniqueName(),
                 model.getUsername(),
                 model.getPassword(),
                 model.getEmail(),
-                model.getAdditionalInformation());
+                model.getAdditionalInformation(),
+                model.getEncryptionKey());
 
         System.out.println(command);
 
@@ -101,6 +105,7 @@ public class AccountDataObject extends DataObject {
         model.setUsername(set.getString("USERNAME"));
         model.setPassword(set.getString("ACCOUNTPASSWORD"));
         model.setAdditionalInformation(set.getString("ADDITIONALINFORMATION"));
+        model.setEncryptionKey( set.getBytes("ENCRYPTIONKEY") );
 
         return model;
 

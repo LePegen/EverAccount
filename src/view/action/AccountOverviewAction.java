@@ -31,6 +31,7 @@ public class AccountOverviewAction extends ActionHandler {
 
         ((AccountView) controller.getCurrentView()).getBtnAdd().setEnabled(false);
         ((AccountView) controller.getCurrentView()).getBtnSave().setEnabled(true);
+        ((AccountView) controller.getCurrentView()).getBtnDelete().setEnabled(true);
 
         this.controller.update(); //updates model and view
         controller.getCurrentView().setVisible(true);
@@ -48,6 +49,7 @@ public class AccountOverviewAction extends ActionHandler {
 
         ((AccountView) controller.getCurrentView()).getBtnAdd().setEnabled(true);
         ((AccountView) controller.getCurrentView()).getBtnSave().setEnabled(false);
+        ((AccountView) controller.getCurrentView()).getBtnDelete().setEnabled(false);
 
         controller.getCurrentView().setVisible(true);
     }

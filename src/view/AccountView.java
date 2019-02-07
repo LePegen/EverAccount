@@ -407,4 +407,14 @@ public class AccountView extends View {
         return btnSave;
     }
 
+    public JButton getBtnDelete() {
+        return btnDelete;
+    }
+
+    public void setBtnDelete(JButton btnDelete) {
+        this.btnDelete = btnDelete;
+    }
+    
+    
+
 }

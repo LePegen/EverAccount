@@ -10,9 +10,9 @@ import view.LoginAccountView;
  *
  * @author Lezned
  */
-public class LoginAccountViewAction extends ActionHandler {
+public class LoginAccountAction extends ActionHandler {
 
-    public LoginAccountViewAction(Controller cont) {
+    public LoginAccountAction(Controller cont) {
         super(cont);
     }
 
@@ -91,5 +91,9 @@ public class LoginAccountViewAction extends ActionHandler {
     public void defaultText() {
         ((LoginAccountView) controller.getCurrentView()).setTfUsername("Enter username");
         ((LoginAccountView) controller.getCurrentView()).getTfUsername().setForeground(Color.LIGHT_GRAY);
+        ((LoginAccountView) controller.getCurrentView()).setPwfOldAccountPassword("");
+        ((LoginAccountView) controller.getCurrentView()).setPwfNewPassword("");
+        ((LoginAccountView) controller.getCurrentView()).setPwfVerificationPassword("");
+        
     }
 }

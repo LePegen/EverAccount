@@ -14,6 +14,7 @@ import view.AccountView;
  * @author Lezned
  */
 public class WrappedAccModel extends WrappedModel {
+
     private AccountDataObject dataObj;
     private AccountModel model;
     //has-a rel with encrpyion
@@ -42,25 +43,25 @@ public class WrappedAccModel extends WrappedModel {
         this.accountID = accountID;
     }
 
-    public void deleteCurrentAccount(){
+    public void deleteCurrentAccount() {
         try {
             dataObj.deleteAccount(model);
         } catch (SQLException ex) {
             Logger.getLogger(WrappedAccModel.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+
     @Override
     public void updateModelView(View currentView) {
         AccountView view = (AccountView) currentView;
-        
-        model.setProvider( view.getTxtProvider().getText() );
-        model.setUniqueName( view.getTxtUniqueName().getText() ); 
-        
-        model.setEmail( view.getTxtEmail().getText() );
-        model.setUsername( view.getTxtUsername().getText() );
-        model.setPassword( view.getPwfPassword().getText() );
-        model.setAdditionalInformation( view.getTxtAdditionalInformation().getText() );
+
+        model.setProvider(view.getTxtProvider().getText());
+        model.setUniqueName(view.getTxtUniqueName().getText());
+
+        model.setEmail(view.getTxtEmail().getText());
+        model.setUsername(view.getTxtUsername().getText());
+        model.setPassword(view.getPwfPassword().getText());
+        model.setAdditionalInformation(view.getTxtAdditionalInformation().getText());
 
     }
 
@@ -74,12 +75,12 @@ public class WrappedAccModel extends WrappedModel {
     public void updateViewModel(View currentView) {
         AccountView view = (AccountView) currentView;
 
-        view.setTxtProvider(model.getProvider() );
-        view.setTxtUniqueName(model.getUniqueName() );
-        view.setTxtEmail(model.getEmail() );
-        view.setTxtUsername(model.getUsername() );
-        view.setPwfPassword(model.getPassword() );
-        view.setTxtAdditionalInformation(model.getAdditionalInformation() );
+        view.setTxtProvider(model.getProvider());
+        view.setTxtUniqueName(model.getUniqueName());
+        view.setTxtEmail(model.getEmail());
+        view.setTxtUsername(model.getUsername());
+        view.setPwfPassword(model.getPassword());
+        view.setTxtAdditionalInformation(model.getAdditionalInformation());
 
     }
 

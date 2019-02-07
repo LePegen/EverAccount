@@ -38,6 +38,7 @@ public class AccountOverviewDataObject extends DataObject {
             tempModel.setUsername(set.getString("USERNAME"));
             tempModel.setPassword(set.getString("ACCOUNTPASSWORD"));
             tempModel.setAdditionalInformation(set.getString("ADDITIONALINFORMATION"));
+            tempModel.setEncryptionKey(set.getBytes("ENCRYPTIONKEY"));
 
             model.add(tempModel);
         }

@@ -6,7 +6,7 @@ import javax.swing.JButton;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import view.action.ActionHandler;
-import view.action.LoginAccountViewAction;
+import view.action.LoginAccountAction;
 
 /**
  *
@@ -177,7 +177,7 @@ public class LoginAccountView extends View {
     }//GEN-LAST:event_btnEyeMouseReleased
 
     private void btnCreateAccountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateAccountActionPerformed
-        LoginAccountViewAction loginHandler = (LoginAccountViewAction) handler;
+        LoginAccountAction loginHandler = (LoginAccountAction) handler;
 
         if (loginHandler.checkFieldText()) {
             loginHandler.btnAction(loginHandler.ADD_ACCOUNT);
@@ -185,7 +185,7 @@ public class LoginAccountView extends View {
     }//GEN-LAST:event_btnCreateAccountActionPerformed
 
     private void btnChangePassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChangePassActionPerformed
-        LoginAccountViewAction loginHandler = (LoginAccountViewAction) handler;
+        LoginAccountAction loginHandler = (LoginAccountAction) handler;
 
         if (loginHandler.checkFieldText()) {
             loginHandler.btnAction(loginHandler.CHANGE_PASSWORD);
@@ -202,7 +202,7 @@ public class LoginAccountView extends View {
     }//GEN-LAST:event_tfUsernameKeyTyped
 
     private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed
-        LoginAccountViewAction loginHandler = (LoginAccountViewAction) handler;
+        LoginAccountAction loginHandler = (LoginAccountAction) handler;
         loginHandler.defaultText();
         loginHandler.returnAction("login");
     }//GEN-LAST:event_btnExitActionPerformed
