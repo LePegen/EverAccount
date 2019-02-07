@@ -45,15 +45,13 @@ public class LoginViewAction extends ActionHandler {
 
     public void loginPressAction() {
         if (checkAccount()) {
+            WrappedLoginModel currentModel=(WrappedLoginModel) controller.getCurrentModel();
             int userID = ((WrappedLoginModel) controller.getCurrentModel()).getModel().getUserID();
-
             controller.getCurrentView().setVisible(false);
-
             controller.selectOverview();
-
             ((WrappedOverviewModel) controller.getCurrentModel()).setUserID(userID);
-
             controller.update(); //updates model and view
+            controller.getSession().setUserKey(currentModel.getHashed16Password());
             controller.getCurrentView().setVisible(true);
 
         } else {

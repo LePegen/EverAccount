@@ -18,23 +18,17 @@ public class LoginDataObject extends DataObject {
 
     public void getHash(LoginModel model) throws SQLException {
         String command = "SELECT PASSWORDHASH, USERID FROM LOGIN WHERE USERNAME = (?)";
-
         PreparedStatement pStatement = this.connection.prepareStatement(command);
-
         pStatement.setString(1, model.getUsername());
-
         this.connection.executeCommand(pStatement, false);
-
         ResultSet set = this.connection.getData();
-
         set.next();
-
         int userID = 0;
-        String hash = null;
-
+        byte[] hash = null;
         try {
-            hash = set.getString("PASSWORDHASH");
             userID = set.getInt("USERID");
+            hash = set.getBytes("PASSWORDHASH");
+            System.out.println(userID);
         } catch (Exception e) {
 
         }
@@ -51,7 +45,7 @@ public class LoginDataObject extends DataObject {
         PreparedStatement pStatement = this.connection.prepareStatement(command);
 
         pStatement.setString(1, model.getUsername());
-        pStatement.setString(2, model.getPassword());
+        pStatement.setBytes(2, model.getPassword());
 
         this.connection.executeCommand(pStatement, true);
 
@@ -72,7 +66,7 @@ public class LoginDataObject extends DataObject {
         
         PreparedStatement pStatement = this.connection.prepareStatement(command);
 
-        pStatement.setString(1, model.getPassword());
+        pStatement.setBytes(1, model.getPassword());
         pStatement.setString(2, model.getUsername());
 
         this.connection.executeCommand(pStatement, true);

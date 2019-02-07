@@ -36,8 +36,12 @@ public class Controller {
     private AccountAction accountViewAction;
     private LoginViewAction loginAction;
     private LoginAccountAction loginAccountAction;
- 
+    
+    //
+    UserSession session;
+    
     public Controller() {
+        session=new UserSession();
         initConnection();
         initViews();
         initAndSetHandlers();
@@ -79,7 +83,7 @@ public class Controller {
     }
 
     public void initWrapped() {
-        accountModel = new WrappedAccModel(connection);
+        accountModel = new WrappedAccModel(connection,session);
         loginModel = new WrappedLoginModel(connection);
         overviewModel = new WrappedOverviewModel(connection);
         loginAccountModel = new WrappedLoginAccountModel(connection);
@@ -125,5 +129,11 @@ public class Controller {
     public View getCurrentView() {
         return currentView;
     }
+
+    public UserSession getSession() {
+        return session;
+    }
+    
+    
 
 }

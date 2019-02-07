@@ -2,6 +2,7 @@ package view.action;
 
 import controller.Controller;
 import java.awt.Color;
+import java.nio.charset.StandardCharsets;
 import javax.swing.JOptionPane;
 import model.wrapped.WrappedLoginAccountModel;
 import view.LoginAccountView;
@@ -48,14 +49,14 @@ public class LoginAccountAction extends ActionHandler {
 
         controller.getCurrentModel().updateModelView(controller.getCurrentView());
          //this overrides the password that was set in the model because the updateModelView saves the new password.
-        ((WrappedLoginAccountModel) controller.getCurrentModel()).getModel().setPassword(oldPassword);
+        ((WrappedLoginAccountModel) controller.getCurrentModel()).getModel().setPassword(oldPassword.getBytes(StandardCharsets.UTF_8));
        
         
         boolean doesPasswordMatch = ((WrappedLoginAccountModel) controller.getCurrentModel()).checkPassword();
 
         if (doesPasswordMatch && newPassword.equals(verifyPassword)) {
 
-            ((WrappedLoginAccountModel) controller.getCurrentModel()).getModel().setPassword(newPassword);
+            ((WrappedLoginAccountModel) controller.getCurrentModel()).getModel().setPassword(newPassword.getBytes(StandardCharsets.UTF_8));
             ((WrappedLoginAccountModel) controller.getCurrentModel()).updateDBModel(); //new password
 
             defaultText();

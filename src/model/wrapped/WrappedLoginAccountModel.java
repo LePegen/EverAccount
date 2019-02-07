@@ -2,7 +2,11 @@ package model.wrapped;
 
 import database.DBConnection;
 import database.LoginDataObject;
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
+import java.util.Arrays;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import model.LoginModel;
@@ -17,9 +21,14 @@ public class WrappedLoginAccountModel extends WrappedModel {
 
     private LoginModel model;
     private LoginDataObject dataObj;
-
+    MessageDigest messageDigest;
     public WrappedLoginAccountModel(DBConnection connection) {
         super(connection);
+        try {
+            this.messageDigest = MessageDigest.getInstance("SHA-256");
+        } catch (NoSuchAlgorithmException ex) {
+            Logger.getLogger(WrappedLoginAccountModel.class.getName()).log(Level.SEVERE, null, ex);
+        }
         dataObj = new LoginDataObject(connection);
         model = new LoginModel();
     }
@@ -27,17 +36,17 @@ public class WrappedLoginAccountModel extends WrappedModel {
     public LoginModel getModel() {
         return model;
     }
-
+    
+   
     public boolean checkPassword() {
 
         try {
-            String viewPassword = model.getPassword(); //old password from view
-
-            dataObj.getHash(model); //password from the database is stored to the model
-
-            String storedPassword = model.getPassword(); //password from the model from the database
-
-            if (viewPassword.equals(storedPassword)) {
+            byte[] viewByte = model.getPassword();
+            dataObj.getHash(model); //password from the database is stored to the model  //password from the model from the database
+            byte[] storeByte = model.getPassword();
+            System.out.println(viewByte);
+            System.out.println(storeByte);
+            if (Arrays.equals(viewByte,storeByte)) {
                 return true; //match input password and password from database
             }
         } catch (SQLException ex) {
@@ -50,9 +59,8 @@ public class WrappedLoginAccountModel extends WrappedModel {
     @Override
     public void updateModelView(View currentView) {
         LoginAccountView view = (LoginAccountView) currentView;
-
         model.setUsername(view.getTfUsername().getText());
-        model.setPassword(view.getPwfNewPassword().getText());
+        model.setPassword(messageDigest.digest(view.getPwfNewPassword().getText().getBytes(StandardCharsets.UTF_8)));
     }
 
     @Override
@@ -80,5 +88,7 @@ public class WrappedLoginAccountModel extends WrappedModel {
     @Override
     public void updateModelDB() {
     }
+    
+  
 
 }
