@@ -1,6 +1,9 @@
 package database;
 
 import database.DBConnection;
+import java.io.ByteArrayInputStream;
+import java.sql.Blob;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import model.AccountModel;
@@ -25,35 +28,33 @@ public class AccountDataObject extends DataObject {
      */
     public void upateAccount(AccountModel model) throws SQLException {
 
-        String command = String.format(
-                "UPDATE ACCOUNT "
-                + "SET PROVIDER = '%s' "
-                + ",UNIQUENAME = '%s' "
-                + ",EMAIL = '%s' "
-                + ",USERNAME = '%s' "
-                + ",ACCOUNTPASSWORD = '%s' "
-                + ",ADDITIONALINFORMATION = '%s'"
-                + ", ENCRYPTIONKEY = %d "
-                + " WHERE ACCOUNTID = %d ",
-                model.getProvider(),
-                model.getUniqueName(),
-                model.getEmail(),
-                model.getUsername(),
-                model.getPassword(),
-                model.getAdditionalInformation(),
-                model.getEncryptionKey(),
-                model.getAccountID());
+        String command = "UPDATE ACCOUNT "
+                + "SET PROVIDER = (?) "
+                + ",UNIQUENAME = (?) "
+                + ",EMAIL = (?) "
+                + ",USERNAME = (?) "
+                + ",ACCOUNTPASSWORD = (?) "
+                + ",ADDITIONALINFORMATION = (?)"
+                + ",ENCRYPTIONKEY = (?) "
+                + "WHERE ACCOUNTID = (?) ";
 
-        System.out.println(command);
+        PreparedStatement pStatement = this.connection.prepareStatement(command);
 
-        this.connection.executeCommand(command, true);
+        pStatement.setString(1, model.getProvider());
+        pStatement.setString(2, model.getUniqueName());
+        pStatement.setString(3, model.getEmail());
+        pStatement.setString(4, model.getUsername());
+        pStatement.setString(5, model.getPassword());
+        pStatement.setString(6, model.getAdditionalInformation());
+        pStatement.setBytes(7, model.getEncryptionKey());
+        pStatement.setInt(8, model.getAccountID());
 
+        this.connection.executeCommand(pStatement, true);
     }
 
     public void addAccount(AccountModel model) throws SQLException {
 
-        String command = String.format(
-                "INSERT INTO ACCOUNT("
+        String command = "INSERT INTO ACCOUNT("
                 + "USERID,"
                 + "PROVIDER,"
                 + "UNIQUENAME,"
@@ -62,36 +63,40 @@ public class AccountDataObject extends DataObject {
                 + "ACCOUNTPASSWORD,"
                 + "ADDITIONALINFORMATION,"
                 + "ENCRYPTIONKEY)"
-                + " VALUES( %d, '%s', '%s', '%s', '%s', '%s', '%s' , %d)",
-                model.getUserID(),
-                model.getProvider(),
-                model.getUniqueName(),
-                model.getUsername(),
-                model.getPassword(),
-                model.getEmail(),
-                model.getAdditionalInformation(),
-                model.getEncryptionKey());
+                + " VALUES ( (?), (?), (?), (?), (?), (?), (?), (?) )";
 
-        System.out.println(command);
+        PreparedStatement pStatement = this.connection.prepareStatement(command);
 
-        this.connection.executeCommand(command, true);
+        pStatement.setInt(1, model.getUserID());
+        pStatement.setString(2, model.getProvider());
+        pStatement.setString(3, model.getUniqueName());
+        pStatement.setString(4, model.getEmail());
+        pStatement.setString(5, model.getUsername());
+        pStatement.setString(6, model.getPassword());
+        pStatement.setString(7, model.getAdditionalInformation());
+        pStatement.setBinaryStream (8, new ByteArrayInputStream(model.getEncryptionKey()), model.getEncryptionKey().length);
+
+        this.connection.executeCommand(pStatement, true);
     }
 
     public void deleteAccount(AccountModel model) throws SQLException {
-        String command = String.format("DELETE FROM ACCOUNT WHERE UNIQUENAME = '%s'", model.getUniqueName());
+        String commands = "DELETE FROM ACCOUNT WHERE UNIQUENAME = (?)";
 
-        System.out.println(command);
+        PreparedStatement pStatement = this.connection.prepareStatement(commands);
 
-        this.connection.executeCommand(command, true);
+        pStatement.setString(1, model.getUniqueName());
+
+        this.connection.executeCommand(pStatement, true);
     }
 
     public AccountModel getAccount(int accID) throws SQLException {
+        String command = "SELECT * FROM ACCOUNT WHERE ACCOUNTID = (?)";
 
-        String command = String.format("SELECT * FROM ACCOUNT WHERE ACCOUNTID  = %d", accID);
+        PreparedStatement pStatement = this.connection.prepareStatement(command);
 
-        System.out.println(command);
+        pStatement.setInt(1, accID);
 
-        this.connection.executeCommand(command, false);
+        this.connection.executeCommand(pStatement, false);
 
         ResultSet set = this.connection.getData();
         AccountModel model = new AccountModel();
@@ -105,7 +110,12 @@ public class AccountDataObject extends DataObject {
         model.setUsername(set.getString("USERNAME"));
         model.setPassword(set.getString("ACCOUNTPASSWORD"));
         model.setAdditionalInformation(set.getString("ADDITIONALINFORMATION"));
-        model.setEncryptionKey( set.getBytes("ENCRYPTIONKEY") );
+        Blob encrpytionKeyBlob = set.getBlob("ENCRYPTIONKEY");
+
+        byte[] keyBytes = encrpytionKeyBlob.getBytes(1, (int) encrpytionKeyBlob.length());
+        encrpytionKeyBlob.free();
+
+        model.setEncryptionKey(keyBytes);
 
         return model;
 

@@ -269,16 +269,7 @@ public class AccountView extends View {
     }//GEN-LAST:event_btnSaveActionPerformed
 
     private void btnClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClearActionPerformed
- 
-        btnAdd.setEnabled(true);
-        btnSave.setEnabled(false);
-
-        txtProvider.setText("");
-        txtUniqueName.setText("");
-        txtEmail.setText("");
-        txtUsername.setText("");
-        pwfPassword.setText("");
-        txtAdditionalInformation.setText("");
+        clear();
     }//GEN-LAST:event_btnClearActionPerformed
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
@@ -299,7 +290,9 @@ public class AccountView extends View {
     }//GEN-LAST:event_btnDeleteActionPerformed
 
     private void btnReturnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReturnActionPerformed
+        clear();
         AccountAction action = (AccountAction) handler;
+        action.returnAction();
     }//GEN-LAST:event_btnReturnActionPerformed
 
     private void btnEyeMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEyeMousePressed
@@ -313,6 +306,19 @@ public class AccountView extends View {
 
         pwfPassword.setEchoChar('•');
     }//GEN-LAST:event_btnEyeMouseReleased
+
+    public void clear() {
+        btnAdd.setEnabled(true);
+        btnSave.setEnabled(false);
+        btnDelete.setEnabled(true);
+
+        txtProvider.setText("");
+        txtUniqueName.setText("");
+        txtEmail.setText("");
+        txtUsername.setText("");
+        pwfPassword.setText("");
+        txtAdditionalInformation.setText("");
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdd;
@@ -414,7 +420,5 @@ public class AccountView extends View {
     public void setBtnDelete(JButton btnDelete) {
         this.btnDelete = btnDelete;
     }
-    
-    
 
 }

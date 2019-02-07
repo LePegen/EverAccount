@@ -29,7 +29,7 @@ public class AccountAction extends ActionHandler {
         controller.getCurrentModel().updateModelView(controller.getCurrentView()); //updates model from the information from view
 
         controller.getCurrentModel().updateDBModel();
-        
+
         returnAction("overview");
     }
 
@@ -38,7 +38,7 @@ public class AccountAction extends ActionHandler {
         controller.getCurrentModel().updateModelView(controller.getCurrentView()); //updates model from the information from view 
 
         controller.getCurrentModel().addDBModel();
-        
+
         returnAction("overview");
     }
 
@@ -46,22 +46,21 @@ public class AccountAction extends ActionHandler {
     public void deleteAction() {
         ((WrappedAccModel) controller.getCurrentModel()).deleteCurrentAccount(); //deletes current account
 
-        controller.getCurrentView().setVisible(false);
-
-        controller.selectOverview();
-
-        controller.getCurrentView().setVisible(true);
-
         returnAction("overview");
     }
 
-    public boolean checkFields(){
+    //return
+    public void returnAction() {
+        returnAction("overview");
+    }
+
+    public boolean checkFields() {
         String uniqueName = ((AccountView) controller.getCurrentView()).getTxtUniqueName().getText();
-        
-        if(uniqueName.equals("")){
+
+        if (uniqueName.equals("")) {
             return false;
         }
-        
+
         return true;
     }
 }

@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.PreparedStatement;
 
 /**
  *
@@ -14,6 +15,7 @@ public class DBConnection {
 
     private Connection connection;
     private Statement statement;
+    private PreparedStatement pStatement;
     private ResultSet dataStore;
 
     private String HOST = "jdbc:derby://localhost:1527/LeznedEverAccount";
@@ -33,9 +35,22 @@ public class DBConnection {
         }
 
     } 
+    
+    public void executeCommand(PreparedStatement pStatement, boolean isUpdate) throws SQLException {
+        if (isUpdate) {
+            pStatement.executeUpdate();
+        } else {
+            dataStore = pStatement.executeQuery();
+        }
+
+    } 
 
     public ResultSet getData() {
         return this.dataStore;
+    }
+    
+    public PreparedStatement prepareStatement(String sql) throws SQLException{
+        return pStatement = connection.prepareStatement(sql);
     }
 
 }

@@ -1,4 +1,4 @@
- package view;
+package view;
 
 import java.awt.Toolkit;
 import java.util.ArrayList;
@@ -7,6 +7,7 @@ import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 import view.action.AccountOverviewAction;
 import view.action.ActionHandler;
+import view.action.LoginViewAction;
 
 /**
  *

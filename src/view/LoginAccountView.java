@@ -50,6 +50,11 @@ public class LoginAccountView extends View {
         setTitle("Everaccount - Register and Modify");
         setMinimumSize(new java.awt.Dimension(500, 380));
         setResizable(false);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowActivated(java.awt.event.WindowEvent evt) {
+                formWindowActivated(evt);
+            }
+        });
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         btnEye.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -179,7 +184,7 @@ public class LoginAccountView extends View {
     private void btnCreateAccountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateAccountActionPerformed
         LoginAccountAction loginHandler = (LoginAccountAction) handler;
 
-        if (loginHandler.checkFieldText()) {
+        if (loginHandler.checkFieldText(1)) {
             loginHandler.btnAction(loginHandler.ADD_ACCOUNT);
         }
     }//GEN-LAST:event_btnCreateAccountActionPerformed
@@ -187,7 +192,7 @@ public class LoginAccountView extends View {
     private void btnChangePassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChangePassActionPerformed
         LoginAccountAction loginHandler = (LoginAccountAction) handler;
 
-        if (loginHandler.checkFieldText()) {
+        if (loginHandler.checkFieldText(0)) {
             loginHandler.btnAction(loginHandler.CHANGE_PASSWORD);
         }
 
@@ -206,6 +211,10 @@ public class LoginAccountView extends View {
         loginHandler.defaultText();
         loginHandler.returnAction("login");
     }//GEN-LAST:event_btnExitActionPerformed
+
+    private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
+        // TODO add your handling code here:
+    }//GEN-LAST:event_formWindowActivated
 
     @Override
     public void setHandler(ActionHandler action) {

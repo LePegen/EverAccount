@@ -1,5 +1,6 @@
 package database;
 
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
@@ -16,11 +17,13 @@ public class LoginDataObject extends DataObject {
     }
 
     public void getHash(LoginModel model) throws SQLException {
-        String command = String.format("SELECT PASSWORDHASH, USERID FROM LOGIN WHERE USERNAME='%s'", model.getUsername());
+        String command = "SELECT PASSWORDHASH, USERID FROM LOGIN WHERE USERNAME = (?)";
 
-        System.out.println(command);
+        PreparedStatement pStatement = this.connection.prepareStatement(command);
 
-        this.connection.executeCommand(command, false);
+        pStatement.setString(1, model.getUsername());
+
+        this.connection.executeCommand(pStatement, false);
 
         ResultSet set = this.connection.getData();
 
@@ -41,11 +44,16 @@ public class LoginDataObject extends DataObject {
     }
 
     public void addAccount(LoginModel model) throws SQLException {
-        String command = String.format("INSERT INTO LOGIN (USERNAME, PASSWORDHASH) VALUES ('%s', '%s')", model.getUsername(), model.getPassword());
+        String command = "INSERT INTO LOGIN"
+                + "(USERNAME, PASSWORDHASH)"
+                + "VALUES (?, ?)";
 
-        System.out.println(command);
+        PreparedStatement pStatement = this.connection.prepareStatement(command);
 
-        connection.executeCommand(command, true);
+        pStatement.setString(1, model.getUsername());
+        pStatement.setString(2, model.getPassword());
+
+        this.connection.executeCommand(pStatement, true);
 
         JOptionPane.showMessageDialog(null, "Account sucessfully created", "Everaccount", JOptionPane.INFORMATION_MESSAGE);
 
@@ -58,11 +66,16 @@ public class LoginDataObject extends DataObject {
      * @param model
      */
     public void changePassword(LoginModel model) throws SQLException {
-        String command = String.format("UPDATE LOGIN SET PASSWORDHASH = '%s' WHERE USERNAME = '%s'", model.getPassword(), model.getUsername());
+        String command = "UPDATE LOGIN"
+                + " SET PASSWORDHASH = (?)"
+                + " WHERE USERNAME = (?)";
+        
+        PreparedStatement pStatement = this.connection.prepareStatement(command);
 
-        System.out.println(command);
+        pStatement.setString(1, model.getPassword());
+        pStatement.setString(2, model.getUsername());
 
-        connection.executeCommand(command, true);
+        this.connection.executeCommand(pStatement, true);
 
         JOptionPane.showMessageDialog(null, model.getUsername() + "'s password was succesfully updated!", "Everaccount", JOptionPane.INFORMATION_MESSAGE);
     }

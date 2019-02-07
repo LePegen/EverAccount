@@ -73,14 +73,18 @@ public class LoginAccountAction extends ActionHandler {
 
     }
 
-    public boolean checkFieldText() {
+    public boolean checkFieldText(int select) {
 
         String tfUsername = ((LoginAccountView) controller.getCurrentView()).getTfUsername().getText();
         String oldPassword = ((LoginAccountView) controller.getCurrentView()).getPwfOldAccountPassword().getText();
         String newPassword = ((LoginAccountView) controller.getCurrentView()).getPwfNewPassword().getText();
-        String verifyPassword = ((LoginAccountView) controller.getCurrentView()).getPwfNewPassword().getText();
+        String verifyPassword = ((LoginAccountView) controller.getCurrentView()).getPwfVerificationPassword().getText();
 
-        if (tfUsername.equals("") && newPassword.equals("") && oldPassword.equals("") && verifyPassword.equals("")) {
+        if (select == 1){
+            oldPassword = "1";
+        }
+        
+        if (tfUsername.equals("") || newPassword.equals("") || oldPassword.equals("") || verifyPassword.equals("")) {
             JOptionPane.showMessageDialog(null, "Please properly fill up all fields.", "Everaccount", JOptionPane.WARNING_MESSAGE);
             return false;
         }
@@ -94,6 +98,7 @@ public class LoginAccountAction extends ActionHandler {
         ((LoginAccountView) controller.getCurrentView()).setPwfOldAccountPassword("");
         ((LoginAccountView) controller.getCurrentView()).setPwfNewPassword("");
         ((LoginAccountView) controller.getCurrentView()).setPwfVerificationPassword("");
+        ((LoginAccountView) controller.getCurrentView()).getPwfOldAccountPassword().setEnabled(true);
         
     }
 }

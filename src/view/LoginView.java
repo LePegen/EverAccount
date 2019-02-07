@@ -50,6 +50,11 @@ public class LoginView extends View {
         setModalExclusionType(null);
         setResizable(false);
         setSize(new java.awt.Dimension(500, 400));
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowActivated(java.awt.event.WindowEvent evt) {
+                formWindowActivated(evt);
+            }
+        });
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lblLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/Logo small.png"))); // NOI18N
@@ -192,13 +197,11 @@ public class LoginView extends View {
 
     private void lblCreateAccountMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCreateAccountMouseClicked
         LoginViewAction action = (LoginViewAction) handler;
-        action.defaultText();
         action.changeView(action.ADD_ACCOUNT);
     }//GEN-LAST:event_lblCreateAccountMouseClicked
 
     private void lblForgotAccountMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblForgotAccountMouseClicked
         LoginViewAction action = (LoginViewAction) handler;
-        action.defaultText();
         action.changeView(action.CHANGE_PASSWORD);
     }//GEN-LAST:event_lblForgotAccountMouseClicked
 
@@ -209,6 +212,11 @@ public class LoginView extends View {
 
         tfUsername.setForeground(Color.BLACK);
     }//GEN-LAST:event_tfUsernameKeyTyped
+
+    private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
+        LoginViewAction action = (LoginViewAction) handler;
+        action.defaultText();
+    }//GEN-LAST:event_formWindowActivated
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel btnEye;
