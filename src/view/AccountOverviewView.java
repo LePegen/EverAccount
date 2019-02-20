@@ -17,14 +17,22 @@ public class AccountOverviewView extends View {
 
     private ActionHandler handler;
     private HashMap<Object, Integer> components;
-
+    private AccountOverviewItemListView itemView;
     public AccountOverviewView() {
         initComponents();
         initArrayListsAndHashMap();
-
         this.setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/image/Logo icon.png")));
-        setPositionOnScreen();
-
+        AccountOverviewAction action = (AccountOverviewAction) handler;
+        itemView=new AccountOverviewItemListView() {
+            @Override
+            public void itemClicked(int id, String name) {
+                listAction(id);
+            }
+        };
+        this.pnlSearchBox.add(itemView);
+        this.setSize(800, 650);
+        btnCreate.setOpaque(false);
+        btnCreate.setBorderPainted(false);
     }
 
     public void initArrayListsAndHashMap() {
@@ -32,35 +40,31 @@ public class AccountOverviewView extends View {
     }
 
     public void setAccountList(ArrayList<Integer> accountID, ArrayList<String> itemText) {
-        DefaultListModel listModel = new DefaultListModel();
-
+        itemView.removeAll();
         //will add the itemText to the JList in this view
         for (int i = 0; i < itemText.size(); i++) {
-            listModel.add(i, itemText.get(i));
+            itemView.addItem(accountID.get(i), itemText.get(i));
         }
-
-        //treats per line as an object. Gets it and adds it to components with the account id
-        for (int i = 0; i < listModel.size(); i++) {
-            components.putIfAbsent(listModel.getElementAt(i), accountID.get(i));
-        }
-        jlAccountItems.setModel(listModel);
     }
-
+    
+    
+    public void listAction(int id){
+        AccountOverviewAction action = (AccountOverviewAction) handler;
+        action.passSelectedAccount(id);
+    }
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        lblBanner = new javax.swing.JLabel();
-        pnlFooter = new javax.swing.JPanel();
-        lblFooter = new javax.swing.JLabel();
+        jScrollPane3 = new javax.swing.JScrollPane();
         pnlSearchBox = new javax.swing.JPanel();
-        btnSearch = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jlAccountItems = new javax.swing.JList<>();
-        pnlButton = new javax.swing.JPanel();
         btnCreate = new javax.swing.JButton();
+        lblBanner = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
         btnLogout = new javax.swing.JButton();
-        lblBackground = new javax.swing.JLabel();
+        lblLogo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Everaccount - Overview");
@@ -70,56 +74,29 @@ public class AccountOverviewView extends View {
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        lblBanner.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/Banner draft 3.png"))); // NOI18N
-        getContentPane().add(lblBanner, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 25, 810, 100));
+        jScrollPane3.setBorder(null);
+        jScrollPane3.setViewportView(pnlSearchBox);
 
-        pnlFooter.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        pnlFooter.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        lblFooter.setFont(new java.awt.Font("MS Reference Sans Serif", 0, 24)); // NOI18N
-        lblFooter.setText("F O O T E R | C R E D I T S");
-        pnlFooter.add(lblFooter, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 30, -1, -1));
-
-        getContentPane().add(pnlFooter, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 770, 740, 80));
-
-        pnlSearchBox.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
-        pnlSearchBox.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        btnSearch.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/search.png"))); // NOI18N
-        btnSearch.setToolTipText("Search button. Choose 1 account before toggling the search button.");
-        btnSearch.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSearchActionPerformed(evt);
-            }
-        });
-        pnlSearchBox.add(btnSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 10, 40, 40));
-
-        jlAccountItems.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jlAccountItems.setFont(new java.awt.Font("Dialog", 2, 18)); // NOI18N
-        jlAccountItems.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
-        jlAccountItems.setToolTipText("This will show your accounts' unique name. Contains all your available accounts. Please choose 1 and then click the search button. ");
-        jlAccountItems.setName("jlChoices"); // NOI18N
-        jScrollPane1.setViewportView(jlAccountItems);
-
-        pnlSearchBox.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 520, 430));
-
-        getContentPane().add(pnlSearchBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 170, 540, 500));
-
-        pnlButton.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        pnlButton.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT));
+        getContentPane().add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 60, 580, 440));
 
         btnCreate.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        btnCreate.setText("Create");
+        btnCreate.setText("+");
         btnCreate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCreateActionPerformed(evt);
             }
         });
-        pnlButton.add(btnCreate);
+        getContentPane().add(btnCreate, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 10, -1, -1));
+
+        lblBanner.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/Banner draft 3.png"))); // NOI18N
+        getContentPane().add(lblBanner, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 580, -1, 80));
+
+        jPanel1.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 0, 1, new java.awt.Color(0, 0, 0)));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel1.setText("Hello");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 160, 150, 30));
 
         btnLogout.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         btnLogout.setText("Logout");
@@ -128,39 +105,20 @@ public class AccountOverviewView extends View {
                 btnLogoutActionPerformed(evt);
             }
         });
-        pnlButton.add(btnLogout);
+        jPanel1.add(btnLogout, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 530, -1, -1));
 
-        getContentPane().add(pnlButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 685, 540, 50));
+        lblLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/Logo small.png"))); // NOI18N
+        jPanel1.add(lblLogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 30, -1, 120));
 
-        lblBackground.setBackground(new java.awt.Color(255, 255, 255));
-        lblBackground.setOpaque(true);
-        getContentPane().add(lblBackground, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 840, 870));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, -10, 230, 610));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateActionPerformed
-        AccountOverviewAction action = (AccountOverviewAction) handler;
+            AccountOverviewAction action = (AccountOverviewAction) handler;
         action.createAccount();
     }//GEN-LAST:event_btnCreateActionPerformed
-
-    private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
-        AccountOverviewAction action = (AccountOverviewAction) handler;
-
-        if (!jlAccountItems.isSelectionEmpty()) {
-
-            DefaultListModel listModel = (DefaultListModel) jlAccountItems.getModel();
-            int index = jlAccountItems.getSelectedIndex();
-
-            Object item = listModel.get(index);
-
-            int id = action.selectedAccount(item, components); //gets the selected item from JList and returns the id
-            action.passSelectedAccount(id); //displays the accountview with the passed value of ID   
-        } else {
-            JOptionPane.showMessageDialog(null, "Please select an account or create one. To create please toggle the create button.", "Everaccount", JOptionPane.WARNING_MESSAGE);
-        }
-
-    }//GEN-LAST:event_btnSearchActionPerformed
 
     private void btnLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogoutActionPerformed
         AccountOverviewAction action = (AccountOverviewAction) handler;
@@ -170,14 +128,11 @@ public class AccountOverviewView extends View {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCreate;
     private javax.swing.JButton btnLogout;
-    private javax.swing.JButton btnSearch;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JList<String> jlAccountItems;
-    private javax.swing.JLabel lblBackground;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JLabel lblBanner;
-    private javax.swing.JLabel lblFooter;
-    private javax.swing.JPanel pnlButton;
-    private javax.swing.JPanel pnlFooter;
+    private javax.swing.JLabel lblLogo;
     private javax.swing.JPanel pnlSearchBox;
     // End of variables declaration//GEN-END:variables
 

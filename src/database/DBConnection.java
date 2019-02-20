@@ -18,9 +18,9 @@ public class DBConnection {
     private PreparedStatement pStatement;
     private ResultSet dataStore;
 
-    private String HOST = "jdbc:derby://localhost:1527/LeznedEverAccount";
-    private String USERNAME = "Lezned";
-    private String PASSWORD = "denzel";
+    private String HOST = "jdbc:derby://localhost:1527/EverAccount";
+    private String USERNAME = "root";
+    private String PASSWORD = "qwertypad";
 
     public DBConnection() throws SQLException {
         connection = DriverManager.getConnection(HOST, USERNAME, PASSWORD);

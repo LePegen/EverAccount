@@ -19,9 +19,9 @@ public class AccountView extends View {
 
     public AccountView() {
         initComponents();
-
+         
         this.setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/image/Logo icon.png")));
-        setPositionOnScreen();
+        this.setSize(800, 650);
 
     }
 
@@ -44,9 +44,9 @@ public class AccountView extends View {
         btnEye = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         jSeparator2 = new javax.swing.JSeparator();
-        jSeparator3 = new javax.swing.JSeparator();
         jSeparator4 = new javax.swing.JSeparator();
         jSeparator5 = new javax.swing.JSeparator();
+        jSeparator6 = new javax.swing.JSeparator();
         pnlAdditionalInfo = new javax.swing.JPanel();
         lblAdditionalInfo = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -69,67 +69,75 @@ public class AccountView extends View {
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lblBanner.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/Banner draft 3.png"))); // NOI18N
-        getContentPane().add(lblBanner, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 30, 810, 100));
+        getContentPane().add(lblBanner, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 10, 850, 100));
 
         pnlInfo.setBackground(new java.awt.Color(248, 248, 248));
         pnlInfo.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         pnlInfo.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        lblProvider.setFont(new java.awt.Font("Trebuchet MS", 0, 18)); // NOI18N
+        lblProvider.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
         lblProvider.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblProvider.setText("Provider");
-        pnlInfo.add(lblProvider, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, 140, 50));
+        lblProvider.setFocusable(false);
+        pnlInfo.add(lblProvider, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 30, 90, 50));
 
         txtProvider.setBackground(new java.awt.Color(248, 248, 248));
-        txtProvider.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
+        txtProvider.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         txtProvider.setText("P R O V I D E R");
         txtProvider.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 8, 1, 1));
-        pnlInfo.add(txtProvider, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 30, 320, 50));
+        pnlInfo.add(txtProvider, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 40, 320, 30));
 
-        lblUniqueName.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
-        lblUniqueName.setText("Account uniquename");
-        pnlInfo.add(lblUniqueName, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 110, 140, 50));
+        lblUniqueName.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
+        lblUniqueName.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblUniqueName.setText("Account Identifier");
+        lblUniqueName.setFocusable(false);
+        pnlInfo.add(lblUniqueName, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 90, 110, 50));
 
         txtUniqueName.setBackground(new java.awt.Color(248, 248, 248));
-        txtUniqueName.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        txtUniqueName.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         txtUniqueName.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         txtUniqueName.setText("U N I Q U E N A M E");
         txtUniqueName.setToolTipText("Enter a unique name that could easily remind you of the type of acount as this name will be the identifier of your account.");
         txtUniqueName.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 8, 1, 1));
-        pnlInfo.add(txtUniqueName, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 110, 320, 50));
+        txtUniqueName.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtUniqueNameActionPerformed(evt);
+            }
+        });
+        pnlInfo.add(txtUniqueName, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 90, 320, 40));
 
-        lblEmail.setFont(new java.awt.Font("Trebuchet MS", 0, 18)); // NOI18N
+        lblEmail.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
         lblEmail.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblEmail.setText("Email");
-        pnlInfo.add(lblEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 190, 140, 50));
+        pnlInfo.add(lblEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 140, 80, 50));
 
         txtEmail.setBackground(new java.awt.Color(248, 248, 248));
-        txtEmail.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        txtEmail.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         txtEmail.setText("E M A I L");
         txtEmail.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 8, 1, 1));
-        pnlInfo.add(txtEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 190, 320, 50));
+        pnlInfo.add(txtEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 150, 320, 30));
 
-        lblUsername.setFont(new java.awt.Font("Trebuchet MS", 0, 18)); // NOI18N
+        lblUsername.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
         lblUsername.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblUsername.setText("Username");
-        pnlInfo.add(lblUsername, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 270, 140, 50));
+        pnlInfo.add(lblUsername, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 200, 80, 50));
 
         txtUsername.setBackground(new java.awt.Color(248, 248, 248));
-        txtUsername.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        txtUsername.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         txtUsername.setText("U S E R N A M E");
         txtUsername.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 8, 1, 1));
-        pnlInfo.add(txtUsername, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 270, 320, 50));
+        pnlInfo.add(txtUsername, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 210, 320, 30));
 
-        lblPassword.setFont(new java.awt.Font("Trebuchet MS", 0, 18)); // NOI18N
+        lblPassword.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
         lblPassword.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblPassword.setText("Password");
-        pnlInfo.add(lblPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 350, 140, 50));
+        pnlInfo.add(lblPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 260, 80, 50));
 
         pwfPassword.setBackground(new java.awt.Color(248, 248, 248));
-        pwfPassword.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        pwfPassword.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         pwfPassword.setText("password");
         pwfPassword.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 8, 1, 1));
-        pnlInfo.add(pwfPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 350, 290, 50));
+        pnlInfo.add(pwfPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 270, 290, 30));
 
         btnEye.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         btnEye.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/open eye.png"))); // NOI18N
@@ -141,34 +149,34 @@ public class AccountView extends View {
                 btnEyeMouseReleased(evt);
             }
         });
-        pnlInfo.add(btnEye, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 360, -1, 30));
+        pnlInfo.add(btnEye, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 270, -1, 30));
 
         jSeparator1.setBackground(new java.awt.Color(0, 0, 0));
         jSeparator1.setForeground(new java.awt.Color(0, 0, 0));
         jSeparator1.setPreferredSize(new java.awt.Dimension(50, 20));
-        pnlInfo.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 160, 320, 20));
+        pnlInfo.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 130, 320, 20));
 
         jSeparator2.setBackground(new java.awt.Color(0, 0, 0));
         jSeparator2.setForeground(new java.awt.Color(0, 0, 0));
         jSeparator2.setPreferredSize(new java.awt.Dimension(50, 20));
-        pnlInfo.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 80, 320, 20));
-
-        jSeparator3.setBackground(new java.awt.Color(0, 0, 0));
-        jSeparator3.setForeground(new java.awt.Color(0, 0, 0));
-        jSeparator3.setPreferredSize(new java.awt.Dimension(50, 20));
-        pnlInfo.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 400, 320, 20));
+        pnlInfo.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 70, 320, 20));
 
         jSeparator4.setBackground(new java.awt.Color(0, 0, 0));
         jSeparator4.setForeground(new java.awt.Color(0, 0, 0));
         jSeparator4.setPreferredSize(new java.awt.Dimension(50, 20));
-        pnlInfo.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 240, 320, 20));
+        pnlInfo.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 240, 320, 30));
 
         jSeparator5.setBackground(new java.awt.Color(0, 0, 0));
         jSeparator5.setForeground(new java.awt.Color(0, 0, 0));
         jSeparator5.setPreferredSize(new java.awt.Dimension(50, 20));
-        pnlInfo.add(jSeparator5, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 320, 320, 20));
+        pnlInfo.add(jSeparator5, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 300, 320, 20));
 
-        getContentPane().add(pnlInfo, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 250, 510, 430));
+        jSeparator6.setBackground(new java.awt.Color(0, 0, 0));
+        jSeparator6.setForeground(new java.awt.Color(0, 0, 0));
+        jSeparator6.setPreferredSize(new java.awt.Dimension(50, 20));
+        pnlInfo.add(jSeparator6, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 180, 320, 20));
+
+        getContentPane().add(pnlInfo, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 130, 570, 370));
 
         pnlAdditionalInfo.setBackground(new java.awt.Color(248, 248, 248));
         pnlAdditionalInfo.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -188,13 +196,13 @@ public class AccountView extends View {
         txtAdditionalInformation.setBorder(javax.swing.BorderFactory.createEmptyBorder(5, 5, 5, 5));
         jScrollPane1.setViewportView(txtAdditionalInformation);
 
-        pnlAdditionalInfo.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, -1, 370));
+        pnlAdditionalInfo.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, -1, 230));
 
-        getContentPane().add(pnlAdditionalInfo, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 250, 330, 430));
+        getContentPane().add(pnlAdditionalInfo, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 130, 330, 290));
 
         jPanel1.setBackground(new java.awt.Color(248, 248, 248));
         jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED));
-        jPanel1.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 20, 8));
+        jPanel1.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.RIGHT, 20, 8));
 
         btnAdd.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         btnAdd.setText("Add");
@@ -247,11 +255,11 @@ public class AccountView extends View {
         });
         jPanel1.add(btnReturn);
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 180, 860, 50));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 520, 860, 50));
 
         lblBackground.setBackground(new java.awt.Color(255, 255, 255));
         lblBackground.setOpaque(true);
-        getContentPane().add(lblBackground, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 950, 710));
+        getContentPane().add(lblBackground, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 950, 650));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -307,6 +315,10 @@ public class AccountView extends View {
         pwfPassword.setEchoChar('•');
     }//GEN-LAST:event_btnEyeMouseReleased
 
+    private void txtUniqueNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUniqueNameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtUniqueNameActionPerformed
+
     public void clear() {
         btnAdd.setEnabled(true);
         btnSave.setEnabled(false);
@@ -331,9 +343,9 @@ public class AccountView extends View {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
-    private javax.swing.JSeparator jSeparator3;
     private javax.swing.JSeparator jSeparator4;
     private javax.swing.JSeparator jSeparator5;
+    private javax.swing.JSeparator jSeparator6;
     private javax.swing.JLabel lblAdditionalInfo;
     private javax.swing.JLabel lblBackground;
     private javax.swing.JLabel lblBanner;

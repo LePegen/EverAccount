@@ -5,8 +5,10 @@
  */
 package controller;
 
+import cryptolib.lib.CryptoKey;
 import cryptolib.lib.CryptoTools;
 import cryptolib.lib.strategy.MDCryptoState.MDFactory.MDKeyFactory;
+import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 
 /**
@@ -26,19 +28,16 @@ public class UserSession {
     public CryptoTools getTools() {
         return tools;
     }
-    
-    public String decryptString(byte[] target,byte[] key){
-        MDKeyFactory keyFactory=new MDKeyFactory();
-        byte[] decrypted=tools.decrypt(target, keyFactory.createKey(key));
-        String decryptedString=new String(decrypted,StandardCharsets.UTF_8);
-        return decryptedString;
+    MDKeyFactory keyFactory=new MDKeyFactory();
+    public String decryptString(String data, String key){
+        cryptolib.lib.CryptoKey newKey = keyFactory.createKey(key.getBytes(StandardCharsets.UTF_8));
+        byte[] convBytes = data.getBytes(StandardCharsets.UTF_8);
+        return new String(tools.decrypt(convBytes, newKey), Charset.forName("UTF8"));
     }
     
-    public String encryptString(byte[] target, byte[] key) {
-        MDKeyFactory keyFactory = new MDKeyFactory();
-        byte[] encrypted = tools.encrypt(target, keyFactory.createKey(key));
-        String encryptedString = new String(encrypted, StandardCharsets.UTF_8);
-        return encryptedString;
+    public String encryptString(String data, CryptoKey key) {
+        byte[] convBytes = data.getBytes(StandardCharsets.UTF_8);
+        return new String(tools.encrypt(convBytes, key), Charset.forName("UTF8"));
     }
     
     public byte[] getUserKey() {

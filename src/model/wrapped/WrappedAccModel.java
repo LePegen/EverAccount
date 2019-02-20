@@ -1,6 +1,7 @@
 package model.wrapped;
 
 import controller.UserSession;
+import cryptolib.lib.CryptoKey;
 import cryptolib.lib.strategy.MDCryptoState.MDCryptoKey;
 import cryptolib.lib.strategy.MDCryptoState.MDCryptoState;
 import cryptolib.lib.strategy.MDCryptoState.MDFactory.MDKeyFactory;
@@ -64,7 +65,6 @@ public class WrappedAccModel extends WrappedModel {
 
         model.setProvider(view.getTxtProvider().getText());
         model.setUniqueName(view.getTxtUniqueName().getText());
-
         model.setEmail(view.getTxtEmail().getText());
         model.setUsername(view.getTxtUsername().getText());
         model.setPassword(view.getPwfPassword().getText());
@@ -125,29 +125,32 @@ public class WrappedAccModel extends WrappedModel {
     public void decryptModel() {
         MDKeyFactory mdKey=new MDKeyFactory();
         byte[] tempKey=model.getEncryptionKey();
+        String keyString=new String(tempKey,StandardCharsets.UTF_8);
+        
         System.out.println("DECYPT"+Arrays.toString(tempKey));
 //byte[] tempKey=session.getTools().decrypt(model.getEncryptionKey(), mdKey.createKey(session.getUserKey()));
-        model.setAdditionalInformation(session.decryptString(model.getAdditionalInformation().getBytes(StandardCharsets.UTF_8), tempKey));
-        model.setEmail(session.decryptString(model.getEmail().getBytes(StandardCharsets.UTF_8), tempKey));
-        model.setPassword(session.decryptString(model.getPassword().getBytes(StandardCharsets.UTF_8), tempKey));
-        model.setProvider(session.decryptString(model.getProvider().getBytes(StandardCharsets.UTF_8), tempKey));
-        model.setUniqueName(session.decryptString(model.getUniqueName().getBytes(StandardCharsets.UTF_8), tempKey));
-        model.setUsername(session.decryptString(model.getUsername().getBytes(StandardCharsets.UTF_8), tempKey));
+        model.setAdditionalInformation(session.decryptString(model.getAdditionalInformation(), keyString));
+        model.setEmail(session.decryptString(model.getEmail(), keyString));
+        model.setPassword(session.decryptString(model.getPassword(), keyString));
+        model.setProvider(session.decryptString(model.getProvider(), keyString));
+        model.setUniqueName((model.getUniqueName()));
+        model.setUsername(session.decryptString(model.getUsername(), keyString));
     }
     
     public void encryptModel(){
         MDKeyFactory mdKey = new MDKeyFactory();
-        byte[] tempKey=MDCryptoState.getData(((MDCryptoKey)mdKey.generateKey()).getKey());
-        System.out.println("ENCYOPT" + Arrays.toString(tempKey));
+        CryptoKey newKey = mdKey.generateKey();
+        byte[] keyData = MDCryptoState.getData(((MDCryptoKey) newKey).getKey());
+        System.out.println("ENCYPT" + Arrays.toString(keyData));
 
         //byte[] encryptedKey=session.getTools().encrypt(tempKey, mdKey.createKey(session.getUserKey()));
-        model.setEncryptionKey(tempKey);
-        model.setAdditionalInformation(session.encryptString(model.getAdditionalInformation().getBytes(StandardCharsets.UTF_8), tempKey));
-        model.setEmail(session.encryptString(model.getEmail().getBytes(StandardCharsets.UTF_8), tempKey));
-        model.setPassword(session.encryptString(model.getPassword().getBytes(StandardCharsets.UTF_8), tempKey));
-        model.setProvider(session.encryptString(model.getProvider().getBytes(StandardCharsets.UTF_8), tempKey));
-        model.setUniqueName(session.encryptString(model.getUniqueName().getBytes(StandardCharsets.UTF_8), tempKey));
-        model.setUsername(session.encryptString(model.getUsername().getBytes(StandardCharsets.UTF_8), tempKey));
+        model.setEncryptionKey(keyData);
+        model.setAdditionalInformation(session.encryptString(model.getAdditionalInformation(), newKey));
+        model.setEmail(session.encryptString(model.getEmail(), newKey));
+        model.setPassword(session.encryptString(model.getPassword(), newKey));
+        model.setProvider(session.encryptString(model.getProvider(), newKey));
+        model.setUniqueName((model.getUniqueName()));
+        model.setUsername(session.encryptString(model.getUsername(), newKey));
     }
 
 }
